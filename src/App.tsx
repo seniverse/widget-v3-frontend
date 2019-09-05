@@ -1,9 +1,8 @@
 import React from 'react'
 import logo from './logo.svg'
 import { hot } from 'react-hot-loader'
-// import './App.css'
 import styled, { keyframes } from 'styled-components'
-import GlobalStyle from './components/expand/GlobalStyle'
+import GlobalStyle from 'COMPONENTS/expand/GlobalStyle'
 
 const appLogoSpin = keyframes`
   from {

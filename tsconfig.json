@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "target": "es5",
     "lib": [
       "dom",
@@ -17,7 +18,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "paths": {
+      "COMPONENTS/*": ["components/*"],
+      "RESOURCE/*": ["resource/*"],
+      "UTILS/*": ["utils/*"]
+    }
   },
   "include": [
     "src"
