@@ -1,15 +1,18 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   env: {
     browser: true,
     es6: true,
     jest: true
   },
-  extends: ['standard', 'standard-react', 'prettier'],
+  extends: [
+    'standard',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended'
+  ],
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-    AMap: 'readonly'
+    SharedArrayBuffer: 'readonly'
   },
   parserOptions: {
     ecmaFeatures: {
@@ -18,16 +21,16 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
-  plugins: ['babel', 'react', 'standard', 'prettier'],
+  plugins: ['@typescript-eslint'],
   rules: {
-    'prettier/prettier': 'error'
+    'react/prop-types': 0,
+    'prettier/prettier': 2,
+    '@typescript-eslint/no-unused-vars': 2
   },
-  overrides: [
-    {
-      files: ['**/*.js'],
-      rules: {
-        'prettier/prettier': 'error'
-      }
+  settings: {
+    react: {
+      pragma: 'React',
+      version: 'detect'
     }
-  ]
+  }
 }
