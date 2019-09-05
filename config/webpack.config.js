@@ -11,14 +11,14 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const safePostCssParser = require('postcss-safe-parser')
+// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+// const safePostCssParser = require('postcss-safe-parser')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
-const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
+// const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
 const paths = require('./paths')
 const modules = require('./modules')
 const getClientEnvironment = require('./env')
@@ -27,7 +27,7 @@ const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpack
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter')
 // const eslint = require('eslint')
 
-const postcssNormalize = require('postcss-normalize')
+// const postcssNormalize = require('postcss-normalize')
 
 const appPackageJson = require(paths.appPackageJson)
 
@@ -45,10 +45,10 @@ const imageInlineSizeLimit = parseInt(
 const useTypeScript = fs.existsSync(paths.appTsConfig)
 
 // style files regexes
-const cssRegex = /\.css$/
-const cssModuleRegex = /\.module\.css$/
-const sassRegex = /\.(scss|sass)$/
-const sassModuleRegex = /\.module\.(scss|sass)$/
+// const cssRegex = /\.css$/
+// const cssModuleRegex = /\.module\.css$/
+// const sassRegex = /\.(scss|sass)$/
+// const sassModuleRegex = /\.module\.(scss|sass)$/
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -64,7 +64,7 @@ module.exports = function(webpackEnv) {
     : isEnvDevelopment && '/'
   // Some apps do not use client-side routing with pushState.
   // For these, "homepage" can be set to "." to enable relative asset paths.
-  const shouldUseRelativeAssetPaths = publicPath === './'
+  // const shouldUseRelativeAssetPaths = publicPath === './'
 
   // `publicUrl` is just like `publicPath`, but we will provide it to our app
   // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
@@ -76,61 +76,61 @@ module.exports = function(webpackEnv) {
   const env = getClientEnvironment(publicUrl)
 
   // common function to get style loaders
-  const getStyleLoaders = (cssOptions, preProcessor) => {
-    const loaders = [
-      isEnvDevelopment && require.resolve('style-loader'),
-      isEnvProduction && {
-        loader: MiniCssExtractPlugin.loader,
-        options: shouldUseRelativeAssetPaths ? { publicPath: '../../' } : {}
-      },
-      {
-        loader: require.resolve('css-loader'),
-        options: cssOptions
-      },
-      {
-        // Options for PostCSS as we reference these options twice
-        // Adds vendor prefixing based on your specified browser support in
-        // package.json
-        loader: require.resolve('postcss-loader'),
-        options: {
-          // Necessary for external CSS imports to work
-          // https://github.com/facebook/create-react-app/issues/2677
-          ident: 'postcss',
-          plugins: () => [
-            require('postcss-flexbugs-fixes'),
-            require('postcss-preset-env')({
-              autoprefixer: {
-                flexbox: 'no-2009'
-              },
-              stage: 3
-            }),
-            // Adds PostCSS Normalize as the reset css with default options,
-            // so that it honors browserslist config in package.json
-            // which in turn let's users customize the target behavior as per their needs.
-            postcssNormalize()
-          ],
-          sourceMap: isEnvProduction && shouldUseSourceMap
-        }
-      }
-    ].filter(Boolean)
-    if (preProcessor) {
-      loaders.push(
-        {
-          loader: require.resolve('resolve-url-loader'),
-          options: {
-            sourceMap: isEnvProduction && shouldUseSourceMap
-          }
-        },
-        {
-          loader: require.resolve(preProcessor),
-          options: {
-            sourceMap: true
-          }
-        }
-      )
-    }
-    return loaders
-  }
+  // const getStyleLoaders = (cssOptions, preProcessor) => {
+  //   const loaders = [
+  //     isEnvDevelopment && require.resolve('style-loader'),
+  //     isEnvProduction && {
+  //       loader: MiniCssExtractPlugin.loader,
+  //       options: shouldUseRelativeAssetPaths ? { publicPath: '../../' } : {}
+  //     },
+  //     {
+  //       loader: require.resolve('css-loader'),
+  //       options: cssOptions
+  //     },
+  //     {
+  //       // Options for PostCSS as we reference these options twice
+  //       // Adds vendor prefixing based on your specified browser support in
+  //       // package.json
+  //       loader: require.resolve('postcss-loader'),
+  //       options: {
+  //         // Necessary for external CSS imports to work
+  //         // https://github.com/facebook/create-react-app/issues/2677
+  //         ident: 'postcss',
+  //         plugins: () => [
+  //           require('postcss-flexbugs-fixes'),
+  //           require('postcss-preset-env')({
+  //             autoprefixer: {
+  //               flexbox: 'no-2009'
+  //             },
+  //             stage: 3
+  //           }),
+  //           // Adds PostCSS Normalize as the reset css with default options,
+  //           // so that it honors browserslist config in package.json
+  //           // which in turn let's users customize the target behavior as per their needs.
+  //           postcssNormalize()
+  //         ],
+  //         sourceMap: isEnvProduction && shouldUseSourceMap
+  //       }
+  //     }
+  //   ].filter(Boolean)
+  //   if (preProcessor) {
+  //     loaders.push(
+  //       {
+  //         loader: require.resolve('resolve-url-loader'),
+  //         options: {
+  //           sourceMap: isEnvProduction && shouldUseSourceMap
+  //         }
+  //       },
+  //       {
+  //         loader: require.resolve(preProcessor),
+  //         options: {
+  //           sourceMap: true
+  //         }
+  //       }
+  //     )
+  //   }
+  //   return loaders
+  // }
 
   return {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
@@ -240,23 +240,23 @@ module.exports = function(webpackEnv) {
           // Enable file caching
           cache: true,
           sourceMap: shouldUseSourceMap
-        }),
-        // This is only used in production mode
-        new OptimizeCSSAssetsPlugin({
-          cssProcessorOptions: {
-            parser: safePostCssParser,
-            map: shouldUseSourceMap
-              ? {
-                  // `inline: false` forces the sourcemap to be output into a
-                  // separate file
-                  inline: false,
-                  // `annotation: true` appends the sourceMappingURL to the end of
-                  // the css file, helping the browser find the sourcemap
-                  annotation: true
-                }
-              : false
-          }
         })
+        // This is only used in production mode
+        // new OptimizeCSSAssetsPlugin({
+        //   cssProcessorOptions: {
+        //     parser: safePostCssParser,
+        //     map: shouldUseSourceMap
+        //       ? {
+        //           // `inline: false` forces the sourcemap to be output into a
+        //           // separate file
+        //           inline: false,
+        //           // `annotation: true` appends the sourceMappingURL to the end of
+        //           // the css file, helping the browser find the sourcemap
+        //           annotation: true
+        //         }
+        //       : false
+        //   }
+        // })
       ],
       // Automatically split vendor and commons
       // https://twitter.com/wSokra/status/969633336732905474
@@ -408,6 +408,12 @@ module.exports = function(webpackEnv) {
                 sourceMaps: false
               }
             },
+
+            {
+              test: /\.css$/,
+              use: [{ loader: 'raw-loader' }]
+            },
+
             // "postcss" loader applies autoprefixer to our CSS.
             // "css" loader resolves paths in CSS and adds assets as dependencies.
             // "style" loader turns CSS into JS modules that inject <style> tags.
@@ -415,63 +421,63 @@ module.exports = function(webpackEnv) {
             // to a file, but in development "style" loader enables hot editing
             // of CSS.
             // By default we support CSS Modules with the extension .module.css
-            {
-              test: cssRegex,
-              exclude: cssModuleRegex,
-              use: getStyleLoaders({
-                importLoaders: 1,
-                sourceMap: isEnvProduction && shouldUseSourceMap
-              }),
-              // Don't consider CSS imports dead code even if the
-              // containing package claims to have no side effects.
-              // Remove this when webpack adds a warning or an error for this.
-              // See https://github.com/webpack/webpack/issues/6571
-              sideEffects: true
-            },
-            // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
-            // using the extension .module.css
-            {
-              test: cssModuleRegex,
-              use: getStyleLoaders({
-                importLoaders: 1,
-                sourceMap: isEnvProduction && shouldUseSourceMap,
-                modules: true,
-                getLocalIdent: getCSSModuleLocalIdent
-              })
-            },
-            // Opt-in support for SASS (using .scss or .sass extensions).
-            // By default we support SASS Modules with the
-            // extensions .module.scss or .module.sass
-            {
-              test: sassRegex,
-              exclude: sassModuleRegex,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 2,
-                  sourceMap: isEnvProduction && shouldUseSourceMap
-                },
-                'sass-loader'
-              ),
-              // Don't consider CSS imports dead code even if the
-              // containing package claims to have no side effects.
-              // Remove this when webpack adds a warning or an error for this.
-              // See https://github.com/webpack/webpack/issues/6571
-              sideEffects: true
-            },
-            // Adds support for CSS Modules, but using SASS
-            // using the extension .module.scss or .module.sass
-            {
-              test: sassModuleRegex,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 2,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                  modules: true,
-                  getLocalIdent: getCSSModuleLocalIdent
-                },
-                'sass-loader'
-              )
-            },
+            // {
+            //   test: cssRegex,
+            //   exclude: cssModuleRegex,
+            //   use: getStyleLoaders({
+            //     importLoaders: 1,
+            //     sourceMap: isEnvProduction && shouldUseSourceMap
+            //   }),
+            //   // Don't consider CSS imports dead code even if the
+            //   // containing package claims to have no side effects.
+            //   // Remove this when webpack adds a warning or an error for this.
+            //   // See https://github.com/webpack/webpack/issues/6571
+            //   sideEffects: true
+            // },
+            // // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
+            // // using the extension .module.css
+            // {
+            //   test: cssModuleRegex,
+            //   use: getStyleLoaders({
+            //     importLoaders: 1,
+            //     sourceMap: isEnvProduction && shouldUseSourceMap,
+            //     modules: true,
+            //     getLocalIdent: getCSSModuleLocalIdent
+            //   })
+            // },
+            // // Opt-in support for SASS (using .scss or .sass extensions).
+            // // By default we support SASS Modules with the
+            // // extensions .module.scss or .module.sass
+            // {
+            //   test: sassRegex,
+            //   exclude: sassModuleRegex,
+            //   use: getStyleLoaders(
+            //     {
+            //       importLoaders: 2,
+            //       sourceMap: isEnvProduction && shouldUseSourceMap
+            //     },
+            //     'sass-loader'
+            //   ),
+            //   // Don't consider CSS imports dead code even if the
+            //   // containing package claims to have no side effects.
+            //   // Remove this when webpack adds a warning or an error for this.
+            //   // See https://github.com/webpack/webpack/issues/6571
+            //   sideEffects: true
+            // },
+            // // Adds support for CSS Modules, but using SASS
+            // // using the extension .module.scss or .module.sass
+            // {
+            //   test: sassModuleRegex,
+            //   use: getStyleLoaders(
+            //     {
+            //       importLoaders: 2,
+            //       sourceMap: isEnvProduction && shouldUseSourceMap,
+            //       modules: true,
+            //       getLocalIdent: getCSSModuleLocalIdent
+            //     },
+            //     'sass-loader'
+            //   )
+            // },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
             // In production, they would get copied to the `build` folder.
