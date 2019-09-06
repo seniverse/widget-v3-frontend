@@ -21,7 +21,9 @@
     "jsx": "react",
     "paths": {
       "COMPONENTS/*": ["components/*"],
+      "CONTAINERS/*": ["containers/*"],
       "RESOURCE/*": ["resource/*"],
+      "TYPES/*": ["types/*"],
       "UTILS/*": ["utils/*"]
     }
   },

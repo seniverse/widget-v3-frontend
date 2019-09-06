@@ -11,6 +11,7 @@
     "@types/react-dom": "16.9.0",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
+    "axios": "^0.19.0",
     "babel-eslint": "10.0.2",
     "babel-jest": "^24.8.0",
     "babel-loader": "8.0.6",
@@ -62,7 +63,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "eslint": "eslint --ext .js,jsx,ts,tsx src",
-    "stylelint": "stylelint './src/**/*'"
+    "stylelint": "stylelint './src/**/*'",
+    "mock-server": "json-server ./src/api/mock/db.json -p 3002 -w"
   },
   "browserslist": {
     "production": [
@@ -106,9 +108,10 @@
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
       "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
-
       "^COMPONENTS/(.*)$": "<rootDir>/src/components/$1",
+      "^CONTAINERS/(.*)$": "<rootDir>/src/containers/$1",
       "^RESOURCE/(.*)$": "<rootDir>/src/resource/$1",
+      "^TYPES/(.*)$": "<rootDir>/src/types/$1",
       "^UTILS/(.*)$": "<rootDir>/src/utils/$1"
     },
     "moduleFileExtensions": [
@@ -139,6 +142,7 @@
     }
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/styled-components": "^4.1.18",
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.2.0",
@@ -147,6 +151,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "json-server": "^0.15.1",
     "prettier": "^1.18.2",
     "raw-loader": "^3.1.0",
     "react-hot-loader": "^4.12.12",
