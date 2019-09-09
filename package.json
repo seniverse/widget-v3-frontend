@@ -63,7 +63,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "eslint": "eslint --ext .js,jsx,ts,tsx src",
-    "stylelint": "stylelint './src/**/*'",
+    "stylelint": "stylelint './src/**/*.tsx'",
     "mock-server": "json-server ./src/api/mock/db.json -p 3002 -w"
   },
   "browserslist": {

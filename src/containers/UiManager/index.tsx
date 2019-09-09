@@ -35,7 +35,7 @@ const UiManager: React.FC = () => {
         const { UIType } = item
         const Component = getUI(UIType)
 
-        return <Component key={index} />
+        return <Component key={index} options={item} />
       })}
     </>
   )
