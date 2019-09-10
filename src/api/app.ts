@@ -9,7 +9,7 @@ const get = async (url: string) => {
 }
 
 const getConfig = () =>
-  get('http://localhost:3001/api/weather/f42ea168-0c67-4728-95ae-434cfe46d649')
+  get('http://localhost:3001/api/weather/8f223334-cd21-4708-b75b-3a71d16e211f')
 
 export default {
   getConfig

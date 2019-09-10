@@ -1,5 +1,5 @@
 import React from 'react'
-import { BaseUiLayoutOption } from 'TYPES/Widget'
+import { BaseUiLayout, BaseUiLayoutOption } from 'TYPES/Widget'
 import TileContainer from 'COMPONENTS/base/TileContainer'
 import styled from 'styled-components'
 
@@ -41,7 +41,7 @@ const Tile: React.FC<TileUiProps> = props => {
   const { size, data } = options
   const [column, row] = size
 
-  const { header, content } = data[0]
+  const { header, content } = (data as BaseUiLayout[])[0]
   console.log(content)
 
   return (
