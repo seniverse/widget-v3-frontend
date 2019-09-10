@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import AppApi from 'api/app'
 import Main from 'CONTAINERS/Main'
 import Carousel from 'CONTAINERS/Carousel'
+import Tile from 'CONTAINERS/Tile'
+import Chart from 'CONTAINERS/Chart'
 import { SwLayoutOptions } from 'TYPES/Widget'
 
 const getUI: (type: string) => React.ElementType = type => {
@@ -10,6 +12,10 @@ const getUI: (type: string) => React.ElementType = type => {
       return Main
     case 'carousel':
       return Carousel
+    case 'tile':
+      return Tile
+    case 'chart':
+      return Chart
     default:
       return () => null
   }
@@ -20,8 +26,8 @@ const UiManager: React.FC = () => {
 
   const fetchConfig = async () => {
     const res = await AppApi.getConfig()
-    if (res && res.data) {
-      setConfig(res.data)
+    if (res && res.success) {
+      setConfig(res.results)
     }
   }
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import { hot } from 'react-hot-loader'
 import styled from 'styled-components'
 import GlobalStyle from 'COMPONENTS/expand/GlobalStyle'
 import { SwConfigOptions } from 'TYPES/Widget'
@@ -7,7 +6,7 @@ import UiManager from 'CONTAINERS/UiManager'
 import { gridWidth } from 'UTILS/theme'
 
 const AppContainer = styled.div`
-  width: ${gridWidth() * 4 + 8}px;
+  width: ${gridWidth() * 3 + 8}px;
   background: #fff;
   padding: 4px;
   box-sizing: border-box;
@@ -30,4 +29,4 @@ const App: React.FC<SwProps> = () => {
   )
 }
 
-export default hot(module)(App)
+export default App

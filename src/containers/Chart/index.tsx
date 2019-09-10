@@ -2,20 +2,20 @@ import React from 'react'
 import { BaseUiLayoutOption } from 'TYPES/Widget'
 import TileContainer from 'COMPONENTS/base/TileContainer'
 
-interface CarouselUiProps {
+interface ChartUiProps {
   options: BaseUiLayoutOption
 }
 
-const Carousel: React.FC<CarouselUiProps> = props => {
+const Chart: React.FC<ChartUiProps> = props => {
   const { options } = props
   const { size } = options
   const [column, row] = size
 
   return (
-    <TileContainer className="sw-ui-carousel" column={column} row={row}>
-      Carousel UI
+    <TileContainer className="sw-ui-chart" column={column} row={row}>
+      Chart UI
     </TileContainer>
   )
 }
 
-export default Carousel
+export default Chart

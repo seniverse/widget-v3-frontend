@@ -1,9 +1,9 @@
 import React from 'react'
-import { UiMainLayoutOption } from 'TYPES/Widget'
-import Tile from 'COMPONENTS/base/Tile'
+import { BaseUiLayoutOption } from 'TYPES/Widget'
+import TileContainer from 'COMPONENTS/base/TileContainer'
 
 interface MainUiProps {
-  options: UiMainLayoutOption
+  options: BaseUiLayoutOption
 }
 
 const Main: React.FC<MainUiProps> = props => {
@@ -12,9 +12,9 @@ const Main: React.FC<MainUiProps> = props => {
   const [column, row] = size
 
   return (
-    <Tile className="sw-ui-main" column={column} row={row}>
+    <TileContainer className="sw-ui-main" column={column} row={row}>
       Main UI
-    </Tile>
+    </TileContainer>
   )
 }
 

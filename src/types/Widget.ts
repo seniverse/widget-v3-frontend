@@ -1,27 +1,36 @@
-export type SwType = 'float' | 'fixed'
-
-export type SwLanguage = 'auto' | 'zh-cn' | 'zh-tw' | 'en'
+export type SwType = 'bubble' | 'slim'
+export type SwTheme = 'dark' | 'light' | 'auto'
+export type SwLanguage = 'auto' | 'zh-Hans' | 'zh-Hant' | 'en'
+export type SwGeolocation = 'enabled' | 'disabled'
+export type SwUnit = 'c' | 'f'
+export type SwHover = 'enabled' | 'disabled'
 
 export interface SwConfigOptions {
-  type: SwType
-  token: string
+  flavor: SwType
+  location: string
+  geolocation: SwGeolocation
   language: SwLanguage
+  unit: SwUnit
+  theme: SwTheme
+  container: string
+  token: string
+  hover: SwHover
+}
+
+interface BaseUiLayout {
+  header: string
+  content: {
+    suffix: string
+    text: string
+  }[]
 }
 
 export interface BaseUiLayoutOption {
   UIType: string
-  data: any[]
+  data: BaseUiLayout[]
   size: [number, number]
 }
 
-export interface UiMainLayoutOption extends BaseUiLayoutOption {
-  data: any[]
-}
-
-export interface UiCarouselLayoutOption extends BaseUiLayoutOption {
-  data: any[]
-}
-
-export type SwLayoutOption = UiMainLayoutOption | UiCarouselLayoutOption
+export type SwLayoutOption = BaseUiLayoutOption
 
 export type SwLayoutOptions = SwLayoutOption[]
