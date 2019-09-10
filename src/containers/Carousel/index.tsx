@@ -1,8 +1,9 @@
 import React from 'react'
-import { CarouselUI } from 'TYPES/Carousel'
+import { CarouselUI, Content } from 'TYPES/Carousel'
 import { BaseUiLayoutOption } from 'TYPES/Widget'
 import TileContainer from 'COMPONENTS/base/TileContainer'
 import Typography from 'COMPONENTS/base/Typography'
+import SvgIcon from 'COMPONENTS/base/SvgIcon'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -42,6 +43,7 @@ const CardTitle = styled(Typography)`
 
 const CardContent = styled.div`
   flex: 1 0 auto;
+  display: flex;
 `
 
 interface CarouselUiProps {
@@ -53,29 +55,43 @@ const Carousel: React.FC<CarouselUiProps> = props => {
   const { data, size } = options
   const [column, row] = size
 
+  const getContentPrefix = (item: Content) => {
+    return item.type === 'icon' ? (
+      <SvgIcon className="sw-ui-carousel-icon" name={item.text}></SvgIcon>
+    ) : (
+      <Typography
+        variant="caption"
+        className="sw-ui-carousel-text"
+        component="span"
+      >
+        {item.text}
+      </Typography>
+    )
+  }
+
   return (
     <TileContainer className="sw-ui-carousel" column={column} row={row}>
       <Container>
         <CardWrapper>
-          {(data as CarouselUI).map((item, index) => (
-            <Card key={index}>
-              <CardTitle variant="caption" className="sw-ui-tile-header">
-                {item.header}
-              </CardTitle>
-              <CardContent>
-                <Typography variant="caption" className="sw-ui-tile-text">
-                  {item.content[0].text}
+          {(data as CarouselUI).map((item, index) => {
+            return (
+              <Card key={index}>
+                <CardTitle variant="caption" className="sw-ui-carousel-header">
+                  {item.header}
+                </CardTitle>
+                <CardContent>
+                  {getContentPrefix(item.content[0])}
                   <Typography
                     variant="caption"
-                    className="sw-ui-tile-suffix"
+                    className="sw-ui-carousel-suffix"
                     component="span"
                   >
                     {item.content[0].suffix}
                   </Typography>
-                </Typography>
-              </CardContent>
-            </Card>
-          ))}
+                </CardContent>
+              </Card>
+            )
+          })}
         </CardWrapper>
       </Container>
     </TileContainer>

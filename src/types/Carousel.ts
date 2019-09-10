@@ -5,7 +5,7 @@ interface Datum {
   content: Content[]
 }
 
-interface Content {
+export interface Content {
   type: string
   text: string
   suffix: string

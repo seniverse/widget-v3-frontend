@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>15</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="天气图标" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="天气图标_黑色背景" transform="translate(-264.000000, -733.000000)">
+            <g id="Group-15" transform="translate(264.000000, 733.000000)">
+                <path d="M20.7072155,6.28483169 C20.7072155,3.03759109 18.0098145,0.395717382 14.6943659,0.395717382 C12.5835123,0.395717382 10.6366041,1.48684966 9.55456402,3.22628631 C8.88214149,2.77623966 8.08756259,2.53401321 7.25628052,2.53401321 C5.00475489,2.53401321 3.17327654,4.32789515 3.17327654,6.5330347 C3.17327654,6.77669083 3.19537812,7.01821415 3.23953441,7.25509685 C1.30636065,7.94228401 0,9.73710345 0,11.7966259 C0,14.4184605 2.12193957,16.3957174 4.93540326,16.3957174 L19.0643858,16.3957174 C21.7858572,16.3957174 24,14.227445 24,11.5620401 C24.0000703,9.491877 22.6197643,7.64233103 20.6523952,6.98451104 C20.6807077,6.75205803 20.7072155,6.48290191 20.7072155,6.28483169 Z" id="Shape-Copy-6" fill-opacity="0.85" fill="#F1F1F1"></path>
+                <path d="M3.46821295,19.3957174 L2,23" id="Line-Copy" stroke="#7DC5FF" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M7.46821295,19.3957174 L6,23" id="Line-Copy-2" stroke="#7DC5FF" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M11.4682129,19.3957174 L10,23" id="Line-Copy-3" stroke="#7DC5FF" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M15.4682129,19.3957174 L14,23" id="Line-Copy-4" stroke="#7DC5FF" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M19.4682129,19.3957174 L18,23" id="Line-Copy-4" stroke="#7DC5FF" stroke-width="1.5" stroke-linecap="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>
