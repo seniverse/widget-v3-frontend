@@ -31,7 +31,7 @@ const StyledTileContainer = styled(TileContainer)`
 `
 
 const Container = styled.div`
-  padding: 16px;
+  padding: 16px 8px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -51,16 +51,17 @@ const Tile: React.FC<TileUiProps> = props => {
   return (
     <StyledTileContainer className="sw-ui-tile" column={column} row={row}>
       <Container className="sw-ui-tile-container">
-        <Typography variant="caption" className="sw-ui-tile-header">
+        <Typography variant="caption" className="sw-ui-tile-header" noWrap>
           {header}
         </Typography>
-        <Typography variant="h3" className="sw-ui-tile-text">
+        <Typography variant="h3" className="sw-ui-tile-text" noWrap>
           {text}
           <Typography
             variant="caption"
             className="sw-ui-tile-suffix"
             component="span"
           >
+            {' '}
             {suffix}
           </Typography>
         </Typography>

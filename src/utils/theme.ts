@@ -19,7 +19,7 @@ const createTheme: () => SwTheme = () => {
       divider: 'rgba(0, 0, 0, 0.12)'
     },
     grid: {
-      width: 96,
+      width: 108,
       height: 80
     },
     typography: {
@@ -34,7 +34,12 @@ const createTheme: () => SwTheme = () => {
         lineHeight: 12 / 7 // 24px
       },
       h3: {
-        fontSize: '1.875rem', // 30px
+        fontSize: '1.65rem', // 30px
+        fontWeight: 500,
+        lineHeight: 1.4 // 42px
+      },
+      h2: {
+        fontSize: '2.5rem', // 30px
         fontWeight: 500,
         lineHeight: 1.4 // 42px
       }
@@ -78,5 +83,28 @@ export const getTheme = (
 
 export const gridWidth = () => theme.grid.width
 export const gridHeight = () => theme.grid.height
+
+// export const not = (...keys: string[]) => (value: string) => (props: any) => {
+//   for (const key of keys) {
+//     if (props[key]) {
+//       return ''
+//     }
+//   }
+//   return value
+// }
+
+export const check = (...keys: string[]) => (value: string | Function) => (
+  props: any
+) => {
+  for (const key of keys) {
+    if (props[key]) {
+      return typeof value === 'function' ? value(props) : value
+    }
+  }
+  return ''
+}
+
+export const checkBy = (property: string, mapping: any) => (props: any) =>
+  mapping[props[property]]
 
 export default theme

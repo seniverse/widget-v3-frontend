@@ -21,7 +21,7 @@ const Playground: React.FC = () => (
         geolocation: 'enabled' as 'enabled',
         language: 'zh-Hant' as 'zh-Hant',
         unit: 'c' as 'c',
-        theme: 'dark' as 'dark',
+        theme: 'light' as 'dark',
         token: 'XXX',
         hover: 'enabled' as 'enabled'
       }}

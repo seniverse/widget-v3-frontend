@@ -1,11 +1,13 @@
 import React, { ElementType } from 'react'
 import styled from 'styled-components'
+import { check, checkBy } from 'UTILS/theme'
 
 interface BaseTypographyProps {
   className?: string
   noWrap?: boolean
-  variant?: 'caption' | 'body2' | 'h3'
-  color?: 'textPrimary' | 'textSecondary'
+  variant?: 'caption' | 'body2' | 'h3' | 'h2'
+  color?: 'textPrimary' | 'textSecondary' | 'inherit'
+  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify'
 }
 
 interface TypographyProps extends BaseTypographyProps {
@@ -19,12 +21,42 @@ const BaseTypography = styled.p<BaseTypographyProps>`
   line-height: ${props => props.theme.typography[props.variant || 'body2'].lineHeight};
   font-weight: ${props => props.theme.typography[props.variant || 'body2'].fontWeight};
   margin: 0;
+  ${check('noWrap')(`
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  `)}
+  text-align: ${props => props.align};
+  /* stylelint-disable */
+  color: ${checkBy('color', {
+    textPrimary: (props: any) =>  props.theme.palette.text.primary,
+    textSecondary: (props: any) =>  props.theme.palette.text.secondary,
+    inherit: 'inherit'
+  })};
 `
 
 const Typography: React.FC<TypographyProps> = props => {
-  const { component, ...otherProps } = props
+  const {
+    component,
+    className = '',
+    noWrap,
+    variant = 'body2',
+    color = 'inherit',
+    align = 'inherit',
+    ...others
+  } = props
 
-  return <BaseTypography as={component} {...otherProps} />
+  return (
+    <BaseTypography
+      as={component}
+      className={className}
+      noWrap={noWrap}
+      variant={variant}
+      color={color}
+      align={align}
+      {...others}
+    />
+  )
 }
 
 export default Typography

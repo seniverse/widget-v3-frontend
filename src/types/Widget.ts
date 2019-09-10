@@ -56,9 +56,39 @@ export interface BaseUiLayout {
   }[]
 }
 
+export interface MainUiLayout {
+  alarms: {
+    title: string
+    type: string
+    level: string
+    description: string
+    pubDate: string
+    levelCode: string
+    typeCode: string
+  }[]
+  code: string
+  location: string
+  uggestion: string
+  sun: {
+    rise: string
+    set: string
+  }
+  temperature: string
+  text: string
+  today: {
+    low: string
+    high: string
+  }
+  updateAt: string
+  yesterday: {
+    low: string
+    high: string
+  }
+}
+
 export interface BaseUiLayoutOption {
   UIType: string
-  data: BaseUiLayout[] | ChartUIType | CarouselUI
+  data: BaseUiLayout[] | MainUiLayout[] | ChartUIType | CarouselUI
   size: [number, number]
 }
 

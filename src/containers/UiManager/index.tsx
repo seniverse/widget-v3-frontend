@@ -38,6 +38,7 @@ const UiManager: React.FC<UiManagerProps> = props => {
       const newConfig = res.results as SwLayoutOptions
       setTheme(getTheme(getDefaultOptions(options), newConfig))
       setConfig(newConfig)
+      console.log(newConfig)
     }
   }
 
