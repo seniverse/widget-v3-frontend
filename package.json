@@ -39,6 +39,7 @@
     "jest-resolve": "24.8.0",
     "jest-watch-typeahead": "0.3.1",
     "lint-staged": "^9.2.5",
+    "lodash": "^4.17.15",
     "pnp-webpack-plugin": "1.5.0",
     "react": "^16.9.0",
     "react-app-polyfill": "^1.0.2",
@@ -143,6 +144,7 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/lodash": "^4.14.138",
     "@types/styled-components": "^4.1.18",
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.2.0",

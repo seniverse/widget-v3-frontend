@@ -14,7 +14,18 @@ const PlaygroundContainer = styled.header`
 
 const Playground: React.FC = () => (
   <PlaygroundContainer>
-    <App />
+    <App
+      options={{
+        flavor: 'slim' as 'slim',
+        location: 'beijing',
+        geolocation: 'enabled' as 'enabled',
+        language: 'zh-Hant' as 'zh-Hant',
+        unit: 'c' as 'c',
+        theme: 'dark' as 'dark',
+        token: 'XXX',
+        hover: 'enabled' as 'enabled'
+      }}
+    />
   </PlaygroundContainer>
 )
 

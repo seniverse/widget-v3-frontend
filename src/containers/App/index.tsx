@@ -1,13 +1,16 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react'
+import styled, { ThemeProvider } from 'styled-components'
 import GlobalStyle from 'COMPONENTS/expand/GlobalStyle'
-import { SwConfigOptions } from 'TYPES/Widget'
+import { SwPropsConfigOptions } from 'TYPES/Widget'
 import UiManager from 'CONTAINERS/UiManager'
-import { gridWidth } from 'UTILS/theme'
+import { getTheme } from 'UTILS/theme'
+import { getDefaultOptions } from 'UTILS/options'
+// import ThemeProvider from 'COMPONENTS/expand/ThemeProvider'
 
 const AppContainer = styled.div`
-  width: ${gridWidth() * 3 + 8}px;
-  background: #fff;
+  width: ${props => props.theme.grid.width * 3 + 8}px;
+  background: ${props => props.theme.palette.background.default};
+  color: ${props => props.theme.palette.text.primary};
   padding: 4px;
   box-sizing: border-box;
   border-radius: 4px;
@@ -17,15 +20,20 @@ const AppContainer = styled.div`
 `
 
 interface SwProps {
-  options?: SwConfigOptions
+  options?: SwPropsConfigOptions
 }
 
-const App: React.FC<SwProps> = () => {
+const App: React.FC<SwProps> = props => {
+  const { options } = props
+  const [theme, setTheme] = useState(getTheme(getDefaultOptions(options)))
+
   return (
-    <AppContainer className="sw-container">
-      <GlobalStyle />
-      <UiManager />
-    </AppContainer>
+    <ThemeProvider theme={theme}>
+      <AppContainer className="sw-container">
+        <GlobalStyle />
+        <UiManager setTheme={setTheme} options={options} />
+      </AppContainer>
+    </ThemeProvider>
   )
 }
 
