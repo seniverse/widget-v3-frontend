@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>14</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="天气图标" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="天气图标_白色背景" transform="translate(-204.000000, -783.000000)">
+            <path d="M224.707216,788.889114 C224.707216,785.641874 222.009814,783 218.694366,783 C216.583512,783 214.636604,784.091132 213.554564,785.830569 C212.882141,785.380522 212.087563,785.138296 211.256281,785.138296 C209.004755,785.138296 207.173277,786.932178 207.173277,789.137317 C207.173277,789.380973 207.195378,789.622497 207.239534,789.859379 C205.306361,790.546567 204,792.341386 204,794.400908 C204,797.022743 206.12194,799 208.935403,799 L223.064386,799 C225.785857,799 228,796.831728 228,794.166323 C228.00007,792.09616 226.619764,790.246614 224.652395,789.588794 C224.680708,789.356341 224.707216,789.087185 224.707216,788.889114 Z" id="Shape-Copy-5" fill-opacity="0.85" fill="#EDEDED"></path>
+            <path d="M209.020999,802 L207.552786,805.604283" id="Line" stroke="#7DC5FF" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M213.468213,802 L212,805.604283" id="Line" stroke="#7DC5FF" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M217.468213,802 L216,805.604283" id="Line" stroke="#7DC5FF" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M222.020999,802 L220.552786,805.604283" id="Line" stroke="#7DC5FF" stroke-width="1.5" stroke-linecap="round"></path>
+        </g>
+    </g>
+</svg>
