@@ -24,6 +24,7 @@ const CardWrapper = styled.div`
   display: flex;
   position: relative;
 `
+
 // prettier-ignore
 const Card = styled.div`
   flex: 0 0 38%;
@@ -33,7 +34,7 @@ const Card = styled.div`
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
-  padding: 0.75rem;
+  padding: 0.5rem;
   box-sizing: border-box;
 `
 
@@ -44,6 +45,8 @@ const CardTitle = styled(Typography)`
 const CardContent = styled.div`
   flex: 1 0 auto;
   display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 `
 
 interface CarouselUiProps {
@@ -55,9 +58,14 @@ const Carousel: React.FC<CarouselUiProps> = props => {
   const { data, size } = options
   const [column, row] = size
 
-  const getContentPrefix = (item: Content) => {
+  const getPrefix = (item: Content) => {
     return item.type === 'icon' ? (
-      <SvgIcon className="sw-ui-carousel-icon" name={item.text}></SvgIcon>
+      <SvgIcon
+        width="2rem"
+        height="2rem"
+        className="sw-ui-carousel-icon"
+        name={item.text}
+      />
     ) : (
       <Typography
         variant="caption"
@@ -80,7 +88,7 @@ const Carousel: React.FC<CarouselUiProps> = props => {
                   {item.header}
                 </CardTitle>
                 <CardContent>
-                  {getContentPrefix(item.content[0])}
+                  {getPrefix(item.content[0])}
                   <Typography
                     variant="caption"
                     className="sw-ui-carousel-suffix"
