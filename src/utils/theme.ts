@@ -153,7 +153,7 @@ const getAutoTheme = (weather: SwLayoutOptions) => {
         primary: 'rgba(255, 255, 255, 1)',
         secondary: 'rgba(255, 255, 255, 0.54)'
       },
-      divider: 'rgba(255, 255, 255, 0.12)'
+      divider: 'rgba(255, 255, 255, 0.3)'
     }
   }
 }
