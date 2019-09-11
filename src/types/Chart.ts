@@ -6,7 +6,7 @@ interface Datum {
   xAxis: string
 }
 
-interface Content {
+export interface Content {
   type: string
   text: string
 }

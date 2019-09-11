@@ -16,7 +16,13 @@ const createTheme: () => SwTheme = () => {
         primary: 'rgba(0, 0, 0, 0.87)',
         secondary: 'rgba(0, 0, 0, 0.54)'
       },
-      divider: 'rgba(0, 0, 0, 0.12)'
+      divider: 'rgba(0, 0, 0, 0.12)',
+      icon: 'white',
+      chart: {
+        line: ['#4A90E2', '#ff0000'],
+        background: '#fff',
+        color: '#000'
+      }
     },
     grid: {
       width: 108,
@@ -58,7 +64,11 @@ const darkTheme = {
       primary: 'rgba(255, 255, 255, 1)',
       secondary: 'rgba(255, 255, 255, 0.54)'
     },
-    divider: 'rgba(255, 255, 255, 0.12)'
+    divider: 'rgba(255, 255, 255, 0.12)',
+    icon: 'black',
+    chart: {
+      line: ['#4A90E2', '#ff0000']
+    }
   }
 }
 

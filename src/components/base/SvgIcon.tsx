@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 
 const Img = styled(({ ...props }) => <img {...props} />)`
   width: ${props => props.width || '1em'};
@@ -21,9 +21,17 @@ interface PropsType {
   color?: string
 }
 
-function Icon(props: PropsType) {
+const Icon: React.FC<PropsType> = props => {
+  const themeContext = useContext(ThemeContext)
+  const theme = themeContext.palette.icon || 'white'
+  const devicePixelRatio = window.devicePixelRatio || 1
   const { name, ...otherProps } = props
-  return <Img {...otherProps} src={`/assets/img/white/24/${name}.svg`}></Img>
+  return (
+    <Img
+      {...otherProps}
+      src={`/assets/img/${theme}/${24 * devicePixelRatio}/${name}.svg`}
+    ></Img>
+  )
 }
 
 export default Icon

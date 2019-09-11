@@ -65,7 +65,7 @@ const Carousel: React.FC<CarouselUiProps> = props => {
         height="2rem"
         className="sw-ui-carousel-icon"
         name={item.text}
-      ></SvgIcon>
+      />
     ) : (
       <Typography
         variant="caption"
