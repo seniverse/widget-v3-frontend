@@ -2,8 +2,14 @@ export type ChartUIType = Datum[]
 
 interface Datum {
   content: Content[][]
-  yAxis: string[]
+  yAxis: YaxisType[]
   xAxis: string
+}
+
+interface YaxisType {
+  data: string
+  type: string
+  combine?: boolean
 }
 
 export interface Content {

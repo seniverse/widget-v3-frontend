@@ -16,7 +16,7 @@ const createTheme: () => SwTheme = () => {
       divider: 'rgba(0, 0, 0, 0.12)',
       icon: 'white',
       chart: {
-        line: ['#4A90E2', '#ff0000'],
+        line: [[74, 144, 226], [255, 0, 0]],
         background: '#fff',
         color: '#000'
       }
