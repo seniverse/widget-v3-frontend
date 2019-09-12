@@ -16,9 +16,11 @@ const createTheme: () => SwTheme = () => {
       divider: 'rgba(0, 0, 0, 0.12)',
       icon: 'white',
       chart: {
+        default: '#fff',
         line: [[74, 144, 226], [255, 0, 0]],
         background: '#fff',
-        color: '#000'
+        color: 'rgba(24, 24, 24)',
+        label: 'rgba(24, 24, 24, 0.6)'
       }
     },
     grid: {
@@ -64,7 +66,11 @@ const darkTheme = {
     divider: 'rgba(255, 255, 255, 0.12)',
     icon: 'black',
     chart: {
-      line: ['#4A90E2', '#ff0000']
+      default: '#343434',
+      line: [[74, 144, 226], [255, 0, 0]],
+      background: '#000',
+      color: 'rgba(255, 255, 255)',
+      label: 'rgba(255, 255, 255, 0.6)'
     }
   }
 }

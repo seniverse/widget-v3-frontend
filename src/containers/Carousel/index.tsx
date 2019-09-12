@@ -25,17 +25,20 @@ const CardWrapper = styled.div`
   position: relative;
 `
 
-// prettier-ignore
 const Card = styled.div`
   flex: 0 0 38%;
   margin-right: 1%;
   margin-left: 1%;
   border-radius: 4px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: 1px 1px 20px 0 rgba(24, 24, 24, 0.05);
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
   box-sizing: border-box;
+
+  &:hover {
+    box-shadow: 1px 1px 10px 0 rgba(24, 24, 24, 0.19);
+  }
 `
 
 const CardTitle = styled(Typography)`

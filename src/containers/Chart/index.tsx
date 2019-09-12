@@ -105,6 +105,9 @@ const ChartUI: React.FC<ChartUiProps> = props => {
       },
       data: null,
       boundaryGap: false,
+      axisLabel: {
+        color: themeContext.palette.chart.label
+      },
       axisTick: {
         show: false
       }
@@ -115,7 +118,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
     },
     tooltip: {
       trigger: 'axis',
-      backgroundColor: 'rgba(0,0,0,0)',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
       padding: 0,
       axisPointer: {
         lineStyle: {
@@ -135,7 +138,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
     data: null,
     type: 'line',
     smooth: true,
-    showSymbol: 'true',
+    showSymbol: true,
     itemStyle: null,
     lineStyle: null,
     areaStyle: null,
@@ -187,8 +190,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
   const getLineSeries = (index: string, seriesData: any[]) => {
     const styleColor = `rgba(${themeContext.palette.chart.line[
       index
-    ].toString()},0.6)`
-    const style = { color: styleColor }
+    ].toString()})`
     const areaStyle = {
       color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
         {
@@ -206,8 +208,10 @@ const ChartUI: React.FC<ChartUiProps> = props => {
       baseSeriesOpt,
       { data: seriesData },
       {
-        itemStyle: style,
-        lineStyle: style,
+        itemStyle: {
+          color: styleColor
+        },
+        lineStyle: { color: styleColor, width: 1 },
         areaStyle
       }
     )
@@ -258,8 +262,9 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         return {
           type: 'text',
           style: {
+            fill: themeContext.palette.chart.label,
             text: api.value(2),
-            textFont: api.font({ fontSize: 10 }),
+            textFont: api.font({ fontSize: 12 }),
             textAlign: 'center',
             textVerticalAlign: 'bottom'
           },
@@ -282,6 +287,9 @@ const ChartUI: React.FC<ChartUiProps> = props => {
           style={{ height: '100%', width: chartWidth + 'px' }}
           option={getOptions(row)}
           notMerge={true}
+          opts={{
+            devicePixelRatio: devicePixelRatio * 2
+          }}
           lazyUpdate={true}
         />
       </ChartContainer>
