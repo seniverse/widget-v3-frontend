@@ -26,14 +26,36 @@ interface UiManagerProps {
 
 const UiManager: React.FC<UiManagerProps> = props => {
   const { config } = props
+  let preSize = 0
 
   return (
     <>
       {config.map((item, index) => {
-        const { UIType } = item
+        const { UIType, size } = item
+        let rightBorderInvisiable = false
+        const totalWidth = preSize + size[0]
+
+        if (totalWidth >= 3) {
+          rightBorderInvisiable = true
+          preSize = 0
+        } else {
+          if (index === config.length - 1) {
+            rightBorderInvisiable = true
+          } else {
+            rightBorderInvisiable = config[index + 1].size[0] + totalWidth > 3
+          }
+          preSize = totalWidth
+        }
+
         const Component = getUI(UIType)
 
-        return <Component key={index} options={item} />
+        return (
+          <Component
+            key={index}
+            options={item}
+            rightBorderInvisiable={rightBorderInvisiable}
+          />
+        )
       })}
     </>
   )

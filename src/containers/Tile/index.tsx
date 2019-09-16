@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 interface TileUiProps {
   options: BaseUiLayoutOption
+  rightBorderInvisiable: boolean
 }
 
 const StyledTileContainer = styled(TileContainer)`
@@ -22,11 +23,11 @@ const StyledTileContainer = styled(TileContainer)`
     top: 50%;
     transform: translateY(-50%);
   }
+`
 
-  &:nth-child(3n + 1) {
-    &::after {
-      display: none;
-    }
+const StyledTileContainerWithoutBorder = styled(StyledTileContainer)`
+  &::after {
+    display: none;
   }
 `
 
@@ -41,15 +42,18 @@ const Container = styled.div`
 `
 
 const Tile: React.FC<TileUiProps> = props => {
-  const { options } = props
+  const { options, rightBorderInvisiable } = props
   const { size, data } = options
   const [column, row] = size
 
   const { header, content } = (data as BaseUiLayout[])[0]
   const { suffix, text } = content[0]
+  const Component = rightBorderInvisiable
+    ? StyledTileContainerWithoutBorder
+    : StyledTileContainer
 
   return (
-    <StyledTileContainer className="sw-ui-tile" column={column} row={row}>
+    <Component className="sw-ui-tile" column={column} row={row}>
       <Container className="sw-ui-tile-container">
         <Typography variant="caption" className="sw-ui-tile-header" noWrap>
           {header}
@@ -66,7 +70,7 @@ const Tile: React.FC<TileUiProps> = props => {
           </Typography>
         </Typography>
       </Container>
-    </StyledTileContainer>
+    </Component>
   )
 }
 
