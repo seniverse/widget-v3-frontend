@@ -161,7 +161,7 @@ const getAutoTheme = (weather: SwLayoutOptions) => {
   return {
     palette: {
       background: {
-        default: getAutoBackground(code)
+        default: getAutoBackground(parseInt(code, 10))
       },
       text: {
         disabled: 'rgba(255, 255, 255, 0.38)',
