@@ -31,6 +31,12 @@ const StyledTileContainerWithoutBorder = styled(StyledTileContainer)`
   }
 `
 
+const Icon = styled.img`
+  width: 32px;
+  height: 32px;
+  display: block;
+`
+
 const Container = styled.div`
   padding: 16px 8px;
   width: 100%;
@@ -41,13 +47,44 @@ const Container = styled.div`
   box-sizing: border-box;
 `
 
+const renderTileContent = (
+  key: string,
+  content: {
+    suffix?: string
+    prefix?: string
+    type?: string
+    text: string
+  }
+) => (
+  <Typography key={key} variant="h3" className="sw-ui-tile-text" noWrap>
+    <Typography
+      variant="caption"
+      className="sw-ui-tile-suffix"
+      component="span"
+    >
+      {content.prefix ? `${content.prefix} ` : ''}
+    </Typography>
+    {content.type === 'icon' ? (
+      <Icon src={`/assets/img/chameleon/56/${content.text}.svg`} />
+    ) : (
+      content.text
+    )}
+    <Typography
+      variant="caption"
+      className="sw-ui-tile-suffix"
+      component="span"
+    >
+      {content.suffix ? ` ${content.suffix}` : ''}
+    </Typography>
+  </Typography>
+)
+
 const Tile: React.FC<TileUiProps> = props => {
   const { options, rightBorderInvisiable } = props
   const { size, data } = options
   const [column, row] = size
 
   const { header, content } = (data as BaseUiLayout[])[0]
-  const { suffix, text } = content[0]
   const Component = rightBorderInvisiable
     ? StyledTileContainerWithoutBorder
     : StyledTileContainer
@@ -58,17 +95,7 @@ const Tile: React.FC<TileUiProps> = props => {
         <Typography variant="caption" className="sw-ui-tile-header" noWrap>
           {header}
         </Typography>
-        <Typography variant="h3" className="sw-ui-tile-text" noWrap>
-          {text}
-          <Typography
-            variant="caption"
-            className="sw-ui-tile-suffix"
-            component="span"
-          >
-            {' '}
-            {suffix}
-          </Typography>
-        </Typography>
+        {renderTileContent(`${0}`, content[0])}
       </Container>
     </Component>
   )

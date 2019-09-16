@@ -29,15 +29,16 @@ const Card = styled.div`
   flex: 0 0 38%;
   margin-right: 1%;
   margin-left: 1%;
-  border-radius: 4px;
+  border-radius: 2px;
   box-shadow: 1px 1px 20px 0 rgba(24, 24, 24, 0.05);
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
   box-sizing: border-box;
+  transition: all 100ms;
 
   &:hover {
-    box-shadow: 1px 1px 10px 0 rgba(24, 24, 24, 0.19);
+    box-shadow: 2px 2px 30px 0 rgba(24, 24, 24, 0.19);
   }
 `
 

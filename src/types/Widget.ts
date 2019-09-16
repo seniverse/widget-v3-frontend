@@ -51,7 +51,9 @@ export interface SwTheme {
 export interface BaseUiLayout {
   header: string
   content: {
-    suffix: string
+    type?: string
+    suffix?: string
+    prefix?: string
     text: string
   }[]
 }

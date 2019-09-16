@@ -28,7 +28,7 @@ const ChartTooltipStyle = createGlobalStyle`
     flex-direction: column;
     justify-content: center;
     padding: 4px;
-    border-radius: 4px;
+    border-radius: 2px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.38);
 
     .tooltip-chart-content {
