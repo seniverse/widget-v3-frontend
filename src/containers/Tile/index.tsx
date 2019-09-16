@@ -67,6 +67,13 @@ const TypographyIconWrapper = styled(TypographyWrapper)`
   align-items: flex-end;
 `
 
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: -3px;
+`
+
 const renderTileContent = (
   key: string,
   content: {
@@ -111,7 +118,9 @@ export const TileUIContainer: React.FC<TileContentProps> = props => {
       <Typography variant="caption" className="sw-ui-tile-header" noWrap>
         {header}
       </Typography>
-      {renderTileContent(`${0}`, content[0])}
+      <ContentContainer>
+        {content.map((c, index) => renderTileContent(`${index}`, c))}
+      </ContentContainer>
     </Container>
   )
 }
