@@ -42,9 +42,10 @@ const UiManager: React.FC<UiManagerProps> = props => {
           if (index === config.length - 1) {
             rightBorderInvisiable = true
           } else {
-            rightBorderInvisiable = config[index + 1].size[0] + totalWidth > 3
+            const nextWidth = config[index + 1].size[0] + totalWidth
+            rightBorderInvisiable = nextWidth > 3
+            preSize = nextWidth > 3 ? 0 : totalWidth
           }
-          preSize = totalWidth
         }
 
         const Component = getUI(UIType)

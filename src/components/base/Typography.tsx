@@ -27,6 +27,7 @@ const BaseTypography = styled.p<BaseTypographyProps>`
     overflow: hidden;
   `)}
   text-align: ${props => props.align};
+  white-space: pre;
   /* stylelint-disable */
   color: ${checkBy('color', {
     textPrimary: (props: any) =>  props.theme.palette.text.primary,

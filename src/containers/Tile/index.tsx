@@ -9,6 +9,16 @@ interface TileUiProps {
   rightBorderInvisiable: boolean
 }
 
+interface TileContentProps {
+  header: string
+  content: {
+    text: string
+    type?: string
+    suffix?: string
+    prefix?: string
+  }[]
+}
+
 const StyledTileContainer = styled(TileContainer)`
   position: relative;
 
@@ -34,7 +44,6 @@ const StyledTileContainerWithoutBorder = styled(StyledTileContainer)`
 const Icon = styled.img`
   width: 32px;
   height: 32px;
-  display: block;
 `
 
 const Container = styled.div`
@@ -47,6 +56,17 @@ const Container = styled.div`
   box-sizing: border-box;
 `
 
+const TypographyWrapper = styled(Typography)`
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+`
+
+const TypographyIconWrapper = styled(TypographyWrapper)`
+  align-items: flex-end;
+`
+
 const renderTileContent = (
   key: string,
   content: {
@@ -55,29 +75,46 @@ const renderTileContent = (
     type?: string
     text: string
   }
-) => (
-  <Typography key={key} variant="h3" className="sw-ui-tile-text" noWrap>
-    <Typography
-      variant="caption"
-      className="sw-ui-tile-suffix"
-      component="span"
-    >
-      {content.prefix ? `${content.prefix} ` : ''}
-    </Typography>
-    {content.type === 'icon' ? (
-      <Icon src={`/assets/img/chameleon/56/${content.text}.svg`} />
-    ) : (
-      content.text
-    )}
-    <Typography
-      variant="caption"
-      className="sw-ui-tile-suffix"
-      component="span"
-    >
-      {content.suffix ? ` ${content.suffix}` : ''}
-    </Typography>
-  </Typography>
-)
+) => {
+  const Component =
+    content.type === 'icon' ? TypographyIconWrapper : TypographyWrapper
+
+  return (
+    <Component key={key} variant="h3" className="sw-ui-tile-text" noWrap>
+      <Typography
+        variant="caption"
+        className="sw-ui-tile-prefix"
+        component="span"
+      >
+        {content.prefix || ''}
+      </Typography>
+      {content.type === 'icon' ? (
+        <Icon src={`/assets/img/chameleon/56/${content.text}.svg`} />
+      ) : (
+        content.text
+      )}
+      <Typography
+        variant="caption"
+        className="sw-ui-tile-suffix"
+        component="span"
+      >
+        {content.suffix || ''}
+      </Typography>
+    </Component>
+  )
+}
+
+export const TileUIContainer: React.FC<TileContentProps> = props => {
+  const { header, content } = props
+  return (
+    <Container className="sw-ui-tile-container">
+      <Typography variant="caption" className="sw-ui-tile-header" noWrap>
+        {header}
+      </Typography>
+      {renderTileContent(`${0}`, content[0])}
+    </Container>
+  )
+}
 
 const Tile: React.FC<TileUiProps> = props => {
   const { options, rightBorderInvisiable } = props
@@ -91,12 +128,7 @@ const Tile: React.FC<TileUiProps> = props => {
 
   return (
     <Component className="sw-ui-tile" column={column} row={row}>
-      <Container className="sw-ui-tile-container">
-        <Typography variant="caption" className="sw-ui-tile-header" noWrap>
-          {header}
-        </Typography>
-        {renderTileContent(`${0}`, content[0])}
-      </Container>
+      <TileUIContainer header={header} content={content} />
     </Component>
   )
 }
