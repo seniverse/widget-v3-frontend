@@ -70,7 +70,7 @@ const getPosition = (rise: string, set: string) => {
   const riseMinutes = riseHour * 60 + riseMinute
   const setMinutes = setHour * 60 + setMinute
 
-  const now = new Date('2009-09-09 6:00')
+  const now = new Date()
   const nowHour = now.getHours()
   const nowMinute = now.getMinutes()
   const nowMinutes = nowHour * 60 + nowMinute

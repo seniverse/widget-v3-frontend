@@ -25,7 +25,8 @@ module.exports = {
   rules: {
     'react/prop-types': 0,
     'prettier/prettier': 2,
-    '@typescript-eslint/no-unused-vars': 2
+    '@typescript-eslint/no-unused-vars': 2,
+    'react/no-find-dom-node': 0
   },
   settings: {
     react: {

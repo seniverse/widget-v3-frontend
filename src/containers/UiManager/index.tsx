@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import AppApi from 'api/app'
+import React from 'react'
 import Main from 'CONTAINERS/Main'
 import Carousel from 'CONTAINERS/Carousel'
 import Tile from 'CONTAINERS/Tile'
 import Chart from 'CONTAINERS/Chart'
-import { SwLayoutOptions, SwTheme, SwPropsConfigOptions } from 'TYPES/Widget'
-import { getTheme } from 'UTILS/theme'
-import { getDefaultOptions } from 'UTILS/options'
+import { SwLayoutOptions } from 'TYPES/Widget'
 
 const getUI: (type: string) => React.ElementType = type => {
   switch (type) {
@@ -24,26 +21,11 @@ const getUI: (type: string) => React.ElementType = type => {
 }
 
 interface UiManagerProps {
-  setTheme: (theme: SwTheme) => void
-  options?: SwPropsConfigOptions
+  config: SwLayoutOptions
 }
 
 const UiManager: React.FC<UiManagerProps> = props => {
-  const { setTheme, options } = props
-  const [config, setConfig] = useState<SwLayoutOptions>([])
-
-  const fetchConfig = async () => {
-    const res = await AppApi.getConfig()
-    if (res && res.success) {
-      const newConfig = res.results as SwLayoutOptions
-      setTheme(getTheme(getDefaultOptions(options), newConfig))
-      setConfig(newConfig)
-    }
-  }
-
-  useEffect(() => {
-    fetchConfig()
-  }, [])
+  const { config } = props
 
   return (
     <>
