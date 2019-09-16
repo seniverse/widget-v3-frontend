@@ -88,25 +88,29 @@ const renderTileContent = (
 
   return (
     <Component key={key} variant="h3" className="sw-ui-tile-text" noWrap>
-      <Typography
-        variant="caption"
-        className="sw-ui-tile-prefix"
-        component="span"
-      >
-        {content.prefix || ''}
-      </Typography>
+      {content.prefix && (
+        <Typography
+          variant="caption"
+          className="sw-ui-tile-prefix"
+          component="span"
+        >
+          {content.prefix}
+        </Typography>
+      )}
       {content.type === 'icon' ? (
         <Icon src={`/assets/img/chameleon/56/${content.text}.svg`} />
       ) : (
         content.text
       )}
-      <Typography
-        variant="caption"
-        className="sw-ui-tile-suffix"
-        component="span"
-      >
-        {content.suffix || ''}
-      </Typography>
+      {content.suffix && (
+        <Typography
+          variant="caption"
+          className="sw-ui-tile-suffix"
+          component="span"
+        >
+          {content.suffix}
+        </Typography>
+      )}
     </Component>
   )
 }
