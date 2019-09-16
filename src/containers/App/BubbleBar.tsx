@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { SwLayoutOptions, MainUiLayout } from 'TYPES/Widget'
 import Loading from './Loading'
 import Typography from 'COMPONENTS/base/Typography'
+import { getCodeByTime } from 'UTILS/helper'
 
 interface BubbleBarProps {
   config: SwLayoutOptions
@@ -26,10 +27,12 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
 
   if (main) {
     const data = main.data as MainUiLayout[]
-    const { location, temperature, code } = data[0]
+    const { location, temperature, code, sun } = data[0]
     return (
       <Container>
-        <WeatherIcon src={`/assets/img/chameleon/56/${code}.svg`} />
+        <WeatherIcon
+          src={`/assets/img/chameleon/56/${getCodeByTime(code, sun)}.svg`}
+        />
         <div>
           <Typography>{location}</Typography>
           <Typography>{temperature}</Typography>

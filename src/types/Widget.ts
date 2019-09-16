@@ -68,7 +68,11 @@ export interface MainUiLayout {
     levelCode: string
     typeCode: string
   }[]
-  code: string
+  code: {
+    now: string
+    day: string
+    night: string
+  }
   location: string
   uggestion: string
   sun: {

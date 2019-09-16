@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { MainUiLayout, BaseUiLayoutOption } from 'TYPES/Widget'
 import TileContainer from 'COMPONENTS/base/TileContainer'
 import Typography from 'COMPONENTS/base/Typography'
+import { getCodeByTime, getSunTime } from 'UTILS/helper'
 
 interface MainUiProps {
   options: BaseUiLayoutOption
@@ -116,6 +117,7 @@ const Main: React.FC<MainUiProps> = props => {
   const { low, high } = today
   const { rise, set } = sun
   const { top, left } = getPosition(rise, set)
+  const suntimes = getSunTime(sun)
 
   return (
     <StyledTileContainer className="sw-ui-main" column={column} row={row}>
@@ -124,7 +126,7 @@ const Main: React.FC<MainUiProps> = props => {
           <WeatherIcon
             top={top}
             left={left}
-            src={`/assets/img/chameleon/56/${code}.svg`}
+            src={`/assets/img/chameleon/56/${getCodeByTime(code, sun)}.svg`}
           />
         </Arc>
       </ArcContainer>
@@ -140,13 +142,13 @@ const Main: React.FC<MainUiProps> = props => {
       </Typography>
       <TimeContainer>
         <Typography variant="caption" component="span" color="textSecondary">
-          {rise}
+          {suntimes.rise}
         </Typography>
         <Typography variant="caption" component="span">
           {text} {low}~{high}
         </Typography>
         <Typography variant="caption" component="span" color="textSecondary">
-          {set}
+          {suntimes.set}
         </Typography>{' '}
       </TimeContainer>
     </StyledTileContainer>
