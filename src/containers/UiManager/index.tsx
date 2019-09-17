@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Main from 'CONTAINERS/Main'
 import Carousel from 'CONTAINERS/Carousel'
 import Tile from 'CONTAINERS/Tile'
@@ -62,4 +62,4 @@ const UiManager: React.FC<UiManagerProps> = props => {
   )
 }
 
-export default UiManager
+export default memo(UiManager)

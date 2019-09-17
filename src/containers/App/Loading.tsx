@@ -100,6 +100,12 @@ const Point = styled.div`
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.15);
 `
 
+const LoadingContainer = styled.div`
+  background: #a0a1a4;
+  width: 100%;
+  height: 100%;
+`
+
 const Point0 = styled(Point)`
   animation: ${keyframe0} 1.5s infinite;
 `
@@ -125,14 +131,14 @@ const Point5 = styled(Point)`
 `
 
 const Loading = () => (
-  <div>
+  <LoadingContainer>
     <Point0 />
     <Point1 />
     <Point2 />
     <Point3 />
     <Point4 />
     <Point5 />
-  </div>
+  </LoadingContainer>
 )
 
 export default Loading
