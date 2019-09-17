@@ -304,7 +304,10 @@ const ChartUI: React.FC<ChartUiProps> = props => {
 
   if (!data) return null
   const width = data.length * (data as ChartUIType)[0].xAxis.length * 8
-  const chartWidth = Math.max(width, gridWidth() * column)
+  const chartWidth = Math.max(
+    Math.max(width, gridWidth() * column) / 3,
+    gridWidth() * column
+  )
 
   return (
     <TileContainer className="sw-ui-chart" column={column} row={row}>
