@@ -144,7 +144,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
     areaStyle: null,
     zlevel: 0,
     label: {
-      show: true,
+      show: false,
       position: 'top'
     }
   }
@@ -153,6 +153,10 @@ const ChartUI: React.FC<ChartUiProps> = props => {
     const xAxisData = []
     const contentArray = []
     const series = []
+
+    let min = Infinity
+    let max = 0
+
     for (const index in (data as ChartUIType)[0].yAxis) {
       const seriesData = []
       const type = (data as ChartUIType)[0].yAxis[index].type
@@ -164,8 +168,11 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         }
         seriesData.push(yAxis[index].data)
       }
+
       switch (type) {
         case 'line':
+          min = Math.min(min, ...seriesData.map(d => parseInt(d)))
+          max = Math.max(max, ...seriesData.map(d => parseInt(d)))
           series.push(getLineSeries(index, seriesData))
           break
         case 'icon':
@@ -179,10 +186,21 @@ const ChartUI: React.FC<ChartUiProps> = props => {
       }
     }
     if (!tipContent) setTipContent(contentArray)
+
     return Object.assign(
       {},
       baseChartOpts,
-      { xAxis: { ...baseChartOpts.xAxis, data: xAxisData } },
+      {
+        xAxis: {
+          ...baseChartOpts.xAxis,
+          data: xAxisData
+        },
+        yAxis: {
+          ...baseChartOpts.yAxis,
+          min: isNaN(min) ? 'dataMin' : min - 5,
+          max: isNaN(max) ? 'dataMax' : max
+        }
+      },
       { series }
     )
   }
@@ -190,7 +208,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
   const getLineSeries = (index: string, seriesData: any[]) => {
     const styleColor = `rgba(${themeContext.palette.chart.line[
       index
-    ].toString()})`
+    ].toString()}, 1)`
     const areaStyle = {
       color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
         {
@@ -199,7 +217,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         },
         {
           offset: 1,
-          color: `rgba(${themeContext.palette.chart.line[index].toString()},0)`
+          color: `rgba(${themeContext.palette.chart.line[index].toString()}, 0)`
         }
       ])
     }
@@ -211,8 +229,15 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         itemStyle: {
           color: styleColor
         },
-        lineStyle: { color: styleColor, width: 1 },
+        lineStyle: {
+          color: styleColor,
+          width: 1
+        },
         areaStyle
+      },
+      {
+        showSymbol: false,
+        symbol: 'none'
       }
     )
   }
@@ -225,6 +250,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
       return [index, 0, item]
     })
     const iconSize = 23
+
     return {
       type: 'custom',
       renderItem: function(_: any, api: any) {
@@ -278,7 +304,11 @@ const ChartUI: React.FC<ChartUiProps> = props => {
 
   if (!data) return null
   const width = data.length * (data as ChartUIType)[0].xAxis.length * 8
-  const chartWidth = Math.max(width, gridWidth() * column)
+  const chartWidth = Math.max(
+    Math.max(width, gridWidth() * column) / 3,
+    gridWidth() * column
+  )
+
   return (
     <TileContainer className="sw-ui-chart" column={column} row={row}>
       <ChartContainer>

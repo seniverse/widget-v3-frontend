@@ -59,9 +59,20 @@ const WeatherIcon = styled.img<WeatherIconProps>`
   top: ${props => props.top}%;
 `
 
+const ArrowIcon = styled.img`
+  width: 14px;
+  height: 14px;
+`
+
 const TimeContainer = styled.div`
   display: flex;
   justify-content: space-between;
+`
+
+const InfoTypography = styled(Typography)`
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-start;
 `
 
 const getPosition = (rise: string, set: string) => {
@@ -112,12 +123,20 @@ const Main: React.FC<MainUiProps> = props => {
     temperature,
     text,
     today,
+    yesterday,
     updateAt
   } = (data as MainUiLayout[])[0]
   const { low, high } = today
   const { rise, set } = sun
   const { top, left } = getPosition(rise, set)
   const suntimes = getSunTime(sun)
+
+  let arrowIcon = null
+  if (today.high > yesterday.high) {
+    arrowIcon = <ArrowIcon src={'/assets/img/arrow-up.svg'} />
+  } else if (today.low < yesterday.low) {
+    arrowIcon = <ArrowIcon src={'/assets/img/arrow-down.svg'} />
+  }
 
   return (
     <StyledTileContainer className="sw-ui-main" column={column} row={row}>
@@ -144,9 +163,10 @@ const Main: React.FC<MainUiProps> = props => {
         <Typography variant="caption" component="span" color="textSecondary">
           {suntimes.rise}
         </Typography>
-        <Typography variant="caption" component="span">
+        <InfoTypography variant="caption" component="span">
           {text} {low}~{high}
-        </Typography>
+          {arrowIcon}
+        </InfoTypography>
         <Typography variant="caption" component="span" color="textSecondary">
           {suntimes.set}
         </Typography>{' '}
