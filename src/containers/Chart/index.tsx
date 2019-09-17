@@ -209,18 +209,19 @@ const ChartUI: React.FC<ChartUiProps> = props => {
     const styleColor = `rgba(${themeContext.palette.chart.line[
       index
     ].toString()}, 1)`
-    // const areaStyle = {
-    //   color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-    //     {
-    //       offset: 0,
-    //       color: styleColor
-    //     },
-    //     {
-    //       offset: 1,
-    //       color: `rgba(${themeContext.palette.chart.line[index].toString()}, 0)`
-    //     }
-    //   ])
-    // }
+    console.log(`[getLineSeries] index - ${index}, styleColor - ${styleColor}`)
+    const areaStyle = {
+      color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+        {
+          offset: 0,
+          color: styleColor
+        },
+        {
+          offset: 1,
+          color: `rgba(${themeContext.palette.chart.line[index].toString()}, 0)`
+        }
+      ])
+    }
     return Object.assign(
       {},
       baseSeriesOpt,
@@ -232,8 +233,8 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         lineStyle: {
           color: styleColor,
           width: 1
-        }
-        // areaStyle
+        },
+        areaStyle
       },
       {
         showSymbol: false,
@@ -250,6 +251,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
       return [index, 0, item]
     })
     const iconSize = 23
+
     return {
       type: 'custom',
       renderItem: function(_: any, api: any) {
@@ -304,6 +306,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
   if (!data) return null
   const width = data.length * (data as ChartUIType)[0].xAxis.length * 8
   const chartWidth = Math.max(width, gridWidth() * column)
+
   return (
     <TileContainer className="sw-ui-chart" column={column} row={row}>
       <ChartContainer>

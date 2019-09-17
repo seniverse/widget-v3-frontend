@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { SwConfigOptions, SwTheme, SwLayoutOptions } from 'TYPES/Widget'
+import { getCodeByTime } from 'UTILS/helper'
 
 const createTheme: () => SwTheme = () => {
   return {
@@ -87,28 +88,63 @@ const autoTheme = _.merge({}, darkTheme, {
   }
 })
 
-const getAutoBackground = (code: number) => {
+const hexToRgb = (hex: string): number[] => {
+  let c: any = hex.substring(1).split('')
+  if (c.length === 3) {
+    c = [c[0], c[0], c[1], c[1], c[2], c[2]]
+  }
+  c = '0x' + c.join('')
+  return [(c >> 16) & 255, (c >> 8) & 255, c & 255]
+}
+
+const getAutoColor = (
+  code: number
+): {
+  background: string
+  main: {
+    hex: string
+    rgb: number[]
+  }
+  sub: {
+    hex: string
+    rgb: number[]
+  }
+} => {
+  let hexs = []
+
+  console.log(`getAutoColor code: ${code}`)
+
   switch (code) {
     case 0:
-      return 'linear-gradient(#2869E9,#79BFFF)'
+      hexs = ['#2869E9', '#79BFFF']
+      break
     case 1:
-      return 'linear-gradient(#1B1D5C,#5D428E)'
+      hexs = ['#1B1D5C', '#5D428E']
+      break
     case 2:
-      return 'linear-gradient(#2869E9,#79BFFF)'
+      hexs = ['#2869E9', '#79BFFF']
+      break
     case 3:
-      return 'linear-gradient(#1B1D5C,#5D428E)'
+      hexs = ['#1B1D5C', '#5D428E']
+      break
     case 4:
-      return 'linear-gradient(#6F7C85,#919B9F)'
+      hexs = ['#6F7C85', '#919B9F']
+      break
     case 5:
-      return 'linear-gradient(#2869E9,#79BFFF)'
+      hexs = ['#2869E9', '#79BFFF']
+      break
     case 6:
-      return 'linear-gradient(#1B1D5C,#5D428E)'
+      hexs = ['#1B1D5C', '#5D428E']
+      break
     case 7:
-      return 'linear-gradient(#6F7C85,#919B9F)'
+      hexs = ['#6F7C85', '#919B9F']
+      break
     case 8:
-      return 'linear-gradient(#2B2C2D,#6E747B)'
+      hexs = ['#2B2C2D', '#6E747B']
+      break
     case 9:
-      return 'linear-gradient(#6F7C85,#919B9F)'
+      hexs = ['#6F7C85', '#919B9F']
+      break
 
     case 10:
     case 11:
@@ -118,62 +154,93 @@ const getAutoBackground = (code: number) => {
     case 15:
     case 19:
     case 20:
-      return 'linear-gradient(#566B6E,#7D939B)'
+      hexs = ['#566B6E', '#7D939B']
+      break
 
     case 16:
     case 17:
     case 18:
-      return 'linear-gradient(#2F4146,#617279)'
+      hexs = ['#2F4146', '#617279']
+      break
 
     case 21:
     case 22:
     case 23:
     case 24:
     case 25:
-      return 'linear-gradient(#6F7C85,#919B9F)'
+      hexs = ['#6F7C85', '#919B9F']
+      break
 
     case 26:
     case 27:
     case 28:
     case 29:
-      return 'linear-gradient(#9E8A47,#CCB166)'
+      hexs = ['#9E8A47', '#CCB166']
+      break
 
     case 30:
-      return 'linear-gradient(#6F7C85,#919B9F)'
+      hexs = ['#6F7C85', '#919B9F']
+      break
     case 31:
-      return 'linear-gradient(#6C6C6C,#959595)'
+      hexs = ['#6C6C6C', '#959595']
+      break
 
     case 32:
     case 33:
-      return 'linear-gradient(#2869E9,#79BFFF)'
+      hexs = ['#2869E9', '#79BFFF']
+      break
 
     case 34:
     case 35:
     case 36:
-      return 'linear-gradient(#2F4146,#617279)'
+      hexs = ['#2F4146', '#617279']
+      break
 
     case 37:
-      return 'linear-gradient(#69A9E8,#B5DAFB)'
+      hexs = ['#69A9E8', '#B5DAFB']
+      break
     case 38:
-      return 'linear-gradient(#E7592B,#FBA42F)'
+      hexs = ['#E7592B', '#FBA42F']
+      break
     case 99:
-      return 'linear-gradient(#6F7C85,#919B9F)'
+      hexs = ['#6F7C85', '#919B9F']
+      break
     default:
-      return 'linear-gradient(#6F7C85,#919B9F)'
+      hexs = ['#6F7C85', '#919B9F']
+      break
+  }
+
+  return {
+    background: `linear-gradient(${hexs[0]}, ${hexs[1]})`,
+    main: {
+      hex: hexs[0],
+      rgb: hexToRgb(hexs[0])
+    },
+    sub: {
+      hex: hexs[1],
+      rgb: hexToRgb(hexs[1])
+    }
   }
 }
 
 const getAutoTheme = (weather: SwLayoutOptions) => {
   const getWeatherCode = (weather: SwLayoutOptions) => {
     const main = weather.find(item => item.UIType === 'main')
-    return _.get(main, 'data[0].code', 99)
+    const code = _.get(main, 'data[0].code', { now: 99, night: 99, day: 99 })
+    const sun = _.get(main, 'data[0].sun', {})
+    return getCodeByTime(code, sun)
   }
+
   const code = getWeatherCode(weather)
+  const autoColor = getAutoColor(parseInt(code, 10))
 
   return {
     palette: {
+      chart: {
+        line: [autoColor.main.rgb, autoColor.sub.rgb]
+      },
       background: {
-        default: getAutoBackground(parseInt(code, 10))
+        default: autoColor.background
       },
       text: {
         disabled: 'rgba(255, 255, 255, 0.38)',
