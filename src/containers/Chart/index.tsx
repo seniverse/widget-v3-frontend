@@ -91,11 +91,13 @@ const ChartUI: React.FC<ChartUiProps> = props => {
     return (domStr += `</div>`)
   }
 
+  const xAxisDataLength = (data as ChartUIType).length
+
   const baseChartOpts = {
     grid: {
       top: 25,
-      left: 16,
-      right: 16,
+      left: 0,
+      right: 0,
       bottom: 25
     },
     xAxis: {
@@ -106,7 +108,14 @@ const ChartUI: React.FC<ChartUiProps> = props => {
       data: null,
       boundaryGap: false,
       axisLabel: {
-        color: themeContext.palette.chart.label
+        color: themeContext.palette.chart.label,
+        interval: (index: number) => {
+          if (index === 0) return false
+          if (index === xAxisDataLength - 1) return false
+          if (xAxisDataLength <= 7) return true
+          if (xAxisDataLength <= 15) return index % 2 === 0
+          return index % 3 === 0
+        }
       },
       axisTick: {
         show: false
