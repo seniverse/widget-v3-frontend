@@ -208,19 +208,19 @@ const ChartUI: React.FC<ChartUiProps> = props => {
   const getLineSeries = (index: string, seriesData: any[]) => {
     const styleColor = `rgba(${themeContext.palette.chart.line[
       index
-    ].toString()})`
-    const areaStyle = {
-      color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        {
-          offset: 0,
-          color: styleColor
-        },
-        {
-          offset: 1,
-          color: `rgba(${themeContext.palette.chart.line[index].toString()},0)`
-        }
-      ])
-    }
+    ].toString()}, 1)`
+    // const areaStyle = {
+    //   color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+    //     {
+    //       offset: 0,
+    //       color: styleColor
+    //     },
+    //     {
+    //       offset: 1,
+    //       color: `rgba(${themeContext.palette.chart.line[index].toString()}, 0)`
+    //     }
+    //   ])
+    // }
     return Object.assign(
       {},
       baseSeriesOpt,
@@ -232,8 +232,8 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         lineStyle: {
           color: styleColor,
           width: 1
-        },
-        areaStyle
+        }
+        // areaStyle
       },
       {
         showSymbol: false,

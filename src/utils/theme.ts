@@ -17,7 +17,7 @@ const createTheme: () => SwTheme = () => {
       icon: 'white',
       chart: {
         default: '#fff',
-        line: [[74, 144, 226], [255, 0, 0]],
+        line: [[207, 107, 97], [234, 174, 78]],
         background: '#fff',
         color: 'rgba(24, 24, 24)',
         label: 'rgba(24, 24, 24, 0.6)'
@@ -67,13 +67,25 @@ const darkTheme = {
     icon: 'black',
     chart: {
       default: '#343434',
-      line: [[74, 144, 226], [255, 0, 0]],
+      line: [[207, 107, 97], [234, 174, 78]],
       background: '#000',
       color: 'rgba(255, 255, 255)',
       label: 'rgba(255, 255, 255, 0.6)'
     }
   }
 }
+
+const autoTheme = _.merge({}, darkTheme, {
+  palette: {
+    chart: {
+      default: '#343434',
+      line: [[245, 209, 47], [243, 63, 32]],
+      background: '#000',
+      color: 'rgba(255, 255, 255)',
+      label: 'rgba(255, 255, 255, 0.6)'
+    }
+  }
+})
 
 const getAutoBackground = (code: number) => {
   switch (code) {
@@ -185,8 +197,7 @@ export const getTheme = (
   if (options.theme === 'dark') {
     _.merge(baseTheme, darkTheme)
   } else if (options.theme === 'auto' && weather) {
-    _.merge(baseTheme, getAutoTheme(weather))
-    console.log(weather)
+    _.merge(baseTheme, autoTheme, getAutoTheme(weather))
   }
 
   return baseTheme
