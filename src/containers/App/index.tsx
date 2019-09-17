@@ -21,6 +21,7 @@ const AppContainer = styled.div<{ flavor: SwOptionFlavor }>`
   border-radius: 4px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
   transition: all 0.2s;
+  transform: translateZ(0);
   ${checkBy('flavor', {
     bubble: `
       height: 54px;
@@ -48,10 +49,13 @@ interface SwProps {
 
 const App: React.FC<SwProps> = props => {
   const ref = useRef<HTMLDivElement>(null)
+  const barRef = useRef<HTMLDivElement>(null)
   const { options } = props
   const defaultOptions = getDefaultOptions(options)
   const [theme, setTheme] = useState(getTheme(defaultOptions))
   const [config, setConfig] = useState<SwLayoutOptions>([])
+  const [open, setOpen] = useState(false)
+  const [barWidth, setBarWidth] = useState('100px')
 
   const fetchConfig = async () => {
     const res = await AppApi.getConfig()
@@ -61,10 +65,6 @@ const App: React.FC<SwProps> = props => {
       setConfig(newConfig)
     }
   }
-
-  useEffect(() => {
-    fetchConfig()
-  }, [])
 
   const { flavor } = defaultOptions
 
@@ -77,11 +77,25 @@ const App: React.FC<SwProps> = props => {
     height = `${dom.clientHeight}px`
   }
 
+  useEffect(() => {
+    fetchConfig()
+  }, [])
+
+  useEffect(() => {
+    const barDom = ReactDOM.findDOMNode(barRef.current) as HTMLDivElement
+    if (barDom) {
+      const newBarWidth = `${barDom.clientWidth}px`
+      if (newBarWidth !== barWidth) {
+        setBarWidth(newBarWidth)
+      }
+    }
+  })
+
   const appTransitionStyles = {
     entering: { width, height },
     entered: { width, height },
-    exiting: { overflow: 'hidden', height: '54px' },
-    exited: { overflow: 'hidden', height: '54px' },
+    exiting: { overflow: 'hidden', height: '54px', width: barWidth },
+    exited: { overflow: 'hidden', height: '54px', width: barWidth },
     unmounted: {}
   }
 
@@ -92,8 +106,6 @@ const App: React.FC<SwProps> = props => {
     exited: { opacity: 0, transition: 'none' },
     unmounted: {}
   }
-
-  const [open, setOpen] = useState(false)
 
   return (
     <ThemeProvider theme={theme}>
@@ -114,7 +126,9 @@ const App: React.FC<SwProps> = props => {
               }}
             >
               <GlobalStyle />
-              {flavor === 'bubble' && !open && <BubbleBar config={config} />}
+              {flavor === 'bubble' && !open && (
+                <BubbleBar config={config} ref={barRef} />
+              )}
               {flavor === 'slim' && !open && '!!'}
               <Transition in={open} timeout={200}>
                 {state => (

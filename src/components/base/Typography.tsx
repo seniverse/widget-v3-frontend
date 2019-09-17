@@ -8,6 +8,7 @@ interface BaseTypographyProps {
   variant?: 'caption' | 'body2' | 'h3' | 'h2'
   color?: 'textPrimary' | 'textSecondary' | 'inherit'
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify'
+  lineHeight?: string
 }
 
 interface TypographyProps extends BaseTypographyProps {
@@ -18,7 +19,7 @@ interface TypographyProps extends BaseTypographyProps {
 const BaseTypography = styled.p<BaseTypographyProps>`
   font-family: 'PingFangSC', 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
   font-size: ${props => props.theme.typography[props.variant || 'body2'].fontSize};
-  line-height: ${props => props.theme.typography[props.variant || 'body2'].lineHeight};
+  line-height: ${props => props.lineHeight || props.theme.typography[props.variant || 'body2'].lineHeight};
   font-weight: ${props => props.theme.typography[props.variant || 'body2'].fontWeight};
   margin: 0;
   ${check('noWrap')(`
@@ -44,6 +45,7 @@ const Typography: React.FC<TypographyProps> = props => {
     variant = 'body2',
     color = 'inherit',
     align = 'inherit',
+    lineHeight,
     ...others
   } = props
 
@@ -53,6 +55,7 @@ const Typography: React.FC<TypographyProps> = props => {
       className={className}
       noWrap={noWrap}
       variant={variant}
+      lineHeight={lineHeight}
       color={color}
       align={align}
       {...others}
