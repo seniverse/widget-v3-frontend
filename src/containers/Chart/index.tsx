@@ -209,7 +209,6 @@ const ChartUI: React.FC<ChartUiProps> = props => {
     const styleColor = `rgba(${themeContext.palette.chart.line[
       index
     ].toString()}, 1)`
-    console.log(`[getLineSeries] index - ${index}, styleColor - ${styleColor}`)
     const areaStyle = {
       color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
         {

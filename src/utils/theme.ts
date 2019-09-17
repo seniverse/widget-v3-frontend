@@ -112,8 +112,6 @@ const getAutoColor = (
 } => {
   let hexs = []
 
-  console.log(`getAutoColor code: ${code}`)
-
   switch (code) {
     case 0:
       hexs = ['#2869E9', '#79BFFF']
