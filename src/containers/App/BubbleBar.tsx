@@ -43,10 +43,10 @@ const StyledAppContainer = styled(AppContainer)`
 
 const ExpandedCard = styled.div`
   flex-wrap: wrap;
-  padding: 4px;
+  padding: 0;
   opacity: 0;
   box-sizing: border-box;
-  width: ${props => props.theme.grid.width * 3 + 8}px;
+  width: ${props => props.theme.grid.width * 3}px;
   transition: all 200ms 200ms;
   display: flex;
 `

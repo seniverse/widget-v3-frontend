@@ -165,12 +165,14 @@ const ChartUI: React.FC<ChartUiProps> = props => {
 
     let min = Infinity
     let max = 0
+    let inverse = false
 
     for (const index in (data as ChartUIType)[0].yAxis) {
       const seriesData = []
       const type = (data as ChartUIType)[0].yAxis[index].type
       for (const item of data as ChartUIType) {
         const { content, yAxis, xAxis } = item
+        if (!inverse) inverse = yAxis[index].inverse || inverse
         if (Number(index) === 0) {
           xAxisData.push(xAxis)
           contentArray.push(content)
@@ -182,7 +184,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         case 'line':
           min = Math.min(min, ...seriesData.map(d => parseInt(d)))
           max = Math.max(max, ...seriesData.map(d => parseInt(d)))
-          series.push(getLineSeries(index, seriesData))
+          series.push(getLineSeries(index, seriesData, inverse))
           break
         case 'icon':
           series.push(getIconSeries(row, seriesData))
@@ -207,28 +209,34 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         yAxis: {
           ...baseChartOpts.yAxis,
           min: isNaN(min) ? 'dataMin' : min - 5,
-          max: isNaN(max) ? 'dataMax' : max
+          max: isNaN(max) ? 'dataMax' : max,
+          inverse
         }
       },
       { series }
     )
   }
 
-  const getLineSeries = (index: string, seriesData: any[]) => {
+  const getLineSeries = (
+    index: string,
+    seriesData: any[],
+    inverse: boolean
+  ) => {
     const styleColor = `rgba(${themeContext.palette.chart.line[
       index
     ].toString()}, 1)`
+    const areaColors = [
+      styleColor,
+      `rgba(${themeContext.palette.chart.line[index].toString()}, 0)`
+    ]
+    const bgColor = (inverse ? areaColors.reverse() : areaColors).map(
+      (color, index) => ({
+        color,
+        offset: index
+      })
+    )
     const areaStyle = {
-      color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        {
-          offset: 0,
-          color: styleColor
-        },
-        {
-          offset: 1,
-          color: `rgba(${themeContext.palette.chart.line[index].toString()}, 0)`
-        }
-      ])
+      color: new echarts.graphic.LinearGradient(0, 0, 0, 1, bgColor)
     }
     return Object.assign(
       {},
