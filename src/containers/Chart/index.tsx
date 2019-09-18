@@ -109,9 +109,10 @@ const ChartUI: React.FC<ChartUiProps> = props => {
       data: null,
       boundaryGap: false,
       axisLabel: {
+        align: 'left',
         color: themeContext.palette.chart.label,
         interval: (index: number) => {
-          if (index === 0) return false
+          if (index === 0) return true
           if (index === xAxisDataLength - 1) return false
           if (xAxisDataLength <= 7) return true
           if (xAxisDataLength <= 15) return index % 2 === 0
@@ -188,10 +189,37 @@ const ChartUI: React.FC<ChartUiProps> = props => {
           series.push(getLineSeries(index, seriesData, inverse))
           break
         case 'icon':
-          series.push(getIconSeries(row, seriesData))
+          series.push(
+            getCombineSeries(row, seriesData, {
+              itemSize: 23,
+              itemOptions: { type: 'image' },
+              dataOptions: { zlevel: 2 },
+              itemStyle: api => ({
+                image: `/assets/img/${theme}/${24 *
+                  devicePixelRatio}/${api.value(2)}.svg`,
+                x: -23 / 2,
+                y: -23 / 2,
+                width: 23,
+                height: 23
+              })
+            })
+          )
           break
         case 'text':
-          series.push(getTextSeries(row, seriesData))
+          series.push(
+            getCombineSeries(row, seriesData, {
+              itemSize: 12,
+              itemOptions: { type: 'text' },
+              dataOptions: { zlevel: 1 },
+              itemStyle: api => ({
+                fill: themeContext.palette.chart.label,
+                text: api.value(2),
+                textFont: api.font({ fontSize: 12 }),
+                textAlign: 'center',
+                textVerticalAlign: 'bottom'
+              })
+            })
+          )
           break
         default:
           break
@@ -261,64 +289,54 @@ const ChartUI: React.FC<ChartUiProps> = props => {
     )
   }
 
-  const getIconSeries = (row: number, seriesData: string[]) => {
+  const getCombineSeries = (
+    row: number,
+    seriesData: string[],
+    options: {
+      itemSize: number
+      itemOptions: any
+      dataOptions: any
+      itemStyle: (api: any) => any
+    }
+  ) => {
     const customData = seriesData.map((item, index) => {
       if (index > 0 && seriesData[index] === seriesData[index - 1]) {
         return [index, 0, '']
       }
       return [index, 0, item]
     })
-    const iconSize = 23
 
-    return {
+    return Object.assign({}, options.dataOptions, {
       type: 'custom',
+      data: customData,
       renderItem: function(_: any, api: any) {
+        const categoryIndex = api.value(0)
         const point = api.coord([api.value(0), 0])
-        return {
-          type: 'image',
-          style: {
-            image: `/assets/img/${theme}/${24 * devicePixelRatio}/${api.value(
-              2
-            )}.svg`,
-            x: -iconSize / 2,
-            y: -iconSize / 2,
-            width: iconSize,
-            height: iconSize
-          },
-          position: [point[0], gridHeight() * row - gridHeight() / 2]
-        }
-      },
-      zlevel: 2,
-      data: customData
-    }
-  }
+        let left = point[0]
 
-  const getTextSeries = (row: number, seriesData: string[]) => {
-    const customData = seriesData.map((item, index) => {
-      if (index > 0 && seriesData[index] === seriesData[index - 1]) {
-        return [index, 0, '']
+        if (categoryIndex === 0) {
+          if (
+            customData[categoryIndex + 1] &&
+            !customData[categoryIndex + 1][2]
+          ) {
+            left += options.itemSize / 2
+          }
+        }
+        if (categoryIndex === customData.length - 1) {
+          if (
+            customData[categoryIndex - 1] &&
+            !customData[categoryIndex - 1][2]
+          ) {
+            left -= options.itemSize / 2
+          }
+        }
+
+        return Object.assign({}, options.itemOptions, {
+          position: [left, gridHeight() * row - gridHeight() / 2],
+          style: options.itemStyle(api)
+        })
       }
-      return [index, 0, item]
     })
-    return {
-      type: 'custom',
-      renderItem: function(_: any, api: any) {
-        const point = api.coord([api.value(0), 0])
-        return {
-          type: 'text',
-          style: {
-            fill: themeContext.palette.chart.label,
-            text: api.value(2),
-            textFont: api.font({ fontSize: 12 }),
-            textAlign: 'center',
-            textVerticalAlign: 'bottom'
-          },
-          position: [point[0], gridHeight() * row - gridHeight() / 2]
-        }
-      },
-      zlevel: 1,
-      data: customData
-    }
   }
 
   if (!data) return null
