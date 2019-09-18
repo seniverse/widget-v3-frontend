@@ -60,7 +60,7 @@ const SlimBar: React.FC<SlimBarProps> = props => {
       entering: { opacity: 0, display: 'flex' },
       entered: { opacity: 1, display: 'flex' },
       exiting: { opacity: 0, display: 'flex' },
-      exited: { opacity: 0, display: 'none' },
+      exited: { opacity: 0, display: 'flex', width: '0', height: '0' },
       unmounted: {}
     }
 
@@ -69,7 +69,7 @@ const SlimBar: React.FC<SlimBarProps> = props => {
         onMouseEnter={() => {
           setOpen(true)
         }}
-        onMouseLeave={() => {
+        onClick={() => {
           setOpen(false)
         }}
       >

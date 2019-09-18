@@ -58,16 +58,18 @@ export interface BaseUiLayout {
   }[]
 }
 
+export interface AlarmData {
+  title: string
+  type: string
+  level: string
+  description: string
+  pubDate: string
+  levelCode: string
+  typeCode: string
+}
+
 export interface MainUiLayout {
-  alarms: {
-    title: string
-    type: string
-    level: string
-    description: string
-    pubDate: string
-    levelCode: string
-    typeCode: string
-  }[]
+  alarms: AlarmData[]
   code: {
     now: string
     day: string

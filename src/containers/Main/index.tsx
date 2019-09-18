@@ -4,6 +4,7 @@ import { MainUiLayout, BaseUiLayoutOption } from 'TYPES/Widget'
 import TileContainer from 'COMPONENTS/base/TileContainer'
 import Typography from 'COMPONENTS/base/Typography'
 import { getCodeByTime, getSunTime } from 'UTILS/helper'
+import Alarm from './Alarm'
 
 interface MainUiProps {
   options: BaseUiLayoutOption
@@ -12,6 +13,7 @@ interface MainUiProps {
 const StyledTileContainer = styled(TileContainer)`
   padding: 4px 8px 0 8px;
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   position: relative;
   margin-bottom: 16px;
@@ -124,12 +126,15 @@ const Main: React.FC<MainUiProps> = props => {
     text,
     today,
     yesterday,
-    updateAt
+    updateAt,
+    alarms
   } = (data as MainUiLayout[])[0]
   const { low, high } = today
   const { rise, set } = sun
   const { top, left } = getPosition(rise, set)
   const suntimes = getSunTime(sun)
+
+  console.log(alarms)
 
   let arrowIcon = null
   if (today.high > yesterday.high) {
@@ -139,39 +144,44 @@ const Main: React.FC<MainUiProps> = props => {
   }
 
   return (
-    <StyledTileContainer className="sw-ui-main" column={column} row={row}>
-      <ArcContainer>
-        <Arc>
-          <WeatherIcon
-            top={top}
-            left={left}
-            src={`/assets/img/chameleon/56/${getCodeByTime(code, sun)}.svg`}
-          />
-        </Arc>
-      </ArcContainer>
-      <Typography>
-        {location}{' '}
-        <Typography component="span" variant="caption" color="textSecondary">
-          {updateAt}
+    <div>
+      <StyledTileContainer className="sw-ui-main" column={column} row={row}>
+        <ArcContainer>
+          <Arc>
+            <WeatherIcon
+              top={top}
+              left={left}
+              src={`/assets/img/chameleon/56/${getCodeByTime(code, sun)}.svg`}
+            />
+          </Arc>
+        </ArcContainer>
+        <Typography>
+          {location}{' '}
+          <Typography component="span" variant="caption" color="textSecondary">
+            {updateAt}
+          </Typography>
         </Typography>
-      </Typography>
-      <Grow />
-      <Typography variant="h2" align="center">
-        {temperature}
-      </Typography>
-      <TimeContainer>
-        <Typography variant="caption" component="span" color="textSecondary">
-          {suntimes.rise}
+        <Grow />
+        <Typography variant="h2" align="center">
+          {temperature}
         </Typography>
-        <InfoTypography variant="caption" component="span">
-          {text} {low}~{high}
-          {arrowIcon}
-        </InfoTypography>
-        <Typography variant="caption" component="span" color="textSecondary">
-          {suntimes.set}
-        </Typography>{' '}
-      </TimeContainer>
-    </StyledTileContainer>
+        <TimeContainer>
+          <Typography variant="caption" component="span" color="textSecondary">
+            {suntimes.rise}
+          </Typography>
+          <InfoTypography variant="caption" component="span">
+            {text} {low}~{high}
+            {arrowIcon}
+          </InfoTypography>
+          <Typography variant="caption" component="span" color="textSecondary">
+            {suntimes.set}
+          </Typography>{' '}
+        </TimeContainer>
+      </StyledTileContainer>
+      {alarms.map((alarm, index) => (
+        <Alarm alarm={alarm} key={index} />
+      ))}
+    </div>
   )
 }
 

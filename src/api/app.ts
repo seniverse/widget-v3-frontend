@@ -9,9 +9,7 @@ const get = async (url: string) => {
 }
 
 const getConfig = () =>
-  get(
-    'http://localhost:3001/api/weather/f42ea168-0c67-4728-95ae-434cfe46d649?language=en'
-  )
+  get('http://localhost:3001/api/weather/f42ea168-0c67-4728-95ae-434cfe46d649')
 
 export default {
   getConfig

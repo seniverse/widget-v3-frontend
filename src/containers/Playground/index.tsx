@@ -16,7 +16,7 @@ const Playground: React.FC = () => (
   <PlaygroundContainer>
     <App
       options={{
-        flavor: 'bubble' as 'bubble',
+        flavor: 'slim' as 'slim',
         location: 'beijing',
         geolocation: 'enabled' as 'enabled',
         language: 'zh-Hant' as 'zh-Hant',
