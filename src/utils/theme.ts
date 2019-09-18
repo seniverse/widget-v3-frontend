@@ -19,14 +19,14 @@ const createTheme: () => SwTheme = () => {
       icon: 'white',
       chart: {
         default: '#fff',
-        line: [[207, 107, 97], [234, 174, 78]],
+        line: [[189, 229, 246], [189, 229, 246]],
         background: '#fff',
         color: 'rgba(24, 24, 24)',
         label: 'rgba(24, 24, 24, 0.6)'
       }
     },
     grid: {
-      width: 108,
+      width: 110.6,
       height: 80
     },
     typography: {

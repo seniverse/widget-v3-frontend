@@ -9,6 +9,7 @@ interface Datum {
 interface YaxisType {
   data: string
   type: string
+  inverse?: boolean
   combine?: boolean
 }
 

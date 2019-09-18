@@ -47,10 +47,9 @@ const Container = styled.div`
 
 const UiContainer = styled.div`
   display: flex;
-  padding: 4px;
   height: 100%;
   box-sizing: border-box;
-  width: ${props => props.theme.grid.width * 3 + 8}px;
+  width: ${props => props.theme.grid.width * 3 + 4}px;
   flex-wrap: wrap;
   opacity: 0;
   transition: opacity 200ms ease-in 200ms;
@@ -67,7 +66,7 @@ const ExpandedCard = styled.div<{ h: string; v: string }>`
   background: ${props => props.theme.palette.background.default};
   border-radius: 4px;
   opacity: 0;
-  width: ${props => props.theme.grid.width * 3 + 8}px;
+  width: ${props => props.theme.grid.width * 3}px;
   transition: width 200ms, height 200ms;
   position: absolute;
   left: ${props => (props.h === 'left' ? '0' : 'unset')};
@@ -150,7 +149,7 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
         const min = Math.min(dom.scrollHeight, maxHeight)
 
         if (
-          containerBound.width !== `${dom.scrollWidth}px` &&
+          containerBound.width !== `${dom.scrollWidth}px` ||
           containerBound.height !== `${min}px`
         ) {
           setContainerBound({

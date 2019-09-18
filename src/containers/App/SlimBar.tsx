@@ -34,9 +34,9 @@ const CardContainer = styled.div`
   transform: translateZ(0);
   overflow: hidden;
   flex-wrap: wrap;
-  padding: 4px;
+  padding: 0;
   box-sizing: border-box;
-  width: ${props => props.theme.grid.width * 3 + 8}px;
+  width: ${props => props.theme.grid.width * 3}px;
   display: flex;
 `
 
