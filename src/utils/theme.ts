@@ -1,3 +1,4 @@
+import { css } from 'styled-components'
 import _ from 'lodash'
 import { SwConfigOptions, SwTheme, SwLayoutOptions } from 'TYPES/Widget'
 import { getCodeByTime } from 'UTILS/helper'
@@ -220,6 +221,36 @@ const getAutoColor = (
     }
   }
 }
+
+export const scrollbar = css`
+  -webkit-overflow-scrolling: touch;
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 2px;
+    transition: all 0.3s;
+    background: rgba(0, 0, 0, 0);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    transition: all 0.3s;
+    background: rgba(0, 0, 0, 0);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  &:hover {
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.12);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.12);
+    }
+  }
+`
 
 const getAutoTheme = (weather: SwLayoutOptions) => {
   const getWeatherCode = (weather: SwLayoutOptions) => {

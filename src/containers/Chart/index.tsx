@@ -94,6 +94,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
   const xAxisDataLength = (data as ChartUIType).length
 
   const baseChartOpts = {
+    animation: false,
     grid: {
       top: 25,
       left: 0,
@@ -246,7 +247,8 @@ const ChartUI: React.FC<ChartUiProps> = props => {
       },
       {
         showSymbol: false,
-        symbol: 'none'
+        symbol: 'none',
+        animation: false
       }
     )
   }

@@ -7,17 +7,12 @@ import Typography from 'COMPONENTS/base/Typography'
 import { getCodeByTime } from 'UTILS/helper'
 import { Transition } from 'react-transition-group'
 import AppContainer from './AppContainer'
+import { scrollbar } from 'UTILS/theme'
 import UiManager from 'CONTAINERS/UiManager'
 
 interface BubbleBarProps {
   config: SwLayoutOptions
 }
-
-const Container = styled.div`
-  padding: 8px;
-  display: flex;
-  width: fit-content;
-`
 
 const WeatherIcon = styled.img`
   width: 32px;
@@ -41,14 +36,45 @@ const StyledAppContainer = styled(AppContainer)`
   overflow: hidden;
 `
 
-const ExpandedCard = styled.div`
-  flex-wrap: wrap;
+const Container = styled.div`
+  padding: 8px;
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+`
+
+const UiContainer = styled.div`
+  display: flex;
   padding: 4px;
-  opacity: 0;
+  height: 100%;
   box-sizing: border-box;
   width: ${props => props.theme.grid.width * 3 + 8}px;
-  transition: all 200ms 200ms;
-  display: flex;
+  flex-wrap: wrap;
+  opacity: 0;
+  transition: opacity 200ms ease-in 200ms;
+  overflow-x: hidden;
+  overflow-y: auto;
+  ${scrollbar}
+
+  &:hover {
+    opacity: 1;
+  }
+`
+
+const ExpandedCard = styled.div<{ h: string; v: string }>`
+  background: ${props => props.theme.palette.background.default};
+  border-radius: 4px;
+  opacity: 0;
+  width: ${props => props.theme.grid.width * 3 + 8}px;
+  transition: width 200ms, height 200ms;
+  position: absolute;
+  left: ${props => (props.h === 'left' ? '0' : 'unset')};
+  right: ${props => (props.h === 'right' ? '0' : 'unset')};
+  top: ${props => (props.v === 'top' ? '0' : 'unset')};
+  bottom: ${props => (props.v === 'bottom' ? '0' : 'unset')};
+  z-index: -1;
 `
 
 const BubbleBar: React.FC<BubbleBarProps> = props => {
@@ -56,41 +82,82 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
   const ref = useRef<HTMLDivElement>(null)
   const barRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
+  const [direction, setDirection] = useState({ h: 'left', v: 'top' })
+  const [containerBound, setContainerBound] = useState({
+    width: 'auto',
+    height: 'auto'
+  })
   const [barWidth, setBarWidth] = useState('100px')
 
   const main = config.find(item => item.UIType === 'main')
 
-  let width = 'auto'
-  let height = 'auto'
-
-  const dom = ReactDOM.findDOMNode(ref.current) as HTMLDivElement
-  if (dom) {
-    width = `${dom.clientWidth}px`
-    height = `${dom.clientHeight}px`
-  }
-
   const appTransitionStyles = {
-    entering: { width, height },
-    entered: { width, height },
-    exiting: { overflow: 'hidden', height: '54px', width: barWidth },
-    exited: { overflow: 'hidden', height: '54px', width: barWidth },
+    entering: {},
+    entered: { overflow: 'unset' },
+    exiting: {},
+    exited: { width: barWidth },
     unmounted: {}
   }
 
   const transitionStyles = {
-    entering: { opacity: 1 },
-    entered: { opacity: 1 },
-    exiting: { opacity: 0, transition: 'none' },
-    exited: { opacity: 0, transition: 'none' },
+    entering: { opacity: 0, width: barWidth, height: '54px' },
+    entered: { opacity: 1, height: containerBound.height },
+    exiting: { opacity: 1, height: containerBound.height },
+    exited: { opacity: 0, width: barWidth, height: '54px' },
     unmounted: {}
   }
 
   useEffect(() => {
     const barDom = ReactDOM.findDOMNode(barRef.current) as HTMLDivElement
-    if (barDom) {
+    const dom = ReactDOM.findDOMNode(ref.current) as HTMLDivElement
+
+    if (barDom && dom) {
       const newBarWidth = `${barDom.clientWidth}px`
       if (newBarWidth !== barWidth) {
         setBarWidth(newBarWidth)
+      }
+      const bound = barDom.getBoundingClientRect()
+      const { left, right, top, bottom } = bound
+      const documentWidth = document.body.clientWidth
+      const documentHeight = document.body.clientHeight
+
+      let hDirection
+      let vDirection
+      let maxHeight
+
+      if (left > documentWidth - right) {
+        hDirection = 'right'
+      } else {
+        hDirection = 'left'
+      }
+
+      if (top > documentHeight - bottom) {
+        vDirection = 'bottom'
+        maxHeight = bottom - 10
+      } else {
+        vDirection = 'top'
+        maxHeight = documentHeight - top - 10
+      }
+
+      if (direction.h !== hDirection || direction.v !== vDirection) {
+        setDirection({
+          h: hDirection,
+          v: vDirection
+        })
+      }
+
+      if (dom.scrollWidth && dom.scrollHeight) {
+        const min = Math.min(dom.scrollHeight, maxHeight)
+
+        if (
+          containerBound.width !== `${dom.scrollWidth}px` &&
+          containerBound.height !== `${min}px`
+        ) {
+          setContainerBound({
+            width: `${dom.scrollWidth}px`,
+            height: `${min}px`
+          })
+        }
       }
     }
   })
@@ -99,7 +166,7 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
     const data = main.data as MainUiLayout[]
     const { location, temperature, code, sun } = data[0]
     return (
-      <Transition in={open} timeout={200}>
+      <Transition in={open} timeout={0}>
         {state => (
           <StyledAppContainer
             onMouseEnter={() => {
@@ -113,42 +180,40 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
               ...appTransitionStyles[state]
             }}
           >
-            {!open && (
-              <Container className="sw-bar-bubble" ref={barRef}>
-                <WeatherIcon
-                  src={`/assets/img/chameleon/56/${getCodeByTime(
-                    code,
-                    sun
-                  )}.svg`}
-                />
-                <div>
-                  <Typography
-                    variant="body2"
-                    className="sw-bar-bubble-location"
-                    lineHeight="1.3"
-                  >
-                    {location}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    className="sw-bar-bubble-temperature"
-                    lineHeight="1.3"
-                  >
-                    {temperature}
-                  </Typography>
-                </div>
-              </Container>
-            )}
+            <Container className="sw-bar-bubble" ref={barRef}>
+              <WeatherIcon
+                src={`/assets/img/chameleon/56/${getCodeByTime(code, sun)}.svg`}
+              />
+              <div>
+                <Typography
+                  variant="body2"
+                  className="sw-bar-bubble-location"
+                  lineHeight="1.3"
+                >
+                  {location}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  className="sw-bar-bubble-temperature"
+                  lineHeight="1.3"
+                >
+                  {temperature}
+                </Typography>
+              </div>
+            </Container>
 
-            <Transition in={open} timeout={200}>
+            <Transition in={open} timeout={0}>
               {state => (
                 <ExpandedCard
-                  ref={ref}
+                  h={direction.h}
+                  v={direction.v}
                   style={{
                     ...transitionStyles[state]
                   }}
                 >
-                  <UiManager config={config} />
+                  <UiContainer ref={ref}>
+                    <UiManager config={config} />
+                  </UiContainer>
                 </ExpandedCard>
               )}
             </Transition>
