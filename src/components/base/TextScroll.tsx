@@ -92,7 +92,6 @@ class Horizontal extends React.Component<TextScrollProp, TextScrollState> {
 const StyledHorizontal = styled(Horizontal)`
   overflow: hidden;
   width: 100%;
-  border-bottom: 1px solid #eee;
   word-break: keep-all;
   white-space: nowrap;
   display: flex;

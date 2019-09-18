@@ -4,23 +4,28 @@ import { AlarmData } from 'TYPES/Widget'
 import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 import Typography from 'COMPONENTS/base/Typography'
 import TextScroll from 'COMPONENTS/base/TextScroll'
+import { getAlarmColor } from 'UTILS/theme'
 
 interface AlarmProps {
   alarm: AlarmData
 }
 
-const AlarmContainer = styled.div`
-  padding: 0 4px;
+interface AlarmContainerProps {
+  levelCode: string
+}
+
+const AlarmContainer = styled.div<AlarmContainerProps>`
+  background-color: ${props => getAlarmColor(`${props.levelCode}`)};
 `
 
 const Alarm: React.FC<AlarmProps> = props => {
   const { alarm } = props
-  const { type, level, description } = alarm
+  const { type, level, description, levelCode } = alarm
 
   console.log(alarm)
 
   return (
-    <AlarmContainer>
+    <AlarmContainer levelCode={levelCode}>
       <Typography variant="caption">
         <AlarmIcon alarm={alarm} />
         {type}
