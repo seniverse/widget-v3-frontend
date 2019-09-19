@@ -6,6 +6,7 @@ import { SwLayoutOptions, MainUiLayout } from 'TYPES/Widget'
 import { getCodeByTime } from 'UTILS/helper'
 import UiManager from 'CONTAINERS/UiManager'
 import { Transition } from 'react-transition-group'
+import Loading from './Loading'
 
 interface SlimBarProps {
   config: SwLayoutOptions
@@ -112,7 +113,7 @@ const SlimBar: React.FC<SlimBarProps> = props => {
       </StyledAppContainer>
     )
   } else {
-    return <div>?</div>
+    return <Loading />
   }
 }
 
