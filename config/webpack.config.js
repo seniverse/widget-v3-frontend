@@ -157,7 +157,7 @@ module.exports = function(webpackEnv) {
       isEnvDevelopment &&
         require.resolve('react-dev-utils/webpackHotDevClient'),
       // Finally, this is your app's code:
-      paths.appIndexJs
+      isEnvProduction ? paths.appBuildEntry : paths.appIndexJs
       // We include the app code last so that if there is a runtime error during
       // initialization, it doesn't blow up the WebpackDevServer client, and
       // changing JS code would still trigger a refresh.
@@ -170,7 +170,7 @@ module.exports = function(webpackEnv) {
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
       filename: isEnvProduction
-        ? 'static/js/[name].[contenthash:8].js'
+        ? 'static/js/bundle.js'
         : isEnvDevelopment && 'static/js/bundle.js',
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
@@ -257,17 +257,17 @@ module.exports = function(webpackEnv) {
         //       : false
         //   }
         // })
-      ],
+      ]
       // Automatically split vendor and commons
       // https://twitter.com/wSokra/status/969633336732905474
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
-      splitChunks: {
-        chunks: 'all',
-        name: false
-      },
+      // splitChunks: {
+      //   chunks: 'all',
+      //   name: false
+      // }
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
-      runtimeChunk: true
+      // runtimeChunk: true
     },
     resolve: {
       // This allows you to set a fallback for where Webpack should look for modules.
@@ -512,7 +512,7 @@ module.exports = function(webpackEnv) {
           {},
           {
             inject: true,
-            template: paths.appHtml
+            template: isEnvProduction ? paths.appPreviewHtml : paths.appHtml
           },
           isEnvProduction
             ? {
