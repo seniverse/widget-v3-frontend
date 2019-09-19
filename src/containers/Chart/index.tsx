@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { BaseUiLayoutOption } from 'TYPES/Widget'
-import { ChartUIType, Content } from 'TYPES/Chart'
+import { ChartUiLayout, Content } from 'TYPES/Chart'
 import TileContainer from 'COMPONENTS/base/TileContainer'
 import { gridHeight, gridWidth } from 'UTILS/theme'
 import styled, { ThemeContext, createGlobalStyle } from 'styled-components'
@@ -91,7 +91,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
     return (domStr += `</div>`)
   }
 
-  const xAxisDataLength = (data as ChartUIType).length
+  const xAxisDataLength = (data as ChartUiLayout[]).length
 
   const baseChartOpts = {
     animation: false,
@@ -169,10 +169,10 @@ const ChartUI: React.FC<ChartUiProps> = props => {
     let max = 0
     let inverse = false
 
-    for (const index in (data as ChartUIType)[0].yAxis) {
+    for (const index in (data as ChartUiLayout[])[0].yAxis) {
       const seriesData = []
-      const type = (data as ChartUIType)[0].yAxis[index].type
-      for (const item of data as ChartUIType) {
+      const type = (data as ChartUiLayout[])[0].yAxis[index].type
+      for (const item of data as ChartUiLayout[]) {
         const { content, yAxis, xAxis } = item
         if (!inverse) inverse = yAxis[index].inverse || inverse
         if (Number(index) === 0) {
@@ -340,7 +340,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
   }
 
   if (!data) return null
-  const width = data.length * (data as ChartUIType)[0].xAxis.length * 8
+  const width = data.length * (data as ChartUiLayout[])[0].xAxis.length * 8
   const chartWidth = Math.max(
     Math.max(width, gridWidth() * column) / 3,
     gridWidth() * column

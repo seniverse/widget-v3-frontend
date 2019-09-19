@@ -126,10 +126,7 @@ interface AlarmIconProps {
 }
 
 const getBackground = (alarm: AlarmData) => {
-  let baseCls = 'icon-background-alarmCircle'
-  if (alarm.levelCode === 'placeholder') {
-    baseCls = 'icon-background-alarmGlanceCircle'
-  }
+  const baseCls = 'icon-background-alarmCircle'
   const typeCls = `background-${alarm.levelCode}`
   const colorCls = `text-${alarm.levelCode}`
   return `${baseCls} ${typeCls} ${colorCls}`

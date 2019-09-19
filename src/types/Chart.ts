@@ -1,6 +1,4 @@
-export type ChartUIType = Datum[]
-
-interface Datum {
+export interface ChartUiLayout {
   content: Content[][]
   yAxis: YaxisType[]
   xAxis: string

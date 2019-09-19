@@ -1,5 +1,5 @@
 import React from 'react'
-import { CarouselUI } from 'TYPES/Carousel'
+import { CarouselUILayout } from 'TYPES/Carousel'
 import { BaseUiLayoutOption } from 'TYPES/Widget'
 import TileContainer from 'COMPONENTS/base/TileContainer'
 import styled from 'styled-components'
@@ -56,7 +56,7 @@ const Carousel: React.FC<CarouselUiProps> = props => {
     <CarouselContainer className="sw-ui-carousel" column={column} row={row}>
       <Container>
         <CardWrapper>
-          {(data as CarouselUI).map((item, index) => {
+          {(data as CarouselUILayout[]).map((item, index) => {
             return (
               <Card key={index}>
                 <TileUIContainer header={item.header} content={item.content} />

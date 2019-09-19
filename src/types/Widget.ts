@@ -1,5 +1,5 @@
-import { ChartUIType } from './Chart'
-import { CarouselUI } from './Carousel'
+import { ChartUiLayout } from './Chart'
+import { CarouselUILayout } from './Carousel'
 
 export type SwType = 'bubble' | 'slim'
 export type SwLanguage = 'auto' | 'zh-Hans' | 'zh-Hant' | 'en'
@@ -64,7 +64,7 @@ export interface AlarmData {
   level: string
   description: string
   pubDate: string
-  levelCode: string
+  levelCode: number
   typeCode: string
 }
 
@@ -76,7 +76,7 @@ export interface MainUiLayout {
     night: string
   }
   location: string
-  uggestion: string
+  suggestion: string
   sun: {
     rise: string
     set: string
@@ -94,9 +94,11 @@ export interface MainUiLayout {
   }
 }
 
+type UILayout = BaseUiLayout | MainUiLayout | ChartUiLayout | CarouselUILayout
+
 export interface BaseUiLayoutOption {
   UIType: string
-  data: BaseUiLayout[] | MainUiLayout[] | ChartUIType | CarouselUI
+  data: UILayout[]
   size: [number, number]
 }
 

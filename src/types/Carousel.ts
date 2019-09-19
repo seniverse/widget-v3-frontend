@@ -1,6 +1,4 @@
-export type CarouselUI = Datum[]
-
-interface Datum {
+export interface CarouselUILayout {
   header: string
   content: Content[]
 }

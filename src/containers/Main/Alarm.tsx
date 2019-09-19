@@ -11,7 +11,7 @@ interface AlarmProps {
 }
 
 interface AlarmContainerProps {
-  levelCode: string
+  levelCode: number
 }
 
 const AlarmContent = styled(TextScroll)`

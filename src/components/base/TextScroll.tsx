@@ -82,8 +82,6 @@ class Horizontal extends React.Component<TextScrollProp, TextScrollState> {
       margin-right: ${this.state.containerWidth}px;
     `
 
-    console.log(this.state.containerWidth)
-
     return (
       <HorizontalContainer className={this.props.className}>
         <Container ref={(div: any) => (this.container = div)}>
