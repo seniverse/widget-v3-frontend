@@ -77,6 +77,10 @@ const InfoTypography = styled(Typography)`
   align-items: flex-start;
 `
 
+const MainUiContainer = styled.div`
+  width: 100%;
+`
+
 const getPosition = (rise: string, set: string) => {
   const [riseHour, riseMinute] = rise.split(':').map(item => parseInt(item, 10))
   const [setHour, setMinute] = set.split(':').map(item => parseInt(item, 10))
@@ -134,8 +138,6 @@ const Main: React.FC<MainUiProps> = props => {
   const { top, left } = getPosition(rise, set)
   const suntimes = getSunTime(sun)
 
-  console.log(alarms)
-
   let arrowIcon = null
   if (today.high > yesterday.high) {
     arrowIcon = <ArrowIcon src={'/assets/img/arrow-up.svg'} />
@@ -144,7 +146,7 @@ const Main: React.FC<MainUiProps> = props => {
   }
 
   return (
-    <div>
+    <MainUiContainer>
       <StyledTileContainer className="sw-ui-main" column={column} row={row}>
         <ArcContainer>
           <Arc>
@@ -181,7 +183,7 @@ const Main: React.FC<MainUiProps> = props => {
       {alarms.map((alarm, index) => (
         <Alarm alarm={alarm} key={index} />
       ))}
-    </div>
+    </MainUiContainer>
   )
 }
 

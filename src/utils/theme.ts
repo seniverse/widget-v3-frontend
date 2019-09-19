@@ -289,7 +289,6 @@ export const getAlarmColor = (
   opacity: number = 0.5
 ): string => {
   let color: string
-  console.log(`levelCode: ${levelCode}`)
 
   switch (levelCode) {
     case '10':
