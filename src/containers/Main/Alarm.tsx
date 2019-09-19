@@ -22,8 +22,6 @@ const Alarm: React.FC<AlarmProps> = props => {
   const { alarm } = props
   const { type, level, description, levelCode } = alarm
 
-  console.log(alarm)
-
   return (
     <AlarmContainer levelCode={levelCode}>
       <Typography variant="caption">

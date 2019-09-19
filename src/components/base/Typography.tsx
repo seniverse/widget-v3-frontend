@@ -9,6 +9,7 @@ interface BaseTypographyProps {
   color?: 'textPrimary' | 'textSecondary' | 'inherit'
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify'
   lineHeight?: string
+  title?: string
 }
 
 interface TypographyProps extends BaseTypographyProps {

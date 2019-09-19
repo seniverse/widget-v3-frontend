@@ -14,20 +14,28 @@ interface TextScrollState {
   containerWidth?: number
 }
 
+const HorizontalContainer = styled.div`
+  overflow: hidden;
+  width: 100%;
+  word-break: keep-all;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+`
+
 class Horizontal extends React.Component<TextScrollProp, TextScrollState> {
   container: any
 
   state = {
     duration: 5000,
     contentWidth: 500,
-    containerWidth: 500
+    containerWidth: 331.8
   }
 
   componentDidMount() {
     const dom = ReactDOM.findDOMNode(this.container) as Element
-    const parentElement = dom.parentElement
     const children = dom.children
-    const containerWidth = parentElement ? parentElement.clientWidth : 500
+    const containerWidth = 331.8
     let contentWidth = 0
     for (let i = 0; i < children.length; i++) {
       contentWidth += children[i].scrollWidth
@@ -39,8 +47,7 @@ class Horizontal extends React.Component<TextScrollProp, TextScrollState> {
     const duration = ((this.props.speed || 5000) * contentWidth) / 500000
     this.setState({
       duration: duration,
-      contentWidth: contentWidth,
-      containerWidth: containerWidth
+      contentWidth: contentWidth
     })
   }
 
@@ -71,12 +78,14 @@ class Horizontal extends React.Component<TextScrollProp, TextScrollState> {
 
     const Item = styled.span`
       display: inline-block;
-      line-height: 30px;
+      font-size: 12px;
       margin-right: ${this.state.containerWidth}px;
     `
 
+    console.log(this.state.containerWidth)
+
     return (
-      <div className={this.props.className}>
+      <HorizontalContainer className={this.props.className}>
         <Container ref={(div: any) => (this.container = div)}>
           {this.props.text.map((e: any, i: number) => (
             <Item key={i} title={e}>
@@ -84,17 +93,9 @@ class Horizontal extends React.Component<TextScrollProp, TextScrollState> {
             </Item>
           ))}
         </Container>
-      </div>
+      </HorizontalContainer>
     )
   }
 }
 
-const StyledHorizontal = styled(Horizontal)`
-  overflow: hidden;
-  width: 100%;
-  word-break: keep-all;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-`
-export default StyledHorizontal
+export default Horizontal
