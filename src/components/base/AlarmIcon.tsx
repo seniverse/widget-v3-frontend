@@ -123,6 +123,7 @@ const Icon = styled.i`
 
 interface AlarmIconProps {
   alarm: AlarmData
+  style?: any
 }
 
 const getBackground = (alarm: AlarmData) => {
@@ -139,10 +140,10 @@ const getAlarmIcon = (alarm: AlarmData) => {
 }
 
 const AlarmIcon: React.FC<AlarmIconProps> = props => {
-  const { alarm } = props
+  const { alarm, style } = props
 
   return (
-    <span className={getBackground(alarm)}>
+    <span className={getBackground(alarm)} style={style}>
       <IconFont />
       <Icon className={getAlarmIcon(alarm)} />
     </span>

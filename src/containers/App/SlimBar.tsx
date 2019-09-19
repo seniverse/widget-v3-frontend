@@ -4,6 +4,7 @@ import Typography from 'COMPONENTS/base/Typography'
 import AppContainer from './AppContainer'
 import { SwLayoutOptions, MainUiLayout } from 'TYPES/Widget'
 import { getCodeByTime } from 'UTILS/helper'
+import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 import UiManager from 'CONTAINERS/UiManager'
 import { Transition } from 'react-transition-group'
 import Loading from './Loading'
@@ -14,6 +15,7 @@ interface SlimBarProps {
 
 const SlimBarContainer = styled.div`
   display: inline-flex;
+  align-items: center;
 `
 
 const WeatherIcon = styled.img`
@@ -55,7 +57,16 @@ const SlimBar: React.FC<SlimBarProps> = props => {
 
   if (main) {
     const data = main.data as MainUiLayout[]
-    const { location, temperature, code, sun } = data[0]
+    const { location, temperature, code, sun, alarms } = data[0]
+
+    let icon = (
+      <WeatherIcon
+        src={`/assets/img/chameleon/24/${getCodeByTime(code, sun)}.svg`}
+      />
+    )
+    if (alarms.length) {
+      icon = <AlarmIcon alarm={alarms[0]} />
+    }
 
     const transitionStyles = {
       entering: { opacity: 0, display: 'flex' },
@@ -83,9 +94,7 @@ const SlimBar: React.FC<SlimBarProps> = props => {
           >
             {location}
           </Typography>
-          <WeatherIcon
-            src={`/assets/img/chameleon/24/${getCodeByTime(code, sun)}.svg`}
-          />
+          {icon}
 
           <Typography
             variant="body2"

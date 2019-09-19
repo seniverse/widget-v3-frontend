@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="-1.11022302e-14%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#F1D616" offset="0%"></stop>
+            <stop stop-color="#FFC500" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="天气图标" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="天气图标_白色背景" transform="translate(-363.000000, -233.000000)" fill="url(#linearGradient-1)">
+            <path d="M395,292 C409.911688,292 422,279.911688 422,265 C422,250.088312 409.911688,238 395,238 C380.088312,238 368,250.088312 368,265 C368,279.911688 380.088312,292 395,292 Z" id="Oval-149"></path>
+        </g>
+    </g>
+</svg>
