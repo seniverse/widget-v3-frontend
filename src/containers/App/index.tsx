@@ -10,16 +10,21 @@ import BubbleBar from './BubbleBar'
 import SlimBar from './SlimBar'
 
 interface SwProps {
+  data?: SwLayoutOptions
   options?: SwPropsConfigOptions
 }
 
 const App: React.FC<SwProps> = props => {
-  const { options } = props
+  const { options, data = [] } = props
   const defaultOptions = getDefaultOptions(options)
   const [theme, setTheme] = useState(getTheme(defaultOptions))
-  const [config, setConfig] = useState<SwLayoutOptions>([])
+  const [config, setConfig] = useState<SwLayoutOptions>(data)
 
   const fetchConfig = async () => {
+    if (Array.isArray(data) && data.length > 0) {
+      return
+    }
+
     const res = await AppApi.getConfig()
     if (res && res.success) {
       const newConfig = res.results as SwLayoutOptions
