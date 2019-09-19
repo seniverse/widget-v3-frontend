@@ -284,33 +284,6 @@ const getAutoTheme = (weather: SwLayoutOptions) => {
 
 const theme = createTheme()
 
-export const getAlarmColor = (
-  levelCode: string,
-  opacity: number = 0.5
-): string => {
-  let color: string
-
-  switch (levelCode) {
-    case '10':
-      color = '#497DF5'
-      break
-    case '20':
-      color = '#FFDE00'
-      break
-    case '30':
-      color = '#FF9403'
-      break
-    case '40':
-      color = '#F23030'
-      break
-    default:
-      return 'transparent'
-  }
-
-  const rgb = hexToRgb(color)
-  return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`
-}
-
 export const getTheme = (
   options: SwConfigOptions,
   weather?: SwLayoutOptions
