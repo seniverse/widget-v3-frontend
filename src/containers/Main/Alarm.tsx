@@ -14,15 +14,17 @@ interface AlarmContainerProps {
   levelCode: string
 }
 
+const AlarmContent = styled(TextScroll)`
+  font-size: 0.75em;
+`
+
 const AlarmContainer = styled.div<AlarmContainerProps>`
-  background-color: ${props => getAlarmColor(`${props.levelCode}`)};
+  background-color: ${props => getAlarmColor(`${props.levelCode}`, 0.3)};
 `
 
 const Alarm: React.FC<AlarmProps> = props => {
   const { alarm } = props
   const { type, level, description, levelCode } = alarm
-
-  console.log(alarm)
 
   return (
     <AlarmContainer levelCode={levelCode}>
@@ -31,7 +33,7 @@ const Alarm: React.FC<AlarmProps> = props => {
         {type}
         {level}预警
       </Typography>
-      <TextScroll text={[description]} />
+      <AlarmContent text={[description]} />
     </AlarmContainer>
   )
 }

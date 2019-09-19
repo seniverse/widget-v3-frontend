@@ -103,6 +103,13 @@ const IconFont = createGlobalStyle`
   .iconColor-multi { color: #ffde00; }
   .text-placeholder { color: #585858; }
   .iconColor-placeholder { color: #cacaca; }
+
+  .color-10 { color: #62acff; }
+  .color-20 { color: #ffde00; }
+  .color-30 { color: #ff9403; }
+  .color-40 { color: #f23030; }
+  .color-multi { color: #ffde00; }
+  .color-50 { color: #fff; }
 `
 
 const Icon = styled.i`
@@ -131,7 +138,7 @@ const getBackground = (alarm: AlarmData) => {
 const getAlarmIcon = (alarm: AlarmData) => {
   const typeCls = `icon-${alarm.typeCode}`
   const colorCls = `iconColor-${alarm.levelCode}`
-  return `${typeCls} ${colorCls}`
+  return `${typeCls} ${colorCls} color-${alarm.levelCode}`
 }
 
 const AlarmIcon: React.FC<AlarmIconProps> = props => {
