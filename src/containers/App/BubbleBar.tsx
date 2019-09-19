@@ -9,6 +9,7 @@ import { Transition } from 'react-transition-group'
 import AppContainer from './AppContainer'
 import { scrollbar } from 'UTILS/theme'
 import UiManager from 'CONTAINERS/UiManager'
+import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 
 interface BubbleBarProps {
   config: SwLayoutOptions
@@ -163,7 +164,31 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
 
   if (main) {
     const data = main.data as MainUiLayout[]
-    const { location, temperature, code, sun } = data[0]
+    const { location, temperature, code, sun, alarms } = data[0]
+
+    let icon = (
+      <WeatherIcon
+        src={`/assets/img/chameleon/56/${getCodeByTime(code, sun)}.svg`}
+      />
+    )
+    if (alarms.length) {
+      icon = (
+        <AlarmIcon
+          alarm={alarms[0]}
+          style={{
+            width: '32px',
+            height: '32px',
+            marginRight: '8px',
+            display: 'inline-flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 0,
+            borderRadius: '16px'
+          }}
+        />
+      )
+    }
+
     return (
       <Transition in={open} timeout={0}>
         {state => (
@@ -180,9 +205,7 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
             }}
           >
             <Container className="sw-bar-bubble" ref={barRef}>
-              <WeatherIcon
-                src={`/assets/img/chameleon/56/${getCodeByTime(code, sun)}.svg`}
-              />
+              {icon}
               <div>
                 <Typography
                   variant="body2"
