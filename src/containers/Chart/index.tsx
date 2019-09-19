@@ -238,7 +238,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         yAxis: {
           ...baseChartOpts.yAxis,
           min: isNaN(min) ? 'dataMin' : min - 5,
-          max: isNaN(max) ? 'dataMax' : max,
+          max: isNaN(max) ? 'dataMax' : max + 1,
           inverse
         }
       },
