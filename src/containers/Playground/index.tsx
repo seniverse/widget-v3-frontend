@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import App from 'CONTAINERS/App'
 import { hot } from 'react-hot-loader'
+import { getDefaultOptions } from 'UTILS/options'
 
 const PlaygroundContainer = styled.header`
   background-color: #282c34;
@@ -15,16 +16,16 @@ const PlaygroundContainer = styled.header`
 const Playground: React.FC = () => (
   <PlaygroundContainer>
     <App
-      options={{
+      options={getDefaultOptions({
         flavor: 'slim' as 'slim',
         location: 'beijing',
         geolocation: 'enabled' as 'enabled',
         language: 'zh-Hant' as 'zh-Hant',
         unit: 'c' as 'c',
         theme: 'auto' as 'auto',
-        token: 'XXX',
+        token: '',
         hover: 'enabled' as 'enabled'
-      }}
+      })}
     />
   </PlaygroundContainer>
 )
