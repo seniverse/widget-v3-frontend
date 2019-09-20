@@ -83,11 +83,14 @@ const ExpandedCard = styled.div<{ h: string; v: string }>`
   @media screen and (max-width: 600px) {
     position: fixed;
     left: 0;
-    right: 0;
     top: 0;
+    padding: 16px;
+    box-sizing: border-box;
     width: 100%;
     height: 100% !important;
     border-radius: 0;
+    overflow-y: auto;
+    ${scrollbar}
   }
 `
 
