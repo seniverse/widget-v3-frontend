@@ -11,6 +11,10 @@ import { scrollbar } from 'UTILS/theme'
 import UiManager from 'CONTAINERS/UiManager'
 import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 
+import env from 'UTILS/env'
+
+const { assetsPath } = env
+
 interface BubbleBarProps {
   config: SwLayoutOptions
 }
@@ -168,7 +172,10 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
 
     let icon = (
       <WeatherIcon
-        src={`/assets/img/chameleon/56/${getCodeByTime(code, sun)}.svg`}
+        src={`${assetsPath}/assets/img/chameleon/56/${getCodeByTime(
+          code,
+          sun
+        )}.svg`}
       />
     )
     if (alarms.length) {

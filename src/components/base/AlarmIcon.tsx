@@ -1,16 +1,19 @@
 import React from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import { AlarmData } from 'TYPES/Widget'
+import env from 'UTILS/env'
+
+const { assetsPath } = env
 
 const IconFont = createGlobalStyle`
   @font-face {
     font-family: 'alarmicon';
-    src: url('/assets/font/alarm-iconfont.eot');
+    src: url('${assetsPath}/assets/font/alarm-iconfont.eot');
     src:
-      url('/assets/font/alarm-iconfont.eot#iefix') format('embedded-opentype'),
-      url('/assets/font/alarm-iconfont.woff') format('woff'),
-      url('/assets/font/alarm-iconfont.ttf') format('truetype'),
-      url('/assets/font/alarm-iconfont.svg') format('svg');
+      url('${assetsPath}/assets/font/alarm-iconfont.eot#iefix') format('embedded-opentype'),
+      url('${assetsPath}/assets/font/alarm-iconfont.woff') format('woff'),
+      url('${assetsPath}/assets/font/alarm-iconfont.ttf') format('truetype'),
+      url('${assetsPath}/assets/font/alarm-iconfont.svg') format('svg');
   }
 
   .icon-background-alarmCircle {

@@ -5,6 +5,9 @@ import TileContainer from 'COMPONENTS/base/TileContainer'
 import Typography from 'COMPONENTS/base/Typography'
 import { getCodeByTime, getSunTime } from 'UTILS/helper'
 import Alarm from './Alarm'
+import env from 'UTILS/env'
+
+const { assetsPath } = env
 
 interface MainUiProps {
   options: BaseUiLayoutOption
@@ -140,9 +143,9 @@ const Main: React.FC<MainUiProps> = props => {
 
   let arrowIcon = null
   if (today.high > yesterday.high) {
-    arrowIcon = <ArrowIcon src={'/assets/img/arrow-up.svg'} />
+    arrowIcon = <ArrowIcon src={`${assetsPath}/assets/img/arrow-up.svg`} />
   } else if (today.low < yesterday.low) {
-    arrowIcon = <ArrowIcon src={'/assets/img/arrow-down.svg'} />
+    arrowIcon = <ArrowIcon src={`${assetsPath}/assets/img/arrow-down.svg`} />
   }
 
   return (
@@ -153,7 +156,10 @@ const Main: React.FC<MainUiProps> = props => {
             <WeatherIcon
               top={top}
               left={left}
-              src={`/assets/img/chameleon/56/${getCodeByTime(code, sun)}.svg`}
+              src={`${assetsPath}/assets/img/chameleon/56/${getCodeByTime(
+                code,
+                sun
+              )}.svg`}
             />
           </Arc>
         </ArcContainer>

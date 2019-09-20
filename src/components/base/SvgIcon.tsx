@@ -1,5 +1,8 @@
 import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
+import env from 'UTILS/env'
+
+const { assetsPath } = env
 
 const Img = styled(({ ...props }) => <img {...props} />)`
   width: ${props => props.width || '1em'};
@@ -29,7 +32,8 @@ const Icon: React.FC<PropsType> = props => {
   return (
     <Img
       {...otherProps}
-      src={`/assets/img/${theme}/${24 * devicePixelRatio}/${name}.svg`}
+      src={`${assetsPath}/assets/img/${theme}/${24 *
+        devicePixelRatio}/${name}.svg`}
     ></Img>
   )
 }

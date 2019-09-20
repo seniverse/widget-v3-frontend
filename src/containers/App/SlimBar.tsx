@@ -8,6 +8,9 @@ import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 import UiManager from 'CONTAINERS/UiManager'
 import { Transition } from 'react-transition-group'
 import Loading from './Loading'
+import env from 'UTILS/env'
+
+const { assetsPath } = env
 
 interface SlimBarProps {
   config: SwLayoutOptions
@@ -61,7 +64,10 @@ const SlimBar: React.FC<SlimBarProps> = props => {
 
     let icon = (
       <WeatherIcon
-        src={`/assets/img/chameleon/24/${getCodeByTime(code, sun)}.svg`}
+        src={`${assetsPath}/assets/img/chameleon/24/${getCodeByTime(
+          code,
+          sun
+        )}.svg`}
       />
     )
     if (alarms.length) {

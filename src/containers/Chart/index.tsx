@@ -9,6 +9,9 @@ import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/custom'
 import 'echarts/lib/component/tooltip'
+import env from 'UTILS/env'
+
+const { assetsPath } = env
 
 const ChartContainer = styled.div`
   width: 100%;
@@ -79,7 +82,8 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         } else if (type === 'icon') {
           tipStr += `<img
               class="tooltip-chart-icon"
-              src="/assets/img/${theme}/${24 * devicePixelRatio}/${text}.svg"
+              src="${assetsPath}/assets/img/${theme}/${24 *
+            devicePixelRatio}/${text}.svg"
             />`
         } else {
           tipStr += ''
@@ -195,7 +199,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
               itemOptions: { type: 'image' },
               dataOptions: { zlevel: 2 },
               itemStyle: api => ({
-                image: `/assets/img/${theme}/${24 *
+                image: `${assetsPath}/assets/img/${theme}/${24 *
                   devicePixelRatio}/${api.value(2)}.svg`,
                 x: -23 / 2,
                 y: -23 / 2,
