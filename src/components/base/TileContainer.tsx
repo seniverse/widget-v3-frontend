@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { gridWidth, gridHeight } from 'UTILS/theme'
+import { gridHeight } from 'UTILS/theme'
 
 interface TileContainerProps {
   row: number
@@ -8,7 +8,7 @@ interface TileContainerProps {
 
 // TODO: 过滤 props
 const TileContainer = styled.div<TileContainerProps>`
-  width: ${props => props.column * gridWidth()}px;
+  flex: 1 0 ${props => props.column * 33.333}%;
   height: ${props => props.row * gridHeight()}px;
 `
 

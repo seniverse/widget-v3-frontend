@@ -15,7 +15,7 @@ interface SwProps {
 
 const App: React.FC<SwProps> = props => {
   const { options, data = [] } = props
-  const [theme, setTheme] = useState(getTheme(options))
+  const [theme, setTheme] = useState(getTheme(options, data))
   const [config, setConfig] = useState<SwLayoutOptions>(data)
 
   const fetchConfig = async () => {

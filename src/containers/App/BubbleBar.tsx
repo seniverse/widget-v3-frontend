@@ -32,7 +32,6 @@ const StyledAppContainer = styled(AppContainer)`
   border-radius: 4px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
   transition: all 0.2s;
-  transform: translateZ(0);
   height: 54px;
   width: 100px;
   position: fixed;
@@ -50,20 +49,21 @@ const Container = styled.div`
   z-index: -1;
 `
 
-const UiContainer = styled.div`
+const UiContainer = styled.div<{ open: boolean }>`
   display: flex;
   height: 100%;
   box-sizing: border-box;
-  width: ${props => props.theme.grid.width * 3 + 4}px;
+  width: ${props => props.theme.grid.width * 3}px;
   flex-wrap: wrap;
-  opacity: 0;
+  opacity: ${props => (props.open ? 1 : 0)};
   transition: opacity 200ms ease-in 200ms;
   overflow-x: hidden;
   overflow-y: auto;
   ${scrollbar}
 
-  &:hover {
-    opacity: 1;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    height: unset;
   }
 `
 
@@ -79,6 +79,16 @@ const ExpandedCard = styled.div<{ h: string; v: string }>`
   top: ${props => (props.v === 'top' ? '0' : 'unset')};
   bottom: ${props => (props.v === 'bottom' ? '0' : 'unset')};
   z-index: -1;
+
+  @media screen and (max-width: 600px) {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100% !important;
+    border-radius: 0;
+  }
 `
 
 const BubbleBar: React.FC<BubbleBarProps> = props => {
@@ -204,7 +214,7 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
               setOpen(true)
             }}
             onMouseLeave={() => {
-              setOpen(false)
+              // setOpen(false)
             }}
             className="sw-container"
             style={{
@@ -240,7 +250,7 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
                     ...transitionStyles[state]
                   }}
                 >
-                  <UiContainer ref={ref}>
+                  <UiContainer ref={ref} open={open}>
                     <UiManager config={config} />
                   </UiContainer>
                 </ExpandedCard>

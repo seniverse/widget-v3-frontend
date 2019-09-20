@@ -37,7 +37,6 @@ const CardContainer = styled.div`
   background: ${props => props.theme.palette.background.default};
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
   transition: all 0.2s;
-  transform: translateZ(0);
   overflow: hidden;
   flex-wrap: wrap;
   padding: 0;
@@ -87,7 +86,7 @@ const SlimBar: React.FC<SlimBarProps> = props => {
         onMouseEnter={() => {
           setOpen(true)
         }}
-        onClick={() => {
+        onMouseLeave={() => {
           setOpen(false)
         }}
       >

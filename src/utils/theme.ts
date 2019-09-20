@@ -286,13 +286,13 @@ const theme = createTheme()
 
 export const getTheme = (
   options: SwConfigOptions,
-  weather?: SwLayoutOptions
+  weather: SwLayoutOptions
 ) => {
   const baseTheme = createTheme()
 
   if (options.theme === 'dark') {
     _.merge(baseTheme, darkTheme)
-  } else if (options.theme === 'auto' && weather) {
+  } else if (options.theme === 'auto' && weather.length > 0) {
     _.merge(baseTheme, autoTheme, getAutoTheme(weather))
   }
 
