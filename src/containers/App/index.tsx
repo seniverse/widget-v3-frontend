@@ -23,7 +23,7 @@ const App: React.FC<SwProps> = props => {
       return
     }
 
-    const res = await AppApi.getConfig()
+    const res = await AppApi.getConfig(options)
     if (res && res.success) {
       const newConfig = res.results as SwLayoutOptions
       setTheme(getTheme(options, newConfig))

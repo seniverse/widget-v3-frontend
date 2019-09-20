@@ -1,3 +1,4 @@
 module.exports = {
-  assetsPath: ''
+  assetsPath: '',
+  apiHost: 'http://localhost:3001'
 }
