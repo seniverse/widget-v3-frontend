@@ -69,7 +69,9 @@
     "test": "node scripts/test.js",
     "eslint": "eslint --ext .js,jsx,ts,tsx src",
     "stylelint": "stylelint './src/**/*.tsx'",
-    "mock-server": "json-server ./src/api/mock/db.json -p 3002 -w"
+    "mock-server": "json-server ./src/api/mock/db.json -p 3002 -w",
+    "deploy-test": "UPLOAD_ENV=/widget2-dev node scripts/upload.js",
+    "deploy-production": "UPLOAD_ENV=/widget2 node scripts/upload.js"
   },
   "browserslist": {
     "production": [
@@ -151,6 +153,8 @@
     "@types/lodash": "^4.14.138",
     "@types/react-transition-group": "^4.2.2",
     "@types/styled-components": "^4.1.18",
+    "ali-oss": "^6.1.1",
+    "aliyun-sdk": "^1.12.3",
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.2.0",
     "eslint-config-standard": "^14.1.0",
@@ -160,6 +164,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "json-server": "^0.15.1",
     "prettier": "^1.18.2",
+    "progress": "^2.0.3",
     "raw-loader": "^3.1.0",
     "react-hot-loader": "^4.12.12",
     "stylelint": "^10.1.0",
