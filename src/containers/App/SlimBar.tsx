@@ -124,7 +124,7 @@ const SlimBar: React.FC<SlimBarProps> = props => {
           }
         }}
       >
-        <SlimBarContainer>
+        <SlimBarContainer className="sw-bar-slim">
           <Typography
             variant="body2"
             component="span"
