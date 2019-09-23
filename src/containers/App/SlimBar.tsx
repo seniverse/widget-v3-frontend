@@ -2,18 +2,22 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Typography from 'COMPONENTS/base/Typography'
 import AppContainer from './AppContainer'
-import { SwLayoutOptions, MainUiLayout } from 'TYPES/Widget'
+import { SwLayoutOptions, MainUiLayout, SwConfigOptions } from 'TYPES/Widget'
 import { getCodeByTime } from 'UTILS/helper'
 import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 import UiManager from 'CONTAINERS/UiManager'
 import { Transition } from 'react-transition-group'
 import Loading from './Loading'
+import { scrollbar } from 'UTILS/theme'
+import CloseButton from './CloseButton'
+
 import env from 'UTILS/env'
 
 const { assetsPath } = env
 
 interface SlimBarProps {
   config: SwLayoutOptions
+  options: SwConfigOptions
 }
 
 const SlimBarContainer = styled.div`
@@ -43,6 +47,13 @@ const CardContainer = styled.div`
   box-sizing: border-box;
   width: ${props => props.theme.grid.width * 3}px;
   display: flex;
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    align-content: flex-start;
+  }
 `
 
 const SpaceContainer = styled.div`
@@ -50,11 +61,25 @@ const SpaceContainer = styled.div`
   position: absolute;
   top: 100%;
   left: 0;
+
+  @media screen and (max-width: 600px) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    padding: 0;
+    width: 100%;
+    height: 100% !important;
+    border-radius: 0;
+    overflow-y: auto;
+    ${scrollbar}
+  }
 `
 
 const SlimBar: React.FC<SlimBarProps> = props => {
-  const { config } = props
-  const [open, setOpen] = useState(false)
+  const { config, options } = props
+  const { hover } = options
+  const [open, setOpen] = useState(hover === 'always')
   const main = config.find(item => item.UIType === 'main')
 
   if (main) {
@@ -84,10 +109,19 @@ const SlimBar: React.FC<SlimBarProps> = props => {
     return (
       <StyledAppContainer
         onMouseEnter={() => {
-          setOpen(true)
+          if (document.body.clientWidth > 600 && hover !== 'disabled') {
+            setOpen(true)
+          }
         }}
         onMouseLeave={() => {
-          setOpen(false)
+          if (document.body.clientWidth > 600 && hover !== 'always') {
+            setOpen(false)
+          }
+        }}
+        onClick={() => {
+          if (hover !== 'disabled') {
+            setOpen(true)
+          }
         }}
       >
         <SlimBarContainer>
@@ -111,17 +145,28 @@ const SlimBar: React.FC<SlimBarProps> = props => {
           </Typography>
 
           <Transition in={open} timeout={200}>
-            {state => (
-              <SpaceContainer>
-                <CardContainer
-                  style={{
-                    ...transitionStyles[state]
-                  }}
-                >
-                  <UiManager config={config} />
-                </CardContainer>
-              </SpaceContainer>
-            )}
+            {state =>
+              open && (
+                <SpaceContainer>
+                  <CardContainer
+                    style={{
+                      ...transitionStyles[state]
+                    }}
+                  >
+                    {open && hover !== 'always' && (
+                      <CloseButton
+                        src="/assets/img/chameleon/close.svg"
+                        onClick={e => {
+                          e.stopPropagation()
+                          setOpen(false)
+                        }}
+                      />
+                    )}
+                    <UiManager config={config} />
+                  </CardContainer>
+                </SpaceContainer>
+              )
+            }
           </Transition>
         </SlimBarContainer>
       </StyledAppContainer>

@@ -355,7 +355,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
       <ChartContainer>
         <ReactEchartsCore
           echarts={echarts}
-          style={{ height: '100%', width: chartWidth + 'px' }}
+          style={{ height: '100%', minWidth: chartWidth + 'px' }}
           option={getOptions(row)}
           notMerge={true}
           opts={{

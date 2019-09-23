@@ -24,7 +24,7 @@ const Playground: React.FC = () => (
         unit: 'c' as 'c',
         theme: 'auto' as 'auto',
         token: 'f42ea168-0c67-4728-95ae-434cfe46d649',
-        hover: 'enabled' as 'enabled'
+        hover: 'always' as 'always'
       })}
     />
   </PlaygroundContainer>

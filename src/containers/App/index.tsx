@@ -41,8 +41,8 @@ const App: React.FC<SwProps> = props => {
     <ThemeProvider theme={theme}>
       <OptionProvider.Provider value={options}>
         <GlobalStyle />
-        {flavor === 'bubble' && <BubbleBar config={config} />}
-        {flavor === 'slim' && <SlimBar config={config} />}
+        {flavor === 'bubble' && <BubbleBar config={config} options={options} />}
+        {flavor === 'slim' && <SlimBar config={config} options={options} />}
       </OptionProvider.Provider>
     </ThemeProvider>
   )

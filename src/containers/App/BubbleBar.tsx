@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
-import { SwLayoutOptions, MainUiLayout } from 'TYPES/Widget'
+import { SwLayoutOptions, MainUiLayout, SwConfigOptions } from 'TYPES/Widget'
 import Loading from './Loading'
 import Typography from 'COMPONENTS/base/Typography'
 import { getCodeByTime } from 'UTILS/helper'
@@ -10,6 +10,7 @@ import AppContainer from './AppContainer'
 import { scrollbar } from 'UTILS/theme'
 import UiManager from 'CONTAINERS/UiManager'
 import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
+import CloseButton from './CloseButton'
 
 import env from 'UTILS/env'
 
@@ -17,6 +18,7 @@ const { assetsPath } = env
 
 interface BubbleBarProps {
   config: SwLayoutOptions
+  options: SwConfigOptions
 }
 
 const WeatherIcon = styled.img`
@@ -95,10 +97,11 @@ const ExpandedCard = styled.div<{ h: string; v: string }>`
 `
 
 const BubbleBar: React.FC<BubbleBarProps> = props => {
-  const { config } = props
+  const { config, options } = props
+  const { hover } = options
   const ref = useRef<HTMLDivElement>(null)
   const barRef = useRef<HTMLDivElement>(null)
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(hover === 'always')
   const [direction, setDirection] = useState({ h: 'left', v: 'top' })
   const [containerBound, setContainerBound] = useState({
     width: 'auto',
@@ -214,10 +217,19 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
         {state => (
           <StyledAppContainer
             onMouseEnter={() => {
-              setOpen(true)
+              if (document.body.clientWidth > 600 && hover !== 'disabled') {
+                setOpen(true)
+              }
             }}
             onMouseLeave={() => {
-              // setOpen(false)
+              if (document.body.clientWidth > 600 && hover !== 'always') {
+                setOpen(false)
+              }
+            }}
+            onClick={() => {
+              if (hover !== 'disabled') {
+                setOpen(true)
+              }
             }}
             className="sw-container"
             style={{
@@ -254,6 +266,15 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
                   }}
                 >
                   <UiContainer ref={ref} open={open}>
+                    {open && hover !== 'always' && (
+                      <CloseButton
+                        src="/assets/img/chameleon/close.svg"
+                        onClick={e => {
+                          e.stopPropagation()
+                          setOpen(false)
+                        }}
+                      />
+                    )}
                     <UiManager config={config} />
                   </UiContainer>
                 </ExpandedCard>
