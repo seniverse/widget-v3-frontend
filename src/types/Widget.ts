@@ -1,10 +1,6 @@
 import { ChartUiLayout } from './Chart'
 import { CarouselUILayout } from './Carousel'
 
-export type SwLanguage = 'auto' | 'zh-Hans' | 'zh-Hant' | 'en'
-export type SwGeolocation = boolean
-export type SwUnit = 'c' | 'f'
-export type SwHover = 'enabled' | 'disabled'
 export type SwOptionFlavor = 'bubble' | 'slim'
 export type SwOptionTheme = 'dark' | 'light' | 'auto'
 export type SwOptionLanguage = 'auto' | 'zh-Hans' | 'zh-Hant' | 'en'
