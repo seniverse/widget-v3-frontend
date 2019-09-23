@@ -101,7 +101,6 @@ const Point = styled.div`
 `
 
 const LoadingContainer = styled.div`
-  background: #a0a1a4;
   width: 100%;
   height: 100%;
 `

@@ -143,32 +143,31 @@ const SlimBar: React.FC<SlimBarProps> = props => {
           >
             {temperature}
           </Typography>
-
-          <Transition in={open} timeout={200}>
-            {state =>
-              open && (
-                <SpaceContainer>
-                  <CardContainer
-                    style={{
-                      ...transitionStyles[state]
-                    }}
-                  >
-                    {open && hover !== 'always' && (
-                      <CloseButton
-                        src="/assets/img/chameleon/close.svg"
-                        onClick={e => {
-                          e.stopPropagation()
-                          setOpen(false)
-                        }}
-                      />
-                    )}
-                    <UiManager config={config} />
-                  </CardContainer>
-                </SpaceContainer>
-              )
-            }
-          </Transition>
         </SlimBarContainer>
+        <Transition in={open} timeout={200}>
+          {state =>
+            open && (
+              <SpaceContainer>
+                <CardContainer
+                  style={{
+                    ...transitionStyles[state]
+                  }}
+                >
+                  {open && hover !== 'always' && (
+                    <CloseButton
+                      src="/assets/img/chameleon/close.svg"
+                      onClick={e => {
+                        e.stopPropagation()
+                        setOpen(false)
+                      }}
+                    />
+                  )}
+                  <UiManager config={config} />
+                </CardContainer>
+              </SpaceContainer>
+            )
+          }
+        </Transition>
       </StyledAppContainer>
     )
   } else {

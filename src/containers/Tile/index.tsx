@@ -9,7 +9,6 @@ const { assetsPath } = env
 
 interface TileUiProps {
   options: BaseUiLayoutOption
-  rightBorderInvisiable: boolean
 }
 
 interface TileContentProps {
@@ -25,22 +24,21 @@ interface TileContentProps {
 const StyledTileContainer = styled(TileContainer)`
   position: relative;
 
+  &::before,
   &::after {
     content: '';
     display: block;
-    width: 1px;
+    width: 0.5px;
     height: 40px;
     background: ${props => props.theme.palette.divider};
     position: absolute;
-    right: 0;
+    right: -0.5px;
     top: 50%;
     transform: translateY(-50%);
   }
-`
 
-const StyledTileContainerWithoutBorder = styled(StyledTileContainer)`
-  &::after {
-    display: none;
+  &::before {
+    left: -0.5px;
   }
 `
 
@@ -135,19 +133,16 @@ export const TileUIContainer: React.FC<TileContentProps> = props => {
 }
 
 const Tile: React.FC<TileUiProps> = props => {
-  const { options, rightBorderInvisiable } = props
+  const { options } = props
   const { size, data } = options
   const [column, row] = size
 
   const { header, content } = (data as BaseUiLayout[])[0]
-  const Component = rightBorderInvisiable
-    ? StyledTileContainerWithoutBorder
-    : StyledTileContainer
 
   return (
-    <Component className="sw-ui-tile" column={column} row={row}>
+    <StyledTileContainer className="sw-ui-tile" column={column} row={row}>
       <TileUIContainer header={header} content={content} />
-    </Component>
+    </StyledTileContainer>
   )
 }
 
