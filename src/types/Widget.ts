@@ -1,12 +1,12 @@
 import { ChartUiLayout } from './Chart'
 import { CarouselUILayout } from './Carousel'
 
-export type SwOptionFlavor = 'bubble' | 'slim'
-export type SwOptionTheme = 'dark' | 'light' | 'auto'
-export type SwOptionLanguage = 'auto' | 'zh-Hans' | 'zh-Hant' | 'en'
-export type SwOptionGeolocation = boolean
-export type SwOptionUnit = 'c' | 'f'
-export type SwOptionHover = 'enabled' | 'disabled' | 'always'
+type SwOptionFlavor = 'bubble' | 'slim'
+type SwOptionTheme = 'dark' | 'light' | 'auto'
+type SwOptionLanguage = string
+type SwOptionGeolocation = boolean
+type SwOptionUnit = string
+type SwOptionHover = 'enabled' | 'disabled' | 'always'
 
 export interface SwPropsConfigOptions {
   flavor?: SwOptionFlavor
