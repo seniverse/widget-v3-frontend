@@ -19,11 +19,11 @@ const Playground: React.FC = () => (
       options={getDefaultOptions({
         flavor: 'bubble' as 'bubble',
         location: 'beijing',
-        geolocation: 'enabled' as 'enabled',
+        geolocation: true as boolean,
         language: 'zh-Hant' as 'zh-Hant',
         unit: 'c' as 'c',
         theme: 'auto' as 'auto',
-        token: 'f42ea168-0c67-4728-95ae-434cfe46d649',
+        token: 'e8a89e2f-31a1-4771-8739-edcc017c6c02',
         hover: 'always' as 'always'
       })}
     />
