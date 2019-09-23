@@ -6,7 +6,7 @@ export const getDefaultOptions: (
   const {
     flavor = 'bubble',
     location = '',
-    geolocation = 'enabled',
+    geolocation = true,
     language = 'zh-Hans',
     unit = 'c',
     theme = 'light',
