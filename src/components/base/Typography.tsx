@@ -18,7 +18,7 @@ interface TypographyProps extends BaseTypographyProps {
 
 // prettier-ignore
 const BaseTypography = styled.p<BaseTypographyProps>`
-  font-family: 'PingFangSC', 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+  font-family: 'Avenir Next', 'PingFangSC-Light', 'PingFangSC', 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
   font-size: ${props => props.theme.typography[props.variant || 'body2'].fontSize};
   line-height: ${props => props.lineHeight || props.theme.typography[props.variant || 'body2'].lineHeight};
   font-weight: ${props => props.theme.typography[props.variant || 'body2'].fontWeight};

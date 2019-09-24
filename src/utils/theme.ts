@@ -226,8 +226,9 @@ export const scrollbar = css`
   -webkit-overflow-scrolling: touch;
 
   ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    width: 0px;
+    height: 0px;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-track {
