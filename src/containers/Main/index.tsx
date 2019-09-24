@@ -174,14 +174,24 @@ const Main: React.FC<MainUiProps> = props => {
           {temperature}
         </Typography>
         <TimeContainer>
-          <Typography variant="caption" component="span" color="textSecondary">
+          <Typography
+            variant="caption"
+            component="span"
+            color="textSecondary"
+            align="left"
+          >
             {suntimes.rise}
           </Typography>
-          <InfoTypography variant="caption" component="span">
+          <InfoTypography variant="caption" component="span" align="center">
             {text} {low}~{high}
             {arrowIcon}
           </InfoTypography>
-          <Typography variant="caption" component="span" color="textSecondary">
+          <Typography
+            variant="caption"
+            component="span"
+            color="textSecondary"
+            align="right"
+          >
             {suntimes.set}
           </Typography>{' '}
         </TimeContainer>
