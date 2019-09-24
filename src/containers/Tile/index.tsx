@@ -48,7 +48,7 @@ const Icon = styled.img`
 `
 
 const Container = styled.div`
-  padding: 16px 8px;
+  padding: 16px 12px;
   width: 100%;
   height: 100%;
   display: flex;

@@ -66,7 +66,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "REACT_APP_SC_ATTR=SeniverseWidget node scripts/build.js",
-    "test": "node scripts/test.js",
+    "test": "npx http-server ./test",
     "eslint": "eslint --ext .js,jsx,ts,tsx src",
     "stylelint": "stylelint './src/**/*.tsx'",
     "mock-server": "json-server ./src/api/mock/db.json -p 3002 -w",

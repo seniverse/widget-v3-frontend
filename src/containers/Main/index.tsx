@@ -14,7 +14,7 @@ interface MainUiProps {
 }
 
 const StyledTileContainer = styled(TileContainer)`
-  padding: 4px 8px 0 8px;
+  padding: 8px 10px 0 10px;
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
