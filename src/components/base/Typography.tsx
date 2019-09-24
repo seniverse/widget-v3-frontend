@@ -30,7 +30,7 @@ const BaseTypography = styled.p<BaseTypographyProps>`
   `)}
   text-align: ${props => props.align};
   white-space: pre;
-  flex: 0 0 0;
+  flex: 0 0 auto;
   /* stylelint-disable */
   color: ${checkBy('color', {
     textPrimary: (props: any) =>  props.theme.palette.text.primary,
