@@ -64,12 +64,12 @@ class Uploader {
   }
 
   async upload() {
-    const uploadEnv = process.env.UPLOAD_ENV
+    const { folder } = config.oss
     console.log(`Upload new static resource to ${JSON.stringify(config.oss)}`)
-    console.log(`Folder path: ${uploadEnv}`)
+    console.log(`Folder path: ${folder}`)
     await this.uploadFolder({
       folder: PUBLIC_PATH,
-      prefix: uploadEnv
+      prefix: folder
     })
     this.bar = this.bar = new ProgressBar(':bar :current /:total :percent', {
       total: this.promises.length

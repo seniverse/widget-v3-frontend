@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="tp-weather-widget"></div>
+  <script type="text/javascript" src="http://cdn.sencdn.com/widget2-dev/static/js/bundle.js"></script>
+  <script>
+    window.onload = function () {
+      window.SeniverseWeatherWidget.show({
+        flavor: "bubble",
+        location: "WX4FBXXFKE4F",
+        geolocation: false,
+        language: "zh-Hans",
+        unit: "c",
+        theme: "dark",
+        token: "01ffe75a-6f0e-4410-a6f5-6caf62d99b8e",
+        hover: 'always',
+      })
+    }
+  </script>
+</body>
+</html>

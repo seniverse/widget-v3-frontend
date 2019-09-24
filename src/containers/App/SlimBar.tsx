@@ -155,7 +155,7 @@ const SlimBar: React.FC<SlimBarProps> = props => {
                 >
                   {open && hover !== 'always' && (
                     <CloseButton
-                      src="/assets/img/chameleon/close.svg"
+                      src={`${assetsPath}/assets/img/chameleon/close.svg`}
                       onClick={e => {
                         e.stopPropagation()
                         setOpen(false)

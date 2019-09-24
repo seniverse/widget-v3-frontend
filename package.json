@@ -70,8 +70,8 @@
     "eslint": "eslint --ext .js,jsx,ts,tsx src",
     "stylelint": "stylelint './src/**/*.tsx'",
     "mock-server": "json-server ./src/api/mock/db.json -p 3002 -w",
-    "deploy-test": "UPLOAD_ENV=/widget2-dev node scripts/upload.js",
-    "deploy-production": "UPLOAD_ENV=/widget2 node scripts/upload.js"
+    "deploy-test": "UPLOAD_ENV=test npm run build && UPLOAD_ENV=test node scripts/upload.js",
+    "deploy-production": "UPLOAD_ENV=production npm run build && UPLOAD_ENV=production node scripts/upload.js"
   },
   "browserslist": {
     "production": [

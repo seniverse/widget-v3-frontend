@@ -1,9 +1,10 @@
 module.exports = {
   assetsPath: '//cdn.sencdn.com/widget2',
-  apiHost: 'http://localhost:3001',
+  apiHost: '//widget-v3.seniverse.com/',
   oss: {
     bucket: 'tp-static',
     region: 'oss-cn-hangzhou',
-    refresh: true
+    refresh: true,
+    folder: '/widget2'
   }
 }

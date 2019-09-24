@@ -15,6 +15,7 @@ const CarouselContainer = styled(TileContainer)`
   padding: 10px 0;
   overflow-x: auto;
   overflow-y: hidden;
+  box-sizing: content-box;
 
   ::-webkit-scrollbar {
     display: none;

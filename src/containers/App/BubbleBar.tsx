@@ -138,8 +138,8 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
       }
       const bound = barDom.getBoundingClientRect()
       const { left, right, top, bottom } = bound
-      const documentWidth = document.body.clientWidth
-      const documentHeight = document.body.clientHeight
+      const documentWidth = document.documentElement.clientWidth
+      const documentHeight = document.documentElement.clientHeight
 
       let hDirection
       let vDirection
@@ -268,7 +268,7 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
                   <UiContainer ref={ref} open={open}>
                     {open && hover !== 'always' && (
                       <CloseButton
-                        src="/assets/img/chameleon/close.svg"
+                        src={`${assetsPath}/assets/img/chameleon/close.svg`}
                         onClick={e => {
                           e.stopPropagation()
                           setOpen(false)
