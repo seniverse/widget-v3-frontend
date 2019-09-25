@@ -188,6 +188,7 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
 
     let icon = (
       <WeatherIcon
+        className="sw-bar-bubble-icon"
         src={`${assetsPath}/assets/img/chameleon/56/${getCodeByTime(
           code,
           sun
@@ -238,7 +239,7 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
           >
             <Container className="sw-bar-bubble" ref={barRef}>
               {icon}
-              <div>
+              <div className="sw-bar-bubble-content">
                 <Typography
                   variant="body2"
                   className="sw-bar-bubble-location"
@@ -261,14 +262,20 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
                 <ExpandedCard
                   h={direction.h}
                   v={direction.v}
+                  className="sw-card-bubble-background"
                   style={{
                     ...transitionStyles[state]
                   }}
                 >
-                  <UiContainer ref={ref} open={open}>
+                  <UiContainer
+                    ref={ref}
+                    open={open}
+                    className="sw-card-bubble-container"
+                  >
                     {open && hover !== 'always' && (
                       <CloseButton
                         src={`${assetsPath}/assets/img/chameleon/close.svg`}
+                        className="sw-card-bubble-close"
                         onClick={e => {
                           e.stopPropagation()
                           setOpen(false)

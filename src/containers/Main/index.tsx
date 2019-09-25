@@ -149,13 +149,14 @@ const Main: React.FC<MainUiProps> = props => {
   }
 
   return (
-    <MainUiContainer>
+    <MainUiContainer className="sw-ui-main-container">
       <StyledTileContainer className="sw-ui-main" column={column} row={row}>
-        <ArcContainer>
-          <Arc>
+        <ArcContainer className="sw-ui-main-arcContainer">
+          <Arc className="sw-ui-main-arc">
             <WeatherIcon
               top={top}
               left={left}
+              className="sw-ui-main-weatherIcon"
               src={`${assetsPath}/assets/img/chameleon/56/${getCodeByTime(
                 code,
                 sun
@@ -163,26 +164,41 @@ const Main: React.FC<MainUiProps> = props => {
             />
           </Arc>
         </ArcContainer>
-        <Typography>
+        <Typography className="sw-ui-main-title">
           {location}{' '}
-          <Typography component="span" variant="caption" color="textSecondary">
+          <Typography
+            component="span"
+            variant="caption"
+            color="textSecondary"
+            className="sw-ui-main-time"
+          >
             {updateAt}
           </Typography>
         </Typography>
-        <Grow />
-        <Typography variant="h2" align="center">
+        <Grow className="sw-ui-main-grow" />
+        <Typography
+          variant="h2"
+          align="center"
+          className="sw-ui-main-temperature"
+        >
           {temperature}
         </Typography>
-        <TimeContainer>
+        <TimeContainer className="sw-ui-main-timeContainer">
           <Typography
             variant="caption"
             component="span"
             color="textSecondary"
             align="left"
+            className="sw-ui-main-rise"
           >
             {suntimes.rise}
           </Typography>
-          <InfoTypography variant="caption" component="span" align="center">
+          <InfoTypography
+            variant="caption"
+            component="span"
+            align="center"
+            className="sw-ui-main-temperatureRange"
+          >
             {text} {low}~{high}
             {arrowIcon}
           </InfoTypography>
@@ -191,6 +207,7 @@ const Main: React.FC<MainUiProps> = props => {
             component="span"
             color="textSecondary"
             align="right"
+            className="sw-ui-main-set"
           >
             {suntimes.set}
           </Typography>{' '}
