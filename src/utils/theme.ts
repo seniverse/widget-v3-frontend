@@ -1,5 +1,6 @@
 import { css } from 'styled-components'
-import _ from 'lodash'
+import get from 'lodash/get'
+import merge from 'lodash/merge'
 import { SwConfigOptions, SwTheme, SwLayoutOptions } from 'TYPES/Widget'
 import { getCodeByTime } from 'UTILS/helper'
 
@@ -77,7 +78,7 @@ const darkTheme = {
   }
 }
 
-const autoTheme = _.merge({}, darkTheme, {
+const autoTheme = merge({}, darkTheme, {
   palette: {
     chart: {
       default: '#343434',
@@ -226,8 +227,8 @@ export const scrollbar = css`
   -webkit-overflow-scrolling: touch;
 
   ::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     background: transparent;
   }
 
@@ -256,8 +257,8 @@ export const scrollbar = css`
 const getAutoTheme = (weather: SwLayoutOptions) => {
   const getWeatherCode = (weather: SwLayoutOptions) => {
     const main = weather.find(item => item.UIType === 'main')
-    const code = _.get(main, 'data[0].code', { now: 99, night: 99, day: 99 })
-    const sun = _.get(main, 'data[0].sun', {})
+    const code = get(main, 'data[0].code', { now: 99, night: 99, day: 99 })
+    const sun = get(main, 'data[0].sun', {})
     return getCodeByTime(code, sun)
   }
 
@@ -292,9 +293,9 @@ export const getTheme = (
   const baseTheme = createTheme()
 
   if (options.theme === 'dark') {
-    _.merge(baseTheme, darkTheme)
+    merge(baseTheme, darkTheme)
   } else if (options.theme === 'auto' && weather.length > 0) {
-    _.merge(baseTheme, autoTheme, getAutoTheme(weather))
+    merge(baseTheme, autoTheme, getAutoTheme(weather))
   }
 
   return baseTheme
