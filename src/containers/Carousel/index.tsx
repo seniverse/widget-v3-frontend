@@ -55,11 +55,11 @@ const Carousel: React.FC<CarouselUiProps> = props => {
 
   return (
     <CarouselContainer className="sw-ui-carousel" column={column} row={row}>
-      <Container>
-        <CardWrapper>
+      <Container className="sw-ui-carousel-container">
+        <CardWrapper className="sw-ui-carousel-wrapper">
           {(data as CarouselUILayout[]).map((item, index) => {
             return (
-              <Card key={index}>
+              <Card key={index} className="sw-ui-carousel-item">
                 <TileUIContainer header={item.header} content={item.content} />
               </Card>
             )

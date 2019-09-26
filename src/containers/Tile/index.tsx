@@ -92,7 +92,7 @@ const renderTileContent = (
       {content.prefix && (
         <Typography
           variant="caption"
-          className="sw-ui-tile-prefix"
+          className="sw-ui-tile-text-prefix"
           component="span"
         >
           {content.prefix}
@@ -100,6 +100,7 @@ const renderTileContent = (
       )}
       {content.type === 'icon' ? (
         <Icon
+          className="sw-ui-tile-text-icon"
           src={`${assetsPath}/assets/img/chameleon/56/${content.text}.svg`}
         />
       ) : (
@@ -108,7 +109,7 @@ const renderTileContent = (
       {content.suffix && (
         <Typography
           variant="caption"
-          className="sw-ui-tile-suffix"
+          className="sw-ui-tile-text-suffix"
           component="span"
         >
           {content.suffix}
@@ -125,7 +126,7 @@ export const TileUIContainer: React.FC<TileContentProps> = props => {
       <Typography variant="caption" className="sw-ui-tile-header" noWrap>
         {header}
       </Typography>
-      <ContentContainer>
+      <ContentContainer className="sw-ui-tile-content">
         {content.map((c, index) => renderTileContent(`${index}`, c))}
       </ContentContainer>
     </Container>

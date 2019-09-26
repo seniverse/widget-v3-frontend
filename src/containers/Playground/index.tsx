@@ -23,7 +23,7 @@ const Playground: React.FC = () => (
         language: 'zh-Hant',
         unit: 'c',
         theme: 'auto' as 'auto',
-        token: 'e8a89e2f-31a1-4771-8739-edcc017c6c02',
+        token: 'f42ea168-0c67-4728-95ae-434cfe46d649',
         hover: 'always' as 'always'
       })}
     />

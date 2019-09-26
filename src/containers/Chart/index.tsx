@@ -352,7 +352,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
 
   return (
     <TileContainer className="sw-ui-chart" column={column} row={row}>
-      <ChartContainer>
+      <ChartContainer className="sw-ui-chart-container">
         <ReactEchartsCore
           echarts={echarts}
           style={{ height: '100%', minWidth: chartWidth + 'px' }}
