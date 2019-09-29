@@ -8,7 +8,7 @@ import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 import UiManager from 'CONTAINERS/UiManager'
 import { Transition } from 'react-transition-group'
 import Loading from './Loading'
-import { scrollbar } from 'UTILS/theme'
+import { scrollbar, checkBy } from 'UTILS/theme'
 import CloseButton from './CloseButton'
 
 import env from 'UTILS/env'
@@ -23,6 +23,9 @@ interface SlimBarProps {
 const SlimBarContainer = styled.div`
   display: inline-flex;
   align-items: center;
+  ${checkBy('theme', {
+    auto: `color: rgba(0, 0, 0, 0.87)`
+  })}
 `
 
 const WeatherIcon = styled.img`
@@ -78,7 +81,7 @@ const SpaceContainer = styled.div`
 
 const SlimBar: React.FC<SlimBarProps> = props => {
   const { config, options } = props
-  const { hover } = options
+  const { hover, theme } = options
   const [open, setOpen] = useState(hover === 'always')
   const main = config.find(item => item.UIType === 'main')
 
@@ -124,7 +127,7 @@ const SlimBar: React.FC<SlimBarProps> = props => {
           }
         }}
       >
-        <SlimBarContainer className="sw-bar-slim">
+        <SlimBarContainer className="sw-bar-slim" theme={theme}>
           <Typography
             variant="body2"
             component="span"

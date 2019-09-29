@@ -9,6 +9,7 @@ declare global {
     SeniverseWeatherWidget: {
       show: (options: SwPropsConfigOptions, data?: SwLayoutOptions) => void
     }
+    SeniverseWeatherWidgetObject: string
   }
 }
 
@@ -23,6 +24,29 @@ const SeniverseWeatherWidget = {
   }
 }
 
-window.SeniverseWeatherWidget = SeniverseWeatherWidget
+const actionDispatcher = function actionDispatcher(
+  action: 'show',
+  parameters: SwPropsConfigOptions,
+  data: SwLayoutOptions
+) {
+  return (
+    SeniverseWeatherWidget[action] &&
+    SeniverseWeatherWidget[action](parameters, data)
+  )
+}
+
+const startFunName =
+  window.SeniverseWeatherWidgetObject || 'SeniverseWeatherWidgetObject'
+
+// @ts-ignore
+const startFun = window[startFunName]
+if (startFun && startFun.q) {
+  startFun.q.forEach((parameters: any) => {
+    actionDispatcher.apply(window, parameters)
+  })
+}
+
+// @ts-ignore
+window[startFunName] = actionDispatcher
 
 export default SeniverseWeatherWidget
