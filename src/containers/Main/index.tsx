@@ -65,7 +65,7 @@ const WeatherIcon = styled.img<WeatherIconProps>`
   top: ${props => props.top}%;
 `
 
-const ArrowIcon = styled.img`
+const Icon = styled.img`
   width: 14px;
   height: 14px;
 `
@@ -94,8 +94,19 @@ const Link = styled.a`
   })};
 `
 
-const BaseInfo = styled(Typography)`
+const BaseInfo = styled.div`
   z-index: 1;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const IconContainer = styled.div`
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
 `
 
 const getPosition = (rise: string, set: string) => {
@@ -158,9 +169,9 @@ const Main: React.FC<MainUiProps> = props => {
 
   let arrowIcon = null
   if (today.high > yesterday.high) {
-    arrowIcon = <ArrowIcon src={`${assetsPath}/assets/img/arrow-up.svg`} />
+    arrowIcon = <Icon src={`${assetsPath}/assets/img/arrow-up.svg`} />
   } else if (today.low < yesterday.low) {
-    arrowIcon = <ArrowIcon src={`${assetsPath}/assets/img/arrow-down.svg`} />
+    arrowIcon = <Icon src={`${assetsPath}/assets/img/arrow-down.svg`} />
   }
 
   return (
@@ -180,13 +191,15 @@ const Main: React.FC<MainUiProps> = props => {
           </Arc>
         </ArcContainer>
         <BaseInfo className="sw-ui-main-title">
-          <Link
-            target="_blank"
-            color="textPrimary"
-            href={`//m.seniverse.com/weather/${locationV3}`}
-          >
-            {location}
-          </Link>{' '}
+          <Typography>
+            <Link
+              target="_blank"
+              color="textPrimary"
+              href={`//m.seniverse.com/weather/${locationV3}`}
+            >
+              {location}
+            </Link>{' '}
+          </Typography>
           <Typography
             component="span"
             variant="caption"
@@ -195,6 +208,11 @@ const Main: React.FC<MainUiProps> = props => {
           >
             {updateAt}
           </Typography>
+          <IconContainer>
+            <Link target="_blank" href="//seniverse.com">
+              <Icon src={`${assetsPath}/assets/img/logo-red.svg`} />
+            </Link>
+          </IconContainer>
         </BaseInfo>
         <Grow className="sw-ui-main-grow" />
         <Typography
