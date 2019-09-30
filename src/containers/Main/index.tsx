@@ -6,6 +6,7 @@ import Typography from 'COMPONENTS/base/Typography'
 import { getCodeByTime, getSunTime } from 'UTILS/helper'
 import Alarm from './Alarm'
 import env from 'UTILS/env'
+import { checkBy } from 'UTILS/theme'
 
 const { assetsPath } = env
 
@@ -84,6 +85,19 @@ const MainUiContainer = styled.div`
   width: 100%;
 `
 
+const Link = styled.a`
+  /* stylelint-disable */
+  color: ${checkBy('color', {
+    textPrimary: (props: any) => props.theme.palette.text.primary,
+    textSecondary: (props: any) => props.theme.palette.text.secondary,
+    inherit: 'inherit'
+  })};
+`
+
+const BaseInfo = styled(Typography)`
+  z-index: 1;
+`
+
 const getPosition = (rise: string, set: string) => {
   const [riseHour, riseMinute] = rise.split(':').map(item => parseInt(item, 10))
   const [setHour, setMinute] = set.split(':').map(item => parseInt(item, 10))
@@ -129,6 +143,7 @@ const Main: React.FC<MainUiProps> = props => {
     sun,
     code,
     location,
+    locationV3,
     temperature,
     text,
     today,
@@ -164,8 +179,14 @@ const Main: React.FC<MainUiProps> = props => {
             />
           </Arc>
         </ArcContainer>
-        <Typography className="sw-ui-main-title">
-          {location}{' '}
+        <BaseInfo className="sw-ui-main-title">
+          <Link
+            target="_blank"
+            color="textPrimary"
+            href={`//m.seniverse.com/weather/${locationV3}`}
+          >
+            {location}
+          </Link>{' '}
           <Typography
             component="span"
             variant="caption"
@@ -174,7 +195,7 @@ const Main: React.FC<MainUiProps> = props => {
           >
             {updateAt}
           </Typography>
-        </Typography>
+        </BaseInfo>
         <Grow className="sw-ui-main-grow" />
         <Typography
           variant="h2"
