@@ -6,6 +6,7 @@ import Typography from 'COMPONENTS/base/Typography'
 import { getCodeByTime, getSunTime } from 'UTILS/helper'
 import Alarm from './Alarm'
 import env from 'UTILS/env'
+import { checkBy } from 'UTILS/theme'
 
 const { assetsPath } = env
 
@@ -64,7 +65,7 @@ const WeatherIcon = styled.img<WeatherIconProps>`
   top: ${props => props.top}%;
 `
 
-const ArrowIcon = styled.img`
+const Icon = styled.img`
   width: 14px;
   height: 14px;
 `
@@ -82,6 +83,30 @@ const InfoTypography = styled(Typography)`
 
 const MainUiContainer = styled.div`
   width: 100%;
+`
+
+const Link = styled.a`
+  /* stylelint-disable */
+  color: ${checkBy('color', {
+    textPrimary: (props: any) => props.theme.palette.text.primary,
+    textSecondary: (props: any) => props.theme.palette.text.secondary,
+    inherit: 'inherit'
+  })};
+`
+
+const BaseInfo = styled.div`
+  z-index: 1;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const IconContainer = styled.div`
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
 `
 
 const getPosition = (rise: string, set: string) => {
@@ -129,6 +154,7 @@ const Main: React.FC<MainUiProps> = props => {
     sun,
     code,
     location,
+    locationV3,
     temperature,
     text,
     today,
@@ -143,9 +169,9 @@ const Main: React.FC<MainUiProps> = props => {
 
   let arrowIcon = null
   if (today.high > yesterday.high) {
-    arrowIcon = <ArrowIcon src={`${assetsPath}/assets/img/arrow-up.svg`} />
+    arrowIcon = <Icon src={`${assetsPath}/assets/img/arrow-up.svg`} />
   } else if (today.low < yesterday.low) {
-    arrowIcon = <ArrowIcon src={`${assetsPath}/assets/img/arrow-down.svg`} />
+    arrowIcon = <Icon src={`${assetsPath}/assets/img/arrow-down.svg`} />
   }
 
   return (
@@ -164,8 +190,16 @@ const Main: React.FC<MainUiProps> = props => {
             />
           </Arc>
         </ArcContainer>
-        <Typography className="sw-ui-main-title">
-          {location}{' '}
+        <BaseInfo className="sw-ui-main-title">
+          <Typography>
+            <Link
+              target="_blank"
+              color="textPrimary"
+              href={`//m.seniverse.com/weather/${locationV3}`}
+            >
+              {location}
+            </Link>{' '}
+          </Typography>
           <Typography
             component="span"
             variant="caption"
@@ -174,7 +208,12 @@ const Main: React.FC<MainUiProps> = props => {
           >
             {updateAt}
           </Typography>
-        </Typography>
+          <IconContainer>
+            <Link target="_blank" href="//seniverse.com">
+              <Icon src={`${assetsPath}/assets/img/logo-red.svg`} />
+            </Link>
+          </IconContainer>
+        </BaseInfo>
         <Grow className="sw-ui-main-grow" />
         <Typography
           variant="h2"

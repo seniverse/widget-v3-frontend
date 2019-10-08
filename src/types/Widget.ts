@@ -71,6 +71,7 @@ export interface MainUiLayout {
     night: string
   }
   location: string
+  locationV3: string
   suggestion: string
   sun: {
     rise: string
