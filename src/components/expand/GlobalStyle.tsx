@@ -15,6 +15,10 @@ const GlobalStyle = createGlobalStyle`
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
+
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+  }
 `
 
 export default GlobalStyle

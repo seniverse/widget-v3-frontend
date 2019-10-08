@@ -107,6 +107,10 @@ const IconContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
   flex: 1;
+
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 `
 
 const getPosition = (rise: string, set: string) => {

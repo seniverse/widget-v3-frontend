@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import GlobalStyle from 'COMPONENTS/expand/GlobalStyle'
 import AppApi from 'api/app'
 import { SwConfigOptions, SwLayoutOptions } from 'TYPES/Widget'
@@ -13,8 +13,19 @@ interface SwProps {
   options: SwConfigOptions
 }
 
+const OpenStyle = createGlobalStyle`
+  body {
+    @media screen and (max-width: 600px) {
+      overflow-y: hidden;
+    }
+  }
+`
+
 const App: React.FC<SwProps> = props => {
   const { options, data = [] } = props
+  const { hover } = options
+  const [open, setOpen] = useState(hover === 'always')
+
   const [theme, setTheme] = useState(getTheme(options, data))
   const [config, setConfig] = useState<SwLayoutOptions>(data)
 
@@ -41,8 +52,23 @@ const App: React.FC<SwProps> = props => {
     <ThemeProvider theme={theme}>
       <OptionProvider.Provider value={options}>
         <GlobalStyle />
-        {flavor === 'bubble' && <BubbleBar config={config} options={options} />}
-        {flavor === 'slim' && <SlimBar config={config} options={options} />}
+        {open && <OpenStyle />}
+        {flavor === 'bubble' && (
+          <BubbleBar
+            config={config}
+            options={options}
+            open={open}
+            setOpen={setOpen}
+          />
+        )}
+        {flavor === 'slim' && (
+          <SlimBar
+            config={config}
+            options={options}
+            open={open}
+            setOpen={setOpen}
+          />
+        )}
       </OptionProvider.Provider>
     </ThemeProvider>
   )

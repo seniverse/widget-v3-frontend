@@ -19,6 +19,8 @@ const { assetsPath } = env
 interface BubbleBarProps {
   config: SwLayoutOptions
   options: SwConfigOptions
+  open: boolean
+  setOpen: (openState: boolean) => void
 }
 
 const WeatherIcon = styled.img`
@@ -81,9 +83,9 @@ const ExpandedCard = styled.div<{ h: string; v: string }>`
   top: ${props => (props.v === 'top' ? '0' : 'unset')};
   bottom: ${props => (props.v === 'bottom' ? '0' : 'unset')};
   z-index: -1;
+  z-index: 3000;
 
   @media screen and (max-width: 600px) {
-    z-index: 3000;
     position: fixed;
     left: 0;
     top: 0;
@@ -98,11 +100,11 @@ const ExpandedCard = styled.div<{ h: string; v: string }>`
 `
 
 const BubbleBar: React.FC<BubbleBarProps> = props => {
-  const { config, options } = props
+  const { config, options, open, setOpen } = props
   const { hover } = options
   const ref = useRef<HTMLDivElement>(null)
   const barRef = useRef<HTMLDivElement>(null)
-  const [open, setOpen] = useState(hover === 'always')
+
   const [direction, setDirection] = useState({ h: 'left', v: 'top' })
   const [containerBound, setContainerBound] = useState({
     width: 'auto',

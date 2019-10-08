@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Typography from 'COMPONENTS/base/Typography'
 import AppContainer from './AppContainer'
@@ -18,6 +18,8 @@ const { assetsPath } = env
 interface SlimBarProps {
   config: SwLayoutOptions
   options: SwConfigOptions
+  open: boolean
+  setOpen: (openState: boolean) => void
 }
 
 const SlimBarContainer = styled.div`
@@ -74,6 +76,7 @@ const SpaceContainer = styled.div`
   position: absolute;
   top: 100%;
   left: 0;
+  z-index: 3000;
 
   @media screen and (max-width: 600px) {
     position: fixed;
@@ -90,9 +93,8 @@ const SpaceContainer = styled.div`
 `
 
 const SlimBar: React.FC<SlimBarProps> = props => {
-  const { config, options } = props
+  const { config, options, open, setOpen } = props
   const { hover, theme } = options
-  const [open, setOpen] = useState(hover === 'always')
   const main = config.find(item => item.UIType === 'main')
 
   if (main) {
