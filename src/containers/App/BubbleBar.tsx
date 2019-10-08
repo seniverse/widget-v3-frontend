@@ -83,6 +83,7 @@ const ExpandedCard = styled.div<{ h: string; v: string }>`
   z-index: -1;
 
   @media screen and (max-width: 600px) {
+    z-index: 3000;
     position: fixed;
     left: 0;
     top: 0;

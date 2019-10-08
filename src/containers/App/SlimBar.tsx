@@ -56,7 +56,17 @@ const CardContainer = styled.div`
     height: 100%;
     padding: 16px;
     align-content: flex-start;
+    overflow-y: auto;
+    border-radius: 0;
+    ${scrollbar}
   }
+`
+
+const UiContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  overflow-x: hidden;
 `
 
 const SpaceContainer = styled.div`
@@ -156,16 +166,18 @@ const SlimBar: React.FC<SlimBarProps> = props => {
                     ...transitionStyles[state]
                   }}
                 >
-                  {open && hover !== 'always' && (
-                    <CloseButton
-                      src={`${assetsPath}/assets/img/chameleon/close.svg`}
-                      onClick={e => {
-                        e.stopPropagation()
-                        setOpen(false)
-                      }}
-                    />
-                  )}
-                  <UiManager config={config} />
+                  <UiContainer>
+                    {open && hover !== 'always' && (
+                      <CloseButton
+                        src={`${assetsPath}/assets/img/chameleon/close.svg`}
+                        onClick={e => {
+                          e.stopPropagation()
+                          setOpen(false)
+                        }}
+                      />
+                    )}
+                    <UiManager config={config} />
+                  </UiContainer>
                 </CardContainer>
               </SpaceContainer>
             )

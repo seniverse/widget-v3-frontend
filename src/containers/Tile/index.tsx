@@ -39,6 +39,7 @@ const StyledTileContainer = styled(TileContainer)`
 
   &::before {
     left: -0.5px;
+    right: unset;
   }
 `
 
