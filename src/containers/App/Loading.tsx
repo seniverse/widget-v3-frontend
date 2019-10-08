@@ -103,6 +103,8 @@ const Point = styled.div`
 const LoadingContainer = styled.div`
   width: 100%;
   height: 100%;
+  min-width: 80px;
+  position: relative;
 `
 
 const Point0 = styled(Point)`
