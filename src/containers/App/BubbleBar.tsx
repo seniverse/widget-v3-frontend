@@ -277,13 +277,14 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
                   >
                     {open && hover !== 'always' && (
                       <CloseButton
-                        src={`${assetsPath}/assets/img/chameleon/close.svg`}
                         className="sw-card-bubble-close"
                         onClick={e => {
                           e.stopPropagation()
                           setOpen(false)
                         }}
-                      />
+                      >
+                        ×
+                      </CloseButton>
                     )}
                     <UiManager config={config} />
                   </UiContainer>

@@ -171,12 +171,13 @@ const SlimBar: React.FC<SlimBarProps> = props => {
                   <UiContainer>
                     {open && hover !== 'always' && (
                       <CloseButton
-                        src={`${assetsPath}/assets/img/chameleon/close.svg`}
                         onClick={e => {
                           e.stopPropagation()
                           setOpen(false)
                         }}
-                      />
+                      >
+                        ×
+                      </CloseButton>
                     )}
                     <UiManager config={config} />
                   </UiContainer>
