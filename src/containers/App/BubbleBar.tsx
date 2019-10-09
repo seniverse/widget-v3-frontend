@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
-import { SwLayoutOptions, MainUiLayout, SwConfigOptions } from 'TYPES/Widget'
+import { MainUiLayout } from 'TYPES/Widget'
+import { BarProps } from 'TYPES/Bar'
 import Loading from './Loading'
 import Typography from 'COMPONENTS/base/Typography'
 import { getCodeByTime } from 'UTILS/helper'
@@ -15,13 +16,6 @@ import CloseButton from './CloseButton'
 import env from 'UTILS/env'
 
 const { assetsPath } = env
-
-interface BubbleBarProps {
-  config: SwLayoutOptions
-  options: SwConfigOptions
-  open: boolean
-  setOpen: (openState: boolean) => void
-}
 
 const WeatherIcon = styled.img`
   width: 32px;
@@ -99,7 +93,7 @@ const ExpandedCard = styled.div<{ h: string; v: string }>`
   }
 `
 
-const BubbleBar: React.FC<BubbleBarProps> = props => {
+const BubbleBar: React.FC<BarProps> = props => {
   const { config, options, open, setOpen } = props
   const { hover } = options
   const ref = useRef<HTMLDivElement>(null)
@@ -282,9 +276,7 @@ const BubbleBar: React.FC<BubbleBarProps> = props => {
                           e.stopPropagation()
                           setOpen(false)
                         }}
-                      >
-                        ×
-                      </CloseButton>
+                      />
                     )}
                     <UiManager config={config} />
                   </UiContainer>

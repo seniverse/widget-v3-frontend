@@ -1,6 +1,7 @@
+import React from 'react'
 import styled from 'styled-components'
 
-const CloseButton = styled.div`
+const AbsoluteButton = styled.div`
   position: absolute;
   right: 1rem;
   top: 1rem;
@@ -18,5 +19,9 @@ const CloseButton = styled.div`
     display: flex;
   }
 `
+
+const CloseButton: React.FC<React.HTMLAttributes<HTMLDivElement>> = props => {
+  return <AbsoluteButton {...props}>×</AbsoluteButton>
+}
 
 export default CloseButton

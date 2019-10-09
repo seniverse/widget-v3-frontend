@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import Typography from 'COMPONENTS/base/Typography'
 import AppContainer from './AppContainer'
-import { SwLayoutOptions, MainUiLayout, SwConfigOptions } from 'TYPES/Widget'
+import { MainUiLayout } from 'TYPES/Widget'
+import { BarProps } from 'TYPES/Bar'
 import { getCodeByTime } from 'UTILS/helper'
 import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 import UiManager from 'CONTAINERS/UiManager'
@@ -14,13 +15,6 @@ import CloseButton from './CloseButton'
 import env from 'UTILS/env'
 
 const { assetsPath } = env
-
-interface SlimBarProps {
-  config: SwLayoutOptions
-  options: SwConfigOptions
-  open: boolean
-  setOpen: (openState: boolean) => void
-}
 
 const SlimBarContainer = styled.div`
   display: inline-flex;
@@ -92,7 +86,7 @@ const SpaceContainer = styled.div`
   }
 `
 
-const SlimBar: React.FC<SlimBarProps> = props => {
+const SlimBar: React.FC<BarProps> = props => {
   const { config, options, open, setOpen } = props
   const { hover, theme } = options
   const main = config.find(item => item.UIType === 'main')
@@ -143,7 +137,7 @@ const SlimBar: React.FC<SlimBarProps> = props => {
           <Typography
             variant="body2"
             component="span"
-            className="sw-bar-bubble-location"
+            className="sw-bar-slim-location"
             lineHeight="1.3"
           >
             {location}
@@ -153,7 +147,7 @@ const SlimBar: React.FC<SlimBarProps> = props => {
           <Typography
             variant="body2"
             component="span"
-            className="sw-bar-bubble-temperature"
+            className="sw-bar-slim-temperature"
             lineHeight="1.3"
           >
             {temperature}
@@ -171,13 +165,12 @@ const SlimBar: React.FC<SlimBarProps> = props => {
                   <UiContainer>
                     {open && hover !== 'always' && (
                       <CloseButton
+                        className="sw-card-slim-close"
                         onClick={e => {
                           e.stopPropagation()
                           setOpen(false)
                         }}
-                      >
-                        ×
-                      </CloseButton>
+                      />
                     )}
                     <UiManager config={config} />
                   </UiContainer>
