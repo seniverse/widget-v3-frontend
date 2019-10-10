@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import App from 'CONTAINERS/App'
 import { hot } from 'react-hot-loader'
 import { getDefaultOptions } from 'UTILS/options'
+import GlobalStyle from 'COMPONENTS/expand/GlobalStyle'
 
-const PlaygroundContainer = styled.header`
+const PlaygroundContainer = styled.div`
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -15,6 +16,7 @@ const PlaygroundContainer = styled.header`
 
 const Playground: React.FC = () => (
   <PlaygroundContainer>
+    <GlobalStyle />
     <App
       options={getDefaultOptions({
         flavor: 'bubble' as 'bubble',

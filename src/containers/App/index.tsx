@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
-import GlobalStyle from 'COMPONENTS/expand/GlobalStyle'
 import AppApi from 'api/app'
 import { SwConfigOptions, SwLayoutOptions } from 'TYPES/Widget'
 import { getTheme } from 'UTILS/theme'
@@ -51,7 +50,6 @@ const App: React.FC<SwProps> = props => {
   return (
     <ThemeProvider theme={theme}>
       <OptionProvider.Provider value={options}>
-        <GlobalStyle />
         {open && <OpenStyle />}
         {flavor === 'bubble' && (
           <BubbleBar
