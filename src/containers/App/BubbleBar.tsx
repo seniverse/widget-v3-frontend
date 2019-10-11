@@ -67,6 +67,7 @@ const UiContainer = styled.div<{ open: boolean }>`
 
 const ExpandedCard = styled.div<{ h: string; v: string }>`
   background: ${props => props.theme.palette.background.default};
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   opacity: 0;
   width: ${props => props.theme.grid.width * 3}px;
@@ -110,7 +111,7 @@ const BubbleBar: React.FC<BarProps> = props => {
 
   const appTransitionStyles = {
     entering: {},
-    entered: { overflow: 'unset' },
+    entered: { overflow: 'unset', boxShadow: 'none' },
     exiting: {},
     exited: { width: barWidth },
     unmounted: {}
