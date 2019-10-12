@@ -97,7 +97,7 @@ const SlimBar: React.FC<BarProps> = props => {
 
     let icon = (
       <WeatherIcon
-        src={`${assetsPath}/assets/img/chameleon/24/${getCodeByTime(
+        src={`${assetsPath}/assets/img/black/24/${getCodeByTime(
           code,
           sun
         )}.svg`}
