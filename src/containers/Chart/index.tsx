@@ -186,6 +186,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         seriesData.push(yAxis[index].data)
       }
 
+      let size: number
       switch (type) {
         case 'line':
           min = Math.min(min, ...seriesData.map(d => parseInt(d)))
@@ -193,32 +194,34 @@ const ChartUI: React.FC<ChartUiProps> = props => {
           series.push(getLineSeries(index, seriesData, inverse))
           break
         case 'icon':
+          size = 18
           series.push(
             getCombineSeries(row, seriesData, {
-              itemSize: 23,
+              itemSize: size,
               itemOptions: { type: 'image' },
               dataOptions: { zlevel: 2 },
               itemStyle: api => ({
                 image: `${assetsPath}/assets/img/${theme}/${24 *
                   devicePixelRatio}/${api.value(2)}.svg`,
-                x: -23 / 2,
-                y: -23 / 2,
-                width: 23,
-                height: 23
+                x: -size / 2,
+                y: -size / 2,
+                width: size,
+                height: size
               })
             })
           )
           break
         case 'text':
+          size = 12
           series.push(
             getCombineSeries(row, seriesData, {
-              itemSize: 12,
+              itemSize: size,
               itemOptions: { type: 'text' },
               dataOptions: { zlevel: 1 },
               itemStyle: api => ({
                 fill: themeContext.palette.chart.label,
                 text: api.value(2),
-                textFont: api.font({ fontSize: 12 }),
+                textFont: api.font({ fontSize: size }),
                 textAlign: 'center',
                 textVerticalAlign: 'bottom'
               })

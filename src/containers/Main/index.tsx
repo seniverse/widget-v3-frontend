@@ -199,7 +199,7 @@ const Main: React.FC<MainUiProps> = props => {
             <Link
               target="_blank"
               color="textPrimary"
-              href={`//m.seniverse.com/weather/${locationV3}`}
+              href={`//m.seniverse.com/weather/${locationV3}?source=widget`}
             >
               {location}
             </Link>{' '}
@@ -213,7 +213,7 @@ const Main: React.FC<MainUiProps> = props => {
             {updateAt}
           </Typography>
           <IconContainer>
-            <Link target="_blank" href="//seniverse.com">
+            <Link target="_blank" href="//seniverse.com?source=widget">
               <Icon src={`${assetsPath}/assets/img/logo-red.svg`} />
             </Link>
           </IconContainer>
