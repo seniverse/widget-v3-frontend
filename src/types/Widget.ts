@@ -1,7 +1,7 @@
 import { ChartUiLayout } from './Chart'
 import { CarouselUILayout } from './Carousel'
 
-type SwOptionFlavor = 'bubble' | 'slim'
+type SwOptionFlavor = 'bubble' | 'slim' | 'performance'
 type SwOptionTheme = 'dark' | 'light' | 'auto'
 type SwOptionLanguage = string
 type SwOptionGeolocation = boolean

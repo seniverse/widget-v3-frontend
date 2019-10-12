@@ -4,8 +4,10 @@ import AppApi from 'api/app'
 import { SwConfigOptions, SwLayoutOptions } from 'TYPES/Widget'
 import { getTheme } from 'UTILS/theme'
 import OptionProvider from 'COMPONENTS/expand/OptionProvider'
+
 import BubbleBar from './BubbleBar'
 import SlimBar from './SlimBar'
+import PerformanceBar from './PerformanceBar'
 
 interface SwProps {
   data?: SwLayoutOptions
@@ -61,6 +63,14 @@ const App: React.FC<SwProps> = props => {
         )}
         {flavor === 'slim' && (
           <SlimBar
+            config={config}
+            options={options}
+            open={open}
+            setOpen={setOpen}
+          />
+        )}
+        {flavor === 'performance' && (
+          <PerformanceBar
             config={config}
             options={options}
             open={open}
