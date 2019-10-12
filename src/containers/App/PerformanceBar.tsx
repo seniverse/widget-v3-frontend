@@ -7,6 +7,7 @@ import { BarProps } from 'TYPES/Bar'
 const Background = styled.div`
   background: ${props => props.theme.palette.background.default};
   width: 100%;
+  min-height: 100%;
   display: flex;
   justify-content: center;
 `
@@ -16,6 +17,7 @@ const StyledAppContainer = styled(AppContainer)`
   display: flex;
   box-sizing: border-box;
   width: 100%;
+  min-height: 100%;
   max-width: 600px;
   flex-wrap: wrap;
   overflow-x: hidden;
