@@ -86,7 +86,8 @@ const autoTheme = merge({}, darkTheme, {
       background: '#000',
       color: 'rgba(255, 255, 255)',
       label: 'rgba(255, 255, 255, 0.6)'
-    }
+    },
+    icon: 'chameleon'
   }
 })
 
