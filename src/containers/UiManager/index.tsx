@@ -32,6 +32,7 @@ const LogoContainer = styled.div`
   align-items: center;
   width: 100%;
   margin-bottom: 10px;
+  margin-top: 10px;
 `
 
 const Link = styled.a`
