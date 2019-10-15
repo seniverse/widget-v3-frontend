@@ -25,7 +25,7 @@ const Playground: React.FC = () => (
         language: 'zh-Hant',
         unit: 'c',
         theme: 'auto' as 'auto',
-        token: 'f42ea168-0c67-4728-95ae-434cfe46d649',
+        token: '', // 将生成的 Token 填入此处
         hover: 'always' as 'always'
       })}
     />
