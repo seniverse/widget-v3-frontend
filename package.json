@@ -69,7 +69,6 @@
     "test": "npx http-server ./test",
     "eslint": "eslint --ext .js,jsx,ts,tsx src",
     "stylelint": "stylelint './src/**/*.tsx'",
-    "mock-server": "json-server ./src/api/mock/db.json -p 3002 -w",
     "deploy-test": "UPLOAD_ENV=test npm run build && UPLOAD_ENV=test node scripts/upload.js",
     "deploy-production": "UPLOAD_ENV=production npm run build && UPLOAD_ENV=production node scripts/upload.js"
   },
@@ -162,7 +161,6 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "json-server": "^0.15.1",
     "prettier": "^1.18.2",
     "progress": "^2.0.3",
     "raw-loader": "^3.1.0",

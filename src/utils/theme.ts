@@ -303,16 +303,6 @@ export const getTheme = (
 
 export const gridWidth = () => theme.grid.width
 export const gridHeight = () => theme.grid.height
-
-// export const not = (...keys: string[]) => (value: string) => (props: any) => {
-//   for (const key of keys) {
-//     if (props[key]) {
-//       return ''
-//     }
-//   }
-//   return value
-// }
-
 export const check = (...keys: string[]) => (value: string | Function) => (
   props: any
 ) => {
