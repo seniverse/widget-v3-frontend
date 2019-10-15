@@ -1,31 +1,71 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CarouselUILayout } from 'TYPES/Carousel'
 import { BaseUiLayoutOption } from 'TYPES/Widget'
 import TileContainer from 'COMPONENTS/base/TileContainer'
 import styled from 'styled-components'
 import { TileUIContainer } from '../Tile'
+import env from 'UTILS/env'
+import { gridWidth } from 'UTILS/theme'
+
+const { assetsPath } = env
 
 const Container = styled.div`
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 `
 
 const CarouselContainer = styled(TileContainer)`
   padding: 10px 0;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   box-sizing: content-box;
 
   ::-webkit-scrollbar {
     display: none;
   }
+
+  @media screen and (max-width: 600px) {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+`
+
+const IconWrapper = styled.div`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
+`
+
+const Icon = styled.img`
+  width: 10px;
+  height: 10px;
 `
 
 const CardWrapper = styled.div`
   height: 100%;
   display: flex;
   position: relative;
+  transition: left 100ms;
 `
 
 const Card = styled.div`
@@ -50,14 +90,21 @@ interface CarouselUiProps {
 
 const Carousel: React.FC<CarouselUiProps> = props => {
   const { options } = props
-  const { data, size } = options
+  const { size } = options
   const [column, row] = size
+  const [offset, setOffset] = useState(0)
+  const data = options.data as CarouselUILayout[]
 
   return (
     <CarouselContainer className="sw-ui-carousel" column={column} row={row}>
       <Container className="sw-ui-carousel-container">
-        <CardWrapper className="sw-ui-carousel-wrapper">
-          {(data as CarouselUILayout[]).map((item, index) => {
+        <CardWrapper
+          style={{
+            left: -gridWidth() * 3 * 0.38 * offset
+          }}
+          className="sw-ui-carousel-wrapper"
+        >
+          {data.map((item, index) => {
             return (
               <Card key={index} className="sw-ui-carousel-item">
                 <TileUIContainer header={item.header} content={item.content} />
@@ -65,6 +112,18 @@ const Carousel: React.FC<CarouselUiProps> = props => {
             )
           })}
         </CardWrapper>
+        <IconWrapper
+          style={{ left: '5px' }}
+          onClick={() => setOffset(Math.max(0, offset - 1))}
+        >
+          <Icon src={`${assetsPath}/assets/img/arrow-left.svg`} />
+        </IconWrapper>
+        <IconWrapper
+          style={{ right: '5px' }}
+          onClick={() => setOffset(Math.min(data.length - 1, offset + 1))}
+        >
+          <Icon src={`${assetsPath}/assets/img/arrow-right.svg`} />
+        </IconWrapper>
       </Container>
     </CarouselContainer>
   )

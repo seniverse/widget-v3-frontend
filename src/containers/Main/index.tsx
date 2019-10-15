@@ -101,18 +101,6 @@ const BaseInfo = styled.div`
   align-items: center;
 `
 
-const IconContainer = styled.div`
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  flex: 1;
-
-  @media screen and (max-width: 600px) {
-    display: none;
-  }
-`
-
 const getPosition = (rise: string, set: string) => {
   const [riseHour, riseMinute] = rise.split(':').map(item => parseInt(item, 10))
   const [setHour, setMinute] = set.split(':').map(item => parseInt(item, 10))
@@ -212,11 +200,6 @@ const Main: React.FC<MainUiProps> = props => {
           >
             {updateAt}
           </Typography>
-          <IconContainer>
-            <Link target="_blank" href="//seniverse.com?source=widget">
-              <Icon src={`${assetsPath}/assets/img/logo-red.svg`} />
-            </Link>
-          </IconContainer>
         </BaseInfo>
         <Grow className="sw-ui-main-grow" />
         <Typography

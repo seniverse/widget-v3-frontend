@@ -27,13 +27,11 @@ interface PropsType {
 const Icon: React.FC<PropsType> = props => {
   const themeContext = useContext(ThemeContext)
   const theme = themeContext.palette.icon || 'white'
-  const devicePixelRatio = window.devicePixelRatio || 1
   const { name, ...otherProps } = props
   return (
     <Img
       {...otherProps}
-      src={`${assetsPath}/assets/img/${theme}/${24 *
-        devicePixelRatio}/${name}.svg`}
+      src={`${assetsPath}/assets/img/${theme}/56/${name}.svg`}
     ></Img>
   )
 }

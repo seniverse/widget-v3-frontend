@@ -63,6 +63,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
   const { data, size } = options
   const [column, row] = size
   const themeContext = useContext(ThemeContext)
+
   const theme = themeContext.palette.icon || 'white'
   const devicePixelRatio = window.devicePixelRatio || 1
   const [tipContent, setTipContent] = useState<null | Content[][][]>(null)
@@ -82,8 +83,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         } else if (type === 'icon') {
           tipStr += `<img
               class="tooltip-chart-icon"
-              src="${assetsPath}/assets/img/${theme}/${24 *
-            devicePixelRatio}/${text}.svg"
+              src="${assetsPath}/assets/img/${theme}/56/${text}.svg"
             />`
         } else {
           tipStr += ''
@@ -201,8 +201,9 @@ const ChartUI: React.FC<ChartUiProps> = props => {
               itemOptions: { type: 'image' },
               dataOptions: { zlevel: 2 },
               itemStyle: api => ({
-                image: `${assetsPath}/assets/img/${theme}/${24 *
-                  devicePixelRatio}/${api.value(2)}.svg`,
+                image: `${assetsPath}/assets/img/${theme}/56/${api.value(
+                  2
+                )}.svg`,
                 x: -size / 2,
                 y: -size / 2,
                 width: size,
