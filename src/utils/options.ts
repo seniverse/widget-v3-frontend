@@ -10,6 +10,7 @@ export const getDefaultOptions: (
     language = 'zh-Hans',
     unit = 'c',
     theme = 'light',
+    themeOption = {},
     container = 'tp-weather-widget',
     token = '',
     hover = 'enabled'
@@ -22,6 +23,7 @@ export const getDefaultOptions: (
     language,
     unit,
     theme,
+    themeOption,
     container,
     token,
     hover

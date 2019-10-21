@@ -299,7 +299,7 @@ export const getTheme = (
     merge(baseTheme, autoTheme, getAutoTheme(weather))
   }
 
-  return baseTheme
+  return merge(baseTheme, options.themeOption)
 }
 
 export const gridWidth = () => theme.grid.width

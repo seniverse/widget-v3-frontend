@@ -8,6 +8,55 @@ type SwOptionGeolocation = boolean
 type SwOptionUnit = string
 type SwOptionHover = 'enabled' | 'disabled' | 'always'
 
+export interface SwTheme {
+  palette?: {
+    background?: {
+      default: string
+    }
+    text?: {
+      disabled?: string
+      hint?: string
+      primary?: string
+      secondary?: string
+    }
+    divider?: string
+    icon?: string
+    chart?: {
+      default?: string
+      line?: [[number, number, number], [number, number, number]]
+      background?: string
+      color?: string
+      label?: string
+    }
+  }
+  grid: {
+    width: number
+    height: number
+  }
+  typography?: {
+    caption?: {
+      fontSize?: string
+      fontWeight?: number
+      lineHeight?: number
+    }
+    body2?: {
+      fontSize?: string
+      fontWeight?: number
+      lineHeight?: number
+    }
+    h3?: {
+      fontSize?: string
+      fontWeight?: number
+      lineHeight?: number
+    }
+    h2?: {
+      fontSize?: string
+      fontWeight?: number
+      lineHeight?: number
+    }
+  }
+}
+
 export interface SwPropsConfigOptions {
   flavor?: SwOptionFlavor
   location?: string
@@ -15,6 +64,7 @@ export interface SwPropsConfigOptions {
   language?: SwOptionLanguage
   unit?: SwOptionUnit
   theme?: SwOptionTheme
+  themeOption?: any
   container?: string
   token: string
   hover?: SwOptionHover
@@ -26,21 +76,10 @@ export interface SwConfigOptions {
   language: SwOptionLanguage
   unit: SwOptionUnit
   theme: SwOptionTheme
+  themeOption: SwTheme
   container: string
   token: string
   hover: SwOptionHover
-}
-
-export interface SwTheme {
-  palette: {
-    background: {
-      default: string
-    }
-  }
-  grid: {
-    width: number
-    height: number
-  }
 }
 
 export interface BaseUiLayout {
