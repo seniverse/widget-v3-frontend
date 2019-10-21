@@ -132,6 +132,7 @@ const SlimBar: React.FC<BarProps> = props => {
             setOpen(true)
           }
         }}
+        className="sw-container"
       >
         <SlimBarContainer className="sw-bar-slim" theme={theme}>
           <Typography
@@ -161,8 +162,9 @@ const SlimBar: React.FC<BarProps> = props => {
                   style={{
                     ...transitionStyles[state]
                   }}
+                  className="sw-card-slim-container"
                 >
-                  <UiContainer>
+                  <UiContainer className="sw-card-slim-background">
                     {open && hover !== 'always' && (
                       <CloseButton
                         className="sw-card-slim-close"
