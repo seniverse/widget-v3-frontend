@@ -17,14 +17,13 @@ const refreshObjectCaches = () =>
     }
     const uploadEnv = process.env.UPLOAD_ENV
 
-    console.log(
-      `https://${config.host}${uploadEnv} \nhttp://${config.host}${uploadEnv}`
-    )
+    const objectPath = `https://${config.host}/${uploadEnv}/ \nhttp://${config.host}/${uploadEnv}/`
+    console.log(objectPath)
 
     cdn.refreshObjectCaches(
       {
         ObjectType: 'Directory',
-        ObjectPath: `https://${config.host}/${uploadEnv}/ \n http://${config.host}/${uploadEnv}/`
+        ObjectPath: objectPath
       },
       (err, res) => {
         if (err) {
