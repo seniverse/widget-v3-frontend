@@ -1,0 +1,33 @@
+
+@font-face {
+  font-family: 'BenchNine';
+  src: url('../fonts/BenchNine.ttf') format('truetype');
+}
+
+.sw-container * {
+  font-family: 'BenchNine', PingFangSC-Light, PingFangSC, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei" !important;
+}
+
+/* .sw-container .sw-card-slim-container,
+.sw-container .sw-card-bubble-background {
+  background: linear-gradient(to left, #A8C7D3, #B7D3DD);
+} */
+
+.sw-container.sw-container * {
+  /* text-shadow: 0 0 0.3em #2C2C2C, -0 -0 0.3em #2C2C2C; */
+  /* transition: all ease 1s; */
+}
+
+/* 仅换头图 */
+/* .sw-container .sw-ui-main {
+  background-image: url(../images/background-02.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+} */
+
+.sw-container .sw-card-slim-background,
+.sw-container .sw-card-bubble-container {
+  background-image: url(../images/background-03.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}

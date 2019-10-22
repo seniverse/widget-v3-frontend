@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Potra';
+  src: url('../fonts/Potra.ttf') format('truetype');
+}
+
+.sw-container * {
+  font-family: 'Potra', PingFangSC-Light, PingFangSC, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei" !important;
+}
+
+/* .sw-container .sw-card-slim-container,
+.sw-container .sw-card-bubble-background {
+  background: linear-gradient(#B7C2C1, #819CA4);
+} */
+
+.sw-container.sw-container * {
+  text-shadow: 0 0 0.3em #2C2C2C, -0 -0 0.3em #2C2C2C;
+  transition: all ease 1s;
+}
+
+/* .sw-container .sw-ui-main {
+  background-image: url(../images/background-06.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+} */
+
+.sw-container .sw-card-slim-background,
+.sw-container .sw-card-bubble-container {
+  background-image: url(../images/background-06.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
