@@ -13,7 +13,8 @@ export const getDefaultOptions: (
     themeOption = {},
     container = 'tp-weather-widget',
     token = '',
-    hover = 'enabled'
+    hover = 'enabled',
+    assetsPath
   } = options
 
   return {
@@ -26,6 +27,7 @@ export const getDefaultOptions: (
     themeOption,
     container,
     token,
-    hover
+    hover,
+    assetsPath
   }
 }

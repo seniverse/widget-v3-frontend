@@ -3,9 +3,7 @@ import { BaseUiLayout, BaseUiLayoutOption } from 'TYPES/Widget'
 import TileContainer from 'COMPONENTS/base/TileContainer'
 import Typography from 'COMPONENTS/base/Typography'
 import styled from 'styled-components'
-import env from 'UTILS/env'
-
-const { assetsPath } = env
+import SvgIcon from 'COMPONENTS/base/SvgIcon'
 
 interface TileUiProps {
   options: BaseUiLayoutOption
@@ -43,7 +41,7 @@ const StyledTileContainer = styled(TileContainer)`
   }
 `
 
-const Icon = styled.img`
+const Icon = styled(SvgIcon)`
   width: 32px;
   height: 32px;
 `
@@ -102,7 +100,7 @@ const renderTileContent = (
       {content.type === 'icon' ? (
         <Icon
           className="sw-ui-tile-text-icon"
-          src={`${assetsPath}/assets/img/chameleon/56/${content.text}.svg`}
+          name={`weather/${content.text}`}
         />
       ) : (
         content.text

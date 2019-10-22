@@ -1,5 +1,5 @@
 module.exports = {
-  assetsPath: '//cdn.sencdn.com/widget2-dev',
+  assetsPath: '//cdn.sencdn.com/widget2-dev/assets/',
   apiHost: '//zhimi-test.in.seniverse.com:3001',
   oss: {
     bucket: 'tp-static',

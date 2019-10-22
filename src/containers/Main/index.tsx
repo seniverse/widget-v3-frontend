@@ -5,10 +5,8 @@ import TileContainer from 'COMPONENTS/base/TileContainer'
 import Typography from 'COMPONENTS/base/Typography'
 import { getCodeByTime, getSunTime } from 'UTILS/helper'
 import Alarm from './Alarm'
-import env from 'UTILS/env'
 import { checkBy } from 'UTILS/theme'
-
-const { assetsPath } = env
+import SvgIcon from 'COMPONENTS/base/SvgIcon'
 
 interface MainUiProps {
   options: BaseUiLayoutOption
@@ -52,10 +50,9 @@ const Arc = styled.div`
 interface WeatherIconProps {
   left: number
   top: number
-  src: string
 }
 
-const WeatherIcon = styled.img<WeatherIconProps>`
+const WeatherIcon = styled(SvgIcon)<WeatherIconProps>`
   width: 54px;
   height: 54px;
   display: block;
@@ -65,7 +62,7 @@ const WeatherIcon = styled.img<WeatherIconProps>`
   top: ${props => props.top}%;
 `
 
-const Icon = styled.img`
+const Icon = styled(SvgIcon)`
   width: 14px;
   height: 14px;
 `
@@ -161,9 +158,9 @@ const Main: React.FC<MainUiProps> = props => {
 
   let arrowIcon = null
   if (today.high > yesterday.high) {
-    arrowIcon = <Icon src={`${assetsPath}/assets/img/arrow-up.svg`} />
+    arrowIcon = <Icon name="arrow-up" />
   } else if (today.low < yesterday.low) {
-    arrowIcon = <Icon src={`${assetsPath}/assets/img/arrow-down.svg`} />
+    arrowIcon = <Icon name="arrow-down" />
   }
 
   return (
@@ -175,10 +172,7 @@ const Main: React.FC<MainUiProps> = props => {
               top={top}
               left={left}
               className="sw-ui-main-weatherIcon"
-              src={`${assetsPath}/assets/img/chameleon/56/${getCodeByTime(
-                code,
-                sun
-              )}.svg`}
+              name={`weather/${getCodeByTime(code, sun)}`}
             />
           </Arc>
         </ArcContainer>

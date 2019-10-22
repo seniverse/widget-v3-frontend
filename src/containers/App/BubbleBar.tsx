@@ -10,14 +10,11 @@ import { Transition } from 'react-transition-group'
 import AppContainer from './AppContainer'
 import { scrollbar } from 'UTILS/theme'
 import UiManager from 'CONTAINERS/UiManager'
+import SvgIcon from 'COMPONENTS/base/SvgIcon'
 import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 import CloseButton from './CloseButton'
 
-import env from 'UTILS/env'
-
-const { assetsPath } = env
-
-const WeatherIcon = styled.img`
+const WeatherIcon = styled(SvgIcon)`
   width: 32px;
   height: 32px;
   display: block;
@@ -187,12 +184,10 @@ const BubbleBar: React.FC<BarProps> = props => {
     let icon = (
       <WeatherIcon
         className="sw-bar-bubble-icon"
-        src={`${assetsPath}/assets/img/chameleon/56/${getCodeByTime(
-          code,
-          sun
-        )}.svg`}
+        name={`weather/${getCodeByTime(code, sun)}`}
       />
     )
+
     if (alarms.length) {
       icon = (
         <AlarmIcon

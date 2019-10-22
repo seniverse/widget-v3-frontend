@@ -6,9 +6,7 @@ import Tile from 'CONTAINERS/Tile'
 import Chart from 'CONTAINERS/Chart'
 import { SwLayoutOptions } from 'TYPES/Widget'
 import { checkBy } from 'UTILS/theme'
-import env from 'UTILS/env'
-
-const { assetsPath } = env
+import SvgIcon from 'COMPONENTS/base/SvgIcon'
 
 const getUI: (type: string) => React.ElementType = type => {
   switch (type) {
@@ -54,7 +52,7 @@ const Link = styled.a`
   align-items: center;
 `
 
-const Icon = styled.img`
+const Icon = styled(SvgIcon)`
   width: 14px;
   height: 14px;
 `
@@ -81,8 +79,7 @@ const UiManager: React.FC<UiManagerProps> = props => {
           color="textPrimary"
           href="//seniverse.com?source=widget"
         >
-          <Icon src={`${assetsPath}/assets/img/logo-red.svg`} /> &nbsp;
-          数据服务来自心知天气
+          <Icon name="logo" /> &nbsp; 数据服务来自心知天气
         </Link>
       </LogoContainer>
     </>

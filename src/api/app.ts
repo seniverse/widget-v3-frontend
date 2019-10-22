@@ -17,6 +17,10 @@ const getConfig = (option: SwConfigOptions) => {
   const { token, unit, language, location, geolocation } = option
   const detected = getBrowserLanguage()
 
+  if (token === '') {
+    alert('请在 "src/containers/Playground/index.tsx" 中填写 Token')
+  }
+
   return get(`${apiHost}/api/weather/${token}`, {
     params: { unit, language, location, geolocation, detected }
   })
