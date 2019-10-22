@@ -1,0 +1,149 @@
+#tp-weather-widget * {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+#tp-weather-widget .sw-card-bubble-background {
+  background: #ecf0f2;
+}
+
+#tp-weather-widget .sw-ui-main-container {
+  padding: 10px;
+}
+
+#tp-weather-widget .sw-ui-main {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px 0 rgba(15, 37, 64, 0.1);
+}
+
+#tp-weather-widget .sw-ui-main-arc {
+  background: linear-gradient(
+    to left,
+    violet,
+    indigo,
+    blue,
+    green,
+    yellow,
+    orange,
+    red
+  );
+  border: none;
+}
+
+#tp-weather-widget .sw-ui-main-arc::after {
+  position: absolute;
+  display: block;
+  top: 7px;
+  left: 7px;
+  width: 95%;
+  height: 95%;
+  content: '';
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+#tp-weather-widget .sw-ui-main-weatherIcon {
+  z-index: 2;
+}
+
+#tp-weather-widget .sw-ui-tile {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+#tp-weather-widget .sw-ui-tile::before,
+.sw-ui-tile::after {
+  content: none !important;
+}
+
+#tp-weather-widget .sw-ui-tile-container {
+  border-radius: 16px;
+  background: #fff;
+  width: 90%;
+  box-shadow: 0 4px 6px 0 rgba(15, 37, 64, 0.1);
+}
+
+#tp-weather-widget .sw-ui-carousel {
+  margin-bottom: 16px;
+  background: linear-gradient(-135deg, #f3b9166b, #d9e1dd);
+  padding: 22px 0;
+}
+
+#tp-weather-widget .sw-ui-carousel-item .sw-ui-tile-container {
+  border-radius: unset;
+  background: unset;
+  width: 100%;
+  box-shadow: unset;
+}
+
+#tp-weather-widget .sw-ui-carousel-item {
+  border-radius: 16px;
+  background: #edf1f3;
+  box-shadow: 0 4px 6px 0 rgba(15, 37, 64, 0.1);
+}
+
+#tp-weather-widget .sw-ui-chart {
+  margin-bottom: 16px;
+}
+
+/* mobile */
+
+#tp-weather-widget .sw-container {
+  width: 150px;
+  height: 80px;
+  background: transparent;
+  box-shadow: none;
+}
+
+#tp-weather-widget .sw-card-bubble-background {
+  padding: 0;
+}
+
+/* bubble */
+
+#tp-weather-widget .sw-bar-bubble {
+  width: 150px;
+  height: 80px;
+  display: block;
+  padding: 0;
+}
+
+#tp-weather-widget .sw-bar-bubble-icon {
+  position: absolute;
+  top: -4px;
+  left: 18px;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+}
+
+#tp-weather-widget .sw-bar-bubble-content {
+  position: absolute;
+  width: 150px;
+  height: 60px;
+  background: #ecf0f2;
+  bottom: 0;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+#tp-weather-widget .sw-bar-bubble-location {
+  position: absolute;
+  left: 8px;
+  top: 30px;
+  width: 70px;
+  text-align: center;
+}
+
+#tp-weather-widget .sw-bar-bubble-temperature {
+  position: absolute;
+  top: 10px;
+  left: 80px;
+  font-size: 32px;
+  font-weight: 700;
+}
