@@ -46,7 +46,7 @@
 
 ## 个性化
 
-插件运行用户自行修改样式。样例代码可见: [demo](./demo)。效果截图：
+插件允许用户自行修改样式。样例代码可见: [demo](./demo)。效果截图：
 
 ![cyberpunk](./demo/cyberpunk/preview.png)
 ![chinese](./demo/chinese/preview.png)
