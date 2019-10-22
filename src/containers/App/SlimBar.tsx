@@ -1,20 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import Typography from 'COMPONENTS/base/Typography'
-import AppContainer from './AppContainer'
+import { Transition } from 'react-transition-group'
+
 import { MainUiLayout } from 'TYPES/Widget'
 import { BarProps } from 'TYPES/Bar'
+import { scrollbar, checkBy } from 'UTILS/theme'
 import { getCodeByTime } from 'UTILS/helper'
 import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 import UiManager from 'CONTAINERS/UiManager'
-import { Transition } from 'react-transition-group'
+import SvgIcon from 'COMPONENTS/base/SvgIcon'
+import Typography from 'COMPONENTS/base/Typography'
+
 import Loading from './Loading'
-import { scrollbar, checkBy } from 'UTILS/theme'
 import CloseButton from './CloseButton'
-
-import env from 'UTILS/env'
-
-const { assetsPath } = env
+import AppContainer from './AppContainer'
 
 const SlimBarContainer = styled.div`
   display: inline-flex;
@@ -24,7 +23,7 @@ const SlimBarContainer = styled.div`
   })}
 `
 
-const WeatherIcon = styled.img`
+const WeatherIcon = styled(SvgIcon)`
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -95,14 +94,8 @@ const SlimBar: React.FC<BarProps> = props => {
     const data = main.data as MainUiLayout[]
     const { location, temperature, code, sun, alarms } = data[0]
 
-    let icon = (
-      <WeatherIcon
-        src={`${assetsPath}/assets/img/black/24/${getCodeByTime(
-          code,
-          sun
-        )}.svg`}
-      />
-    )
+    let icon = <WeatherIcon name={`weather/${getCodeByTime(code, sun)}`} />
+
     if (alarms.length) {
       icon = <AlarmIcon alarm={alarms[0]} />
     }

@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import env from 'UTILS/env'
-
-const { assetsPath } = env
+import { getIconUrl } from 'UTILS/theme'
+import OptionProvider from 'COMPONENTS/expand/OptionProvider'
 
 const Img = styled(({ ...props }) => <img {...props} />)`
   width: ${props => props.width || '1em'};
@@ -26,12 +25,15 @@ interface PropsType {
 
 const Icon: React.FC<PropsType> = props => {
   const themeContext = useContext(ThemeContext)
+  const optionContext = useContext(OptionProvider)
+  const { assetsPath } = optionContext
+
   const theme = themeContext.palette.icon || 'white'
   const { name, ...otherProps } = props
   return (
     <Img
       {...otherProps}
-      src={`${assetsPath}/assets/img/${theme}/56/${name}.svg`}
+      src={getIconUrl(assetsPath, `${name}.svg`, theme)}
     ></Img>
   )
 }

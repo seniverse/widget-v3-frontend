@@ -3,6 +3,9 @@ import get from 'lodash/get'
 import merge from 'lodash/merge'
 import { SwConfigOptions, SwTheme, SwLayoutOptions } from 'TYPES/Widget'
 import { getCodeByTime } from 'UTILS/helper'
+import env from 'UTILS/env'
+
+const { assetsPath } = env
 
 const createTheme: () => SwTheme = () => {
   return {
@@ -317,5 +320,16 @@ export const check = (...keys: string[]) => (value: string | Function) => (
 
 export const checkBy = (property: string, mapping: any) => (props: any) =>
   mapping[props[property]]
+
+export const getIconUrl: (
+  optionAssetsPath: string | undefined,
+  name: string,
+  theme?: string
+) => string = (optionAssetsPath, name, theme) => {
+  if (theme) {
+    return `${optionAssetsPath || assetsPath}img/${theme}/${name}`
+  }
+  return `${optionAssetsPath || assetsPath}img/${name}`
+}
 
 export default theme

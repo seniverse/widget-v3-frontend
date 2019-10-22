@@ -68,6 +68,7 @@ export interface SwPropsConfigOptions {
   container?: string
   token: string
   hover?: SwOptionHover
+  assetsPath?: string
 }
 export interface SwConfigOptions {
   flavor: SwOptionFlavor
@@ -80,6 +81,7 @@ export interface SwConfigOptions {
   container: string
   token: string
   hover: SwOptionHover
+  assetsPath?: string
 }
 
 export interface BaseUiLayout {

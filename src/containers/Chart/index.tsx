@@ -2,16 +2,14 @@ import React, { useContext, useState } from 'react'
 import { BaseUiLayoutOption } from 'TYPES/Widget'
 import { ChartUiLayout, Content } from 'TYPES/Chart'
 import TileContainer from 'COMPONENTS/base/TileContainer'
-import { gridHeight, gridWidth } from 'UTILS/theme'
+import { gridHeight, gridWidth, getIconUrl } from 'UTILS/theme'
 import styled, { ThemeContext, createGlobalStyle } from 'styled-components'
 import ReactEchartsCore from 'echarts-for-react/lib/core'
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/custom'
 import 'echarts/lib/component/tooltip'
-import env from 'UTILS/env'
-
-const { assetsPath } = env
+import OptionProvider from 'COMPONENTS/expand/OptionProvider'
 
 const ChartContainer = styled.div`
   width: 100%;
@@ -63,6 +61,8 @@ const ChartUI: React.FC<ChartUiProps> = props => {
   const { data, size } = options
   const [column, row] = size
   const themeContext = useContext(ThemeContext)
+  const optionContext = useContext(OptionProvider)
+  const { assetsPath } = optionContext
 
   const theme = themeContext.palette.icon || 'white'
   const devicePixelRatio = window.devicePixelRatio || 1
@@ -83,7 +83,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         } else if (type === 'icon') {
           tipStr += `<img
               class="tooltip-chart-icon"
-              src="${assetsPath}/assets/img/${theme}/56/${text}.svg"
+              src="${getIconUrl(assetsPath, `weather/${text}.svg`, theme)}"
             />`
         } else {
           tipStr += ''
@@ -200,15 +200,28 @@ const ChartUI: React.FC<ChartUiProps> = props => {
               itemSize: size,
               itemOptions: { type: 'image' },
               dataOptions: { zlevel: 2 },
-              itemStyle: api => ({
-                image: `${assetsPath}/assets/img/${theme}/56/${api.value(
-                  2
-                )}.svg`,
-                x: -size / 2,
-                y: -size / 2,
-                width: size,
-                height: size
-              })
+              itemStyle: api => {
+                if (api.value(2)) {
+                  return {
+                    image: `${getIconUrl(
+                      assetsPath,
+                      `weather/${api.value(2)}.svg`,
+                      theme
+                    )}`,
+                    x: -size / 2,
+                    y: -size / 2,
+                    width: size,
+                    height: size
+                  }
+                } else {
+                  return {
+                    x: -size / 2,
+                    y: -size / 2,
+                    width: size,
+                    height: size
+                  }
+                }
+              }
             })
           )
           break

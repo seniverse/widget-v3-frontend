@@ -4,10 +4,8 @@ import { BaseUiLayoutOption } from 'TYPES/Widget'
 import TileContainer from 'COMPONENTS/base/TileContainer'
 import styled from 'styled-components'
 import { TileUIContainer } from '../Tile'
-import env from 'UTILS/env'
 import { gridWidth } from 'UTILS/theme'
-
-const { assetsPath } = env
+import SvgIcon from 'COMPONENTS/base/SvgIcon'
 
 const Container = styled.div`
   height: 100%;
@@ -56,7 +54,7 @@ const IconWrapper = styled.div`
   }
 `
 
-const Icon = styled.img`
+const Icon = styled(SvgIcon)`
   width: 10px;
   height: 10px;
 `
@@ -116,13 +114,13 @@ const Carousel: React.FC<CarouselUiProps> = props => {
           style={{ left: '5px' }}
           onClick={() => setOffset(Math.max(0, offset - 1))}
         >
-          <Icon src={`${assetsPath}/assets/img/arrow-left.svg`} />
+          <Icon name="arrow-left" />
         </IconWrapper>
         <IconWrapper
           style={{ right: '5px' }}
           onClick={() => setOffset(Math.min(data.length - 1, offset + 1))}
         >
-          <Icon src={`${assetsPath}/assets/img/arrow-right.svg`} />
+          <Icon name="arrow-right" />
         </IconWrapper>
       </Container>
     </CarouselContainer>
