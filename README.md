@@ -44,6 +44,17 @@
     └── index.tsx           # 入口文件
 ```
 
+## 个性化
+
+插件运行用户自行修改样式。样例代码可见: [demo](./demo)。效果截图：
+
+![cyberpunk](./demo/cyberpunk/preview.png)
+![chinese](./demo/chinese/preview.png)
+![japanese](./demo/japanese/preview.png)
+![halloween](./demo/halloween/preview.jpg)
+![lovecircle](./demo/lovecircle/preview.jpg)
+![girl](./demo/girl/preview.png)
+
 ## License
 
 [Apache License 2.0](https://github.com/seniverse/widget-v3-frontend/blob/master/LICENSE)

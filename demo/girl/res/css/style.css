@@ -1,0 +1,46 @@
+
+@font-face {
+  font-family: 'RibeyeMarrow';
+  src: url('../fonts/RibeyeMarrow.ttf') format('truetype');
+}
+
+.sw-container * {
+  font-family: 'RibeyeMarrow', PingFangSC-Light, PingFangSC, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei" !important;
+}
+
+/* ======================= 主题 01 ======================= */
+/* .sw-container.sw-container {
+  background: linear-gradient(#FBD5E6, #D9D9F5);
+}
+
+.sw-container .sw-card-slim-background,
+.sw-container .sw-card-bubble-container {
+  background-image: url(../images/background-01.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+} */
+
+/* ======================= 主题 02 ======================= */
+.sw-container.sw-container {
+  background-color: #EACAF0;
+}
+
+.sw-container .sw-card-slim-background,
+.sw-container .sw-card-bubble-container {
+  background-image: url(../images/background-02.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* ======================= 主题 03 ======================= */
+/* .sw-container.sw-container {
+  background: linear-gradient(#98E1FF, #C6EFFF);
+}
+
+.sw-container .sw-card-slim-background,
+.sw-container .sw-card-bubble-container {
+  background-image: url(../images/background-03.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
