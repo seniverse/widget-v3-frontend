@@ -3,3 +3,13 @@
 
 **注：所有的 DEMO 需要用户在生成插件 token 之后，替换 index.html 文件中的 token 方可运行。**token 可在心知天气官网生成: https://seniverse.com/widget
 
+### Run demo
+
+```bash
+# 先替换 index.html 文件里面的 token
+
+$ cd demo # 转到 demo 目录下
+$ npx http-server
+
+# 打开 http://localhost:8080/chinese/ 查看效果
+```
