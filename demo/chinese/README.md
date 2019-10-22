@@ -1,4 +1,4 @@
-# widget-v3-frontend-cyberpunk
+# widget-v3-frontend-chinese
 
 心知天气v3版国风主题插件
 
