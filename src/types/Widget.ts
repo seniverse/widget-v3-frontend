@@ -9,7 +9,7 @@ type SwOptionUnit = string
 type SwOptionHover = 'enabled' | 'disabled' | 'always'
 
 export interface SwTheme {
-  palette?: {
+  palette: {
     background?: {
       default: string
     }
@@ -21,12 +21,15 @@ export interface SwTheme {
     }
     divider?: string
     icon?: string
-    chart?: {
+    chart: {
       default?: string
-      line?: [[number, number, number], [number, number, number]]
+      line: number[][]
       background?: string
       color?: string
-      label?: string
+      label: {
+        color?: string
+        fontFamily?: string
+      }
     }
   }
   grid: {
