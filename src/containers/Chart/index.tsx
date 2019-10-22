@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { BaseUiLayoutOption } from 'TYPES/Widget'
+import { BaseUiLayoutOption, SwTheme } from 'TYPES/Widget'
 import { ChartUiLayout, Content } from 'TYPES/Chart'
 import TileContainer from 'COMPONENTS/base/TileContainer'
 import { gridHeight, gridWidth, getIconUrl } from 'UTILS/theme'
@@ -60,7 +60,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
   const { options } = props
   const { data, size } = options
   const [column, row] = size
-  const themeContext = useContext(ThemeContext)
+  const themeContext = useContext(ThemeContext) as SwTheme
   const optionContext = useContext(OptionProvider)
   const { assetsPath } = optionContext
 
@@ -114,14 +114,14 @@ const ChartUI: React.FC<ChartUiProps> = props => {
       boundaryGap: false,
       axisLabel: {
         align: 'left',
-        color: themeContext.palette.chart.label,
         interval: (index: number) => {
           if (index === 0) return true
           if (index === xAxisDataLength - 1) return false
           if (xAxisDataLength <= 7) return true
           if (xAxisDataLength <= 15) return index % 2 === 0
           return index % 3 === 0
-        }
+        },
+        ...themeContext.palette.chart.label
       },
       axisTick: {
         show: false
@@ -144,6 +144,10 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         const { dataIndex } = params[0]
         if (!tipContent) return ''
         return getTooltipContent(tipContent[dataIndex])
+      },
+      textStyle: {
+        color: themeContext.palette.chart.label.color,
+        fontFamily: themeContext.palette.chart.label.fontFamily
       }
     },
     series: null
@@ -191,7 +195,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
         case 'line':
           min = Math.min(min, ...seriesData.map(d => parseInt(d)))
           max = Math.max(max, ...seriesData.map(d => parseInt(d)))
-          series.push(getLineSeries(index, seriesData, inverse))
+          series.push(getLineSeries(parseInt(index, 10), seriesData, inverse))
           break
         case 'icon':
           size = 18
@@ -233,9 +237,12 @@ const ChartUI: React.FC<ChartUiProps> = props => {
               itemOptions: { type: 'text' },
               dataOptions: { zlevel: 1 },
               itemStyle: api => ({
-                fill: themeContext.palette.chart.label,
+                fill: themeContext.palette.chart.label.color,
                 text: api.value(2),
-                textFont: api.font({ fontSize: size }),
+                textFont: api.font({
+                  fontSize: size,
+                  fontFamily: themeContext.palette.chart.label.fontFamily
+                }),
                 textAlign: 'center',
                 textVerticalAlign: 'bottom'
               })
@@ -268,7 +275,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
   }
 
   const getLineSeries = (
-    index: string,
+    index: number,
     seriesData: any[],
     inverse: boolean
   ) => {

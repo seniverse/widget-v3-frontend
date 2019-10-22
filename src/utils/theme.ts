@@ -26,7 +26,10 @@ const createTheme: () => SwTheme = () => {
         line: [[189, 229, 246], [189, 229, 246]],
         background: '#fff',
         color: 'rgba(24, 24, 24)',
-        label: 'rgba(24, 24, 24, 0.6)'
+        label: {
+          color: 'rgba(24, 24, 24, 0.6)',
+          fontFamily: 'sans-serif'
+        }
       }
     },
     grid: {
@@ -76,7 +79,10 @@ const darkTheme = {
       line: [[207, 107, 97], [234, 174, 78]],
       background: '#000',
       color: 'rgba(255, 255, 255)',
-      label: 'rgba(255, 255, 255, 0.6)'
+      label: {
+        color: 'rgba(255, 255, 255, 0.6)',
+        fontFamily: 'sans-serif'
+      }
     }
   }
 }
@@ -88,7 +94,10 @@ const autoTheme = merge({}, darkTheme, {
       line: [[245, 209, 47], [243, 63, 32]],
       background: '#000',
       color: 'rgba(255, 255, 255)',
-      label: 'rgba(255, 255, 255, 0.6)'
+      label: {
+        color: 'rgba(255, 255, 255, 0.6)',
+        fontFamily: 'sans-serif'
+      }
     },
     icon: 'chameleon'
   }

@@ -1,0 +1,37 @@
+@font-face {
+  font-family: 'Potra';
+  src: url('../fonts/Potra.ttf') format('truetype');
+}
+
+.sw-container * {
+  font-family: 'Potra', PingFangSC-Light, PingFangSC, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei" !important;
+}
+
+.sw-container.sw-container * {
+  text-shadow: 0 0 0.3em #2C2C2C, -0 -0 0.3em #2C2C2C;
+}
+
+/* ======================= 鸟居主题 ======================= */
+/* .sw-container .sw-card-slim-background,
+.sw-container .sw-card-bubble-container {
+  background-image: url(../images/background-04.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+
+/* ======================= 海浪主题 - 01 ======================= */
+.sw-container .sw-card-slim-background,
+.sw-container .sw-card-bubble-container {
+  background-image: url(../images/background-05.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* ======================= 海浪主题 - 02 ======================= */
+/* .sw-container .sw-card-slim-background,
+.sw-container .sw-card-bubble-container {
+  background-image: url(../images/background-06.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+} */

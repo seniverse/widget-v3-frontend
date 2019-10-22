@@ -1,0 +1,166 @@
+@font-face {
+  font-family: 'HYHalloween';
+  src: url('../fonts/HYHalloweenJ-2.ttf') format('truetype');
+}
+
+#tp-weather-widget .sw-container,
+.sw-ui-tile-header,
+.sw-ui-tile-text,
+.sw-ui-main-rise,
+.sw-ui-main-set,
+.sw-ui-main-temperatureRange,
+.sw-ui-main-temperature,
+.sw-bar-bubble-location,
+.sw-bar-bubble-temperature {
+  font-family: 'HYHalloween', 'Roboto', 'Helvetica', 'Arial', sans-serif !important;
+}
+
+#tp-weather-widget .sw-ui-main-container {
+  background: url('../images/halloween.jpg');
+  background-size: 100% 100%;
+  padding: 10px;
+}
+
+#tp-weather-widget .sw-ui-main-arc {
+  border-color: #ecf0f2;
+}
+
+#tp-weather-widget .sw-ui-main {
+  border-radius: 16px;
+  box-shadow: 0 4px 6px 0 rgba(15, 37, 64, 0.1);
+}
+#tp-weather-widget .sw-ui-main::after {
+  content: '';
+  background: url(../images/halloween4.svg) no-repeat;
+  background-size: 100%;
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  right: 26px;
+  top: 0px;
+  transform: rotate(3deg);
+}
+
+#tp-weather-widget .sw-ui-main::before {
+  content: '';
+  background: url(../images/halloween5.svg) no-repeat;
+  background-size: 100%;
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  right: 12px;
+  top: 16px;
+  transform: rotate(-145deg);
+}
+
+#tp-weather-widget .sw-ui-main-weatherIcon {
+  z-index: 2;
+}
+
+#tp-weather-widget .sw-ui-tile {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+#tp-weather-widget .sw-ui-tile::before,
+.sw-ui-tile::after {
+  content: none !important;
+}
+
+#tp-weather-widget .sw-ui-tile-container {
+  border-radius: 16px;
+  box-shadow: 0 4px 6px 0 rgba(15, 37, 64, 0.1);
+}
+
+#tp-weather-widget .sw-ui-carousel {
+  margin-bottom: 16px;
+  background: url('../images/halloween2.jpg');
+  background-size: 100% 100%;
+  padding: 22px 0;
+}
+
+#tp-weather-widget .sw-ui-carousel-item .sw-ui-tile-container {
+  border-radius: unset;
+  background: unset;
+  width: 100%;
+  box-shadow: unset;
+}
+
+#tp-weather-widget .sw-ui-carousel-item {
+  background: linear-gradient(
+    to bottom,
+    rgba(52, 52, 52, 0.8),
+    rgba(74, 74, 74, 0.7)
+  );
+  border-radius: 16px;
+}
+
+#tp-weather-widget .sw-ui-chart {
+  margin-bottom: 16px;
+}
+
+#tp-weather-widget .sw-container {
+  width: 150px;
+  height: 80px;
+  background: transparent;
+  box-shadow: none;
+}
+
+#tp-weather-widget .sw-card-bubble-background {
+  padding: 0;
+}
+
+#tp-weather-widget .sw-bar-bubble {
+  width: 150px;
+  height: 80px;
+  display: block;
+  padding: 0;
+}
+
+#tp-weather-widget .sw-bar-bubble-icon {
+  position: absolute;
+  top: -4px;
+  left: 18px;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+}
+
+#tp-weather-widget .sw-bar-bubble-content {
+  position: absolute;
+  width: 150px;
+  height: 60px;
+  bottom: 0;
+  z-index: 1;
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #343434, #4a4a4a);
+}
+
+#tp-weather-widget .sw-bar-bubble-content::after {
+  content: '';
+  background: url(../images/halloween3.svg) no-repeat;
+  background-size: 100%;
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  right: 0;
+  top: -20px;
+  transform: rotate(20deg);
+}
+
+#tp-weather-widget .sw-bar-bubble-location {
+  position: absolute;
+  left: 8px;
+  top: 30px;
+  width: 70px;
+  text-align: center;
+}
+
+#tp-weather-widget .sw-bar-bubble-temperature {
+  position: absolute;
+  top: 10px;
+  left: 80px;
+  font-size: 32px;
+  font-weight: 700;
+}

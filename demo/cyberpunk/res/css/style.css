@@ -1,0 +1,37 @@
+@font-face {
+  font-family: 'Cream Peach';
+  src: url('../fonts/Cream Peach.ttf') format('truetype');
+}
+
+.sw-container * {
+  font-family: 'Cream Peach', 'lingwai SC', 'xingkai SC', '行楷', '楷体', PingFangSC-Light, PingFangSC, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei" !important;
+}
+
+.sw-container.sw-container {
+  text-shadow: 0 0 0.2em #1df3fc, -0 -0 0.2em #1df3fc;
+  transition: all ease 1s;
+}
+
+.sw-container.sw-container {
+  background: linear-gradient(#2A0338, #0b2142);
+}
+
+/* ======================= 赛博朋克主题 ======================= */
+.sw-container .sw-card-slim-container,
+.sw-container .sw-card-bubble-background {
+  background: linear-gradient(#2d0239, #0b2142);
+}
+
+.sw-container .sw-ui-main {
+  background-image: url(../images/background.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+/* ======================= KAD 阿卡丽主题 ======================= */
+/* .sw-container .sw-card-slim-background,
+.sw-container .sw-card-bubble-container {
+  background-image: url(../images/background-lg.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+} */
