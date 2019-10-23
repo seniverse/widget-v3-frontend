@@ -9,7 +9,7 @@
 }
 
 /* ======================= 灯笼主题 ======================= */
-.sw-container.sw-container {
+/* .sw-container.sw-container {
   background: linear-gradient(#93FAF0, #E3F8E9);
 }
 
@@ -18,10 +18,10 @@
   background-image: url(../images/background-03.png);
   background-repeat: no-repeat;
   background-size: cover;
-}
+} */
 
 /* ======================= 鹤主题 ======================= */
-/* .sw-container.sw-container {
+.sw-container.sw-container {
   background: linear-gradient(to left, #A8C7D3, #B7D3DD);
 }
 
@@ -34,7 +34,7 @@
   background-image: url(../images/background-02.png);
   background-repeat: no-repeat;
   background-size: 100% auto;
-} */
+}
 
 /* ======================= 国旗主题 ======================= */
 /* .sw-container.sw-container {

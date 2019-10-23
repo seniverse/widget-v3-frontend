@@ -12,21 +12,21 @@
 }
 
 /* ======================= 鸟居主题 ======================= */
-/* .sw-container .sw-card-slim-background,
+.sw-container .sw-card-slim-background,
 .sw-container .sw-card-bubble-container {
   background-image: url(../images/background-04.png);
   background-repeat: no-repeat;
   background-size: cover;
-} */
+}
 
 
 /* ======================= 海浪主题 - 01 ======================= */
-.sw-container .sw-card-slim-background,
+/* .sw-container .sw-card-slim-background,
 .sw-container .sw-card-bubble-container {
   background-image: url(../images/background-05.png);
   background-repeat: no-repeat;
   background-size: cover;
-}
+} */
 
 /* ======================= 海浪主题 - 02 ======================= */
 /* .sw-container .sw-card-slim-background,
