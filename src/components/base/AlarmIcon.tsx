@@ -8,12 +8,12 @@ const { assetsPath } = env
 const IconFont = createGlobalStyle`
   @font-face {
     font-family: 'alarmicon';
-    src: url('${assetsPath}/assets/font/alarm-iconfont.eot');
+    src: url('${assetsPath}font/alarm-iconfont.eot');
     src:
-      url('${assetsPath}/assets/font/alarm-iconfont.eot#iefix') format('embedded-opentype'),
-      url('${assetsPath}/assets/font/alarm-iconfont.woff') format('woff'),
-      url('${assetsPath}/assets/font/alarm-iconfont.ttf') format('truetype'),
-      url('${assetsPath}/assets/font/alarm-iconfont.svg') format('svg');
+      url('${assetsPath}font/alarm-iconfont.eot#iefix') format('embedded-opentype'),
+      url('${assetsPath}font/alarm-iconfont.woff') format('woff'),
+      url('${assetsPath}font/alarm-iconfont.ttf') format('truetype'),
+      url('${assetsPath}font/alarm-iconfont.svg') format('svg');
   }
 
   .icon-background-alarmCircle {

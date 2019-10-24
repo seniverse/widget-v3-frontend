@@ -15,9 +15,8 @@ const refreshObjectCaches = () =>
     if (!config.oss.refresh) {
       resolve()
     }
-    const uploadEnv = process.env.UPLOAD_ENV
 
-    const objectPath = `https://${config.host}/${uploadEnv}/ \nhttp://${config.host}/${uploadEnv}/`
+    const objectPath = `https://${config.host}/ \nhttp://${config.host}/`
     console.log(objectPath)
 
     cdn.refreshObjectCaches(
