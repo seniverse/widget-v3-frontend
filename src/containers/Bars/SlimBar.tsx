@@ -6,14 +6,15 @@ import { MainUiLayout } from 'TYPES/Widget'
 import { BarProps } from 'TYPES/Bar'
 import { scrollbar, checkBy } from 'UTILS/theme'
 import { getCodeByTime } from 'UTILS/helper'
+
 import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 import UiManager from 'CONTAINERS/UiManager'
 import SvgIcon from 'COMPONENTS/base/SvgIcon'
 import Typography from 'COMPONENTS/base/Typography'
+import Loading from 'COMPONENTS/base/Loading'
+import CloseButton from 'COMPONENTS/shared/CloseButton'
 
-import Loading from './Loading'
-import CloseButton from './CloseButton'
-import AppContainer from './AppContainer'
+import AppContainer from 'CONTAINERS/App/AppContainer'
 
 const SlimBarContainer = styled.div`
   display: inline-flex;
@@ -156,7 +157,7 @@ const SlimBar: React.FC<BarProps> = props => {
                   className="sw-card-slim-container"
                 >
                   <UiContainer className="sw-card-slim-background">
-                    {open && hover !== 'always' && (
+                    {hover !== 'always' && (
                       <CloseButton
                         className="sw-card-slim-close"
                         onClick={e => {

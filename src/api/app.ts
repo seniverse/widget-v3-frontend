@@ -13,10 +13,7 @@ const get = async (url: string, config?: AxiosRequestConfig) => {
   return null
 }
 
-const getConfig = (option: SwConfigOptions) => {
-  const { token, unit, language, location, geolocation } = option
-  const detected = getBrowserLanguage()
-
+const checkToken = (token: string) => {
   if (token === '') {
     const error = '请填写 Token'
     alert(`${error}。打开控制台查看更多提示信息`)
@@ -28,9 +25,20 @@ const getConfig = (option: SwConfigOptions) => {
       '若本地开发调试或自行部署插件前端，建议将 token 配置到环境变量内，并保证能够传入到 App 组件内部'
     )
   }
+}
+
+const getConfig = (option: SwConfigOptions) => {
+  const { token, unit, language, location, geolocation } = option
+  checkToken(token)
 
   return get(`${apiHost}/api/weather/${token}`, {
-    params: { unit, language, location, geolocation, detected }
+    params: {
+      unit,
+      language,
+      location,
+      geolocation,
+      detected: getBrowserLanguage()
+    }
   })
 }
 

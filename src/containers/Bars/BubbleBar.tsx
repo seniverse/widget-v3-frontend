@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
-import { MainUiLayout } from 'TYPES/Widget'
-import { BarProps } from 'TYPES/Bar'
-import Loading from './Loading'
-import Typography from 'COMPONENTS/base/Typography'
-import { getCodeByTime } from 'UTILS/helper'
 import { Transition } from 'react-transition-group'
-import AppContainer from './AppContainer'
+
+import { BarProps } from 'TYPES/Bar'
+import { MainUiLayout } from 'TYPES/Widget'
 import { scrollbar } from 'UTILS/theme'
+import { getCodeByTime } from 'UTILS/helper'
+
 import UiManager from 'CONTAINERS/UiManager'
+
+import Loading from 'COMPONENTS/base/Loading'
+import Typography from 'COMPONENTS/base/Typography'
 import SvgIcon from 'COMPONENTS/base/SvgIcon'
 import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
-import CloseButton from './CloseButton'
+import CloseButton from 'COMPONENTS/shared/CloseButton'
+
+import AppContainer from 'CONTAINERS/App/AppContainer'
 
 const WeatherIcon = styled(SvgIcon)`
   width: 32px;

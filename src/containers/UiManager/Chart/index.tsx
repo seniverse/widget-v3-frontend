@@ -1,14 +1,17 @@
 import React, { useContext, useState } from 'react'
-import { BaseUiLayoutOption, SwTheme } from 'TYPES/Widget'
-import { ChartUiLayout, Content } from 'TYPES/Chart'
-import TileContainer from 'COMPONENTS/base/TileContainer'
-import { gridHeight, gridWidth, getIconUrl } from 'UTILS/theme'
 import styled, { ThemeContext, createGlobalStyle } from 'styled-components'
+
 import ReactEchartsCore from 'echarts-for-react/lib/core'
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/custom'
 import 'echarts/lib/component/tooltip'
+
+import { BaseUiLayoutOption, SwTheme } from 'TYPES/Widget'
+import { ChartUiLayout, Content } from 'TYPES/Chart'
+import { gridHeight, gridWidth, getIconUrl } from 'UTILS/theme'
+
+import TileContainer from 'COMPONENTS/base/TileContainer'
 import OptionProvider from 'COMPONENTS/expand/OptionProvider'
 
 const ChartContainer = styled.div`

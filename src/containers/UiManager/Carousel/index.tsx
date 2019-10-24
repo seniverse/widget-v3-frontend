@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
+
+import { gridWidth } from 'UTILS/theme'
 import { CarouselUILayout } from 'TYPES/Carousel'
 import { BaseUiLayoutOption } from 'TYPES/Widget'
-import TileContainer from 'COMPONENTS/base/TileContainer'
-import styled from 'styled-components'
-import { TileUIContainer } from '../Tile'
-import { gridWidth } from 'UTILS/theme'
+
 import SvgIcon from 'COMPONENTS/base/SvgIcon'
+import TileContainer from 'COMPONENTS/base/TileContainer'
+
+import { TileUIContainer } from '../Tile'
 
 const Container = styled.div`
   height: 100%;

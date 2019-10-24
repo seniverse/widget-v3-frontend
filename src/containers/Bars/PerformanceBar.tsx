@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import UiManager from 'CONTAINERS/UiManager'
-import AppContainer from './AppContainer'
 import { BarProps } from 'TYPES/Bar'
+import UiManager from 'CONTAINERS/UiManager'
+
+import AppContainer from 'CONTAINERS/App/AppContainer'
 
 const Background = styled.div`
   background: ${props => props.theme.palette.background.default};

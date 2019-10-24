@@ -1,11 +1,14 @@
 import React, { memo } from 'react'
 import styled from 'styled-components'
-import Main from 'CONTAINERS/Main'
-import Carousel from 'CONTAINERS/Carousel'
-import Tile from 'CONTAINERS/Tile'
-import Chart from 'CONTAINERS/Chart'
-import { SwLayoutOptions } from 'TYPES/Widget'
+
 import { checkBy } from 'UTILS/theme'
+import { SwLayoutOptions } from 'TYPES/Widget'
+
+import Main from 'CONTAINERS/UiManager/Main'
+import Carousel from 'CONTAINERS/UiManager/Carousel'
+import Tile from 'CONTAINERS/UiManager/Tile'
+import Chart from 'CONTAINERS/UiManager/Chart'
+
 import SvgIcon from 'COMPONENTS/base/SvgIcon'
 
 const getUI: (type: string) => React.ElementType = type => {

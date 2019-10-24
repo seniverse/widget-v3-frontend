@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { AlarmData } from 'TYPES/Widget'
+
 import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 import Typography from 'COMPONENTS/base/Typography'
 import TextScroll from 'COMPONENTS/base/TextScroll'

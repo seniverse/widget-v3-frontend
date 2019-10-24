@@ -1,12 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import { MainUiLayout, BaseUiLayoutOption } from 'TYPES/Widget'
-import TileContainer from 'COMPONENTS/base/TileContainer'
-import Typography from 'COMPONENTS/base/Typography'
-import { getCodeByTime, getSunTime } from 'UTILS/helper'
-import Alarm from './Alarm'
+
 import { checkBy } from 'UTILS/theme'
+import { getCodeByTime, getSunTime } from 'UTILS/helper'
+import { MainUiLayout, BaseUiLayoutOption } from 'TYPES/Widget'
+
 import SvgIcon from 'COMPONENTS/base/SvgIcon'
+import Typography from 'COMPONENTS/base/Typography'
+import TileContainer from 'COMPONENTS/base/TileContainer'
+
+import Alarm from './Alarm'
 
 interface MainUiProps {
   options: BaseUiLayoutOption

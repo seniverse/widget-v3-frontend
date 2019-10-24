@@ -5,9 +5,7 @@ import { SwConfigOptions, SwLayoutOptions } from 'TYPES/Widget'
 import { getTheme } from 'UTILS/theme'
 import OptionProvider from 'COMPONENTS/expand/OptionProvider'
 
-import BubbleBar from './BubbleBar'
-import SlimBar from './SlimBar'
-import PerformanceBar from './PerformanceBar'
+import Bars from 'CONTAINERS/Bars'
 
 interface SwProps {
   data?: SwLayoutOptions
@@ -43,8 +41,6 @@ const App: React.FC<SwProps> = props => {
     }
   }
 
-  const { flavor } = options
-
   useEffect(() => {
     fetchConfig()
   }, [])
@@ -53,30 +49,7 @@ const App: React.FC<SwProps> = props => {
     <ThemeProvider theme={theme}>
       <OptionProvider.Provider value={options}>
         {open && <OpenStyle />}
-        {flavor === 'bubble' && (
-          <BubbleBar
-            config={config}
-            options={options}
-            open={open}
-            setOpen={setOpen}
-          />
-        )}
-        {flavor === 'slim' && (
-          <SlimBar
-            config={config}
-            options={options}
-            open={open}
-            setOpen={setOpen}
-          />
-        )}
-        {flavor === 'performance' && (
-          <PerformanceBar
-            config={config}
-            options={options}
-            open={open}
-            setOpen={setOpen}
-          />
-        )}
+        <Bars config={config} options={options} open={open} setOpen={setOpen} />
       </OptionProvider.Provider>
     </ThemeProvider>
   )
