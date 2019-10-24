@@ -3,7 +3,7 @@
   src: url('../fonts/Cream Peach.ttf') format('truetype');
 }
 
-.sw-container * {
+.sw-container .sw-typography {
   font-family: 'Cream Peach', 'lingwai SC', 'xingkai SC', '行楷', '楷体', PingFangSC-Light, PingFangSC, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei" !important;
 }
 

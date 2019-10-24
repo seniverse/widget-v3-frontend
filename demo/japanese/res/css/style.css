@@ -3,7 +3,7 @@
   src: url('../fonts/Potra.ttf') format('truetype');
 }
 
-.sw-container * {
+.sw-container .sw-typography {
   font-family: 'Potra', PingFangSC-Light, PingFangSC, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei" !important;
 }
 

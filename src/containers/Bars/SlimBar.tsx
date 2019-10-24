@@ -147,31 +147,29 @@ const SlimBar: React.FC<BarProps> = props => {
           </Typography>
         </SlimBarContainer>
         <Transition in={open} timeout={200}>
-          {state =>
-            open && (
-              <SpaceContainer>
-                <CardContainer
-                  style={{
-                    ...transitionStyles[state]
-                  }}
-                  className="sw-card-slim-container"
-                >
-                  <UiContainer className="sw-card-slim-background">
-                    {hover !== 'always' && (
-                      <CloseButton
-                        className="sw-card-slim-close"
-                        onClick={e => {
-                          e.stopPropagation()
-                          setOpen(false)
-                        }}
-                      />
-                    )}
-                    <UiManager config={config} />
-                  </UiContainer>
-                </CardContainer>
-              </SpaceContainer>
-            )
-          }
+          {state => (
+            <SpaceContainer>
+              <CardContainer
+                style={{
+                  ...transitionStyles[state]
+                }}
+                className="sw-card-slim-container"
+              >
+                <UiContainer className="sw-card-slim-background">
+                  {hover !== 'always' && (
+                    <CloseButton
+                      className="sw-card-slim-close"
+                      onClick={e => {
+                        e.stopPropagation()
+                        setOpen(false)
+                      }}
+                    />
+                  )}
+                  <UiManager config={config} />
+                </UiContainer>
+              </CardContainer>
+            </SpaceContainer>
+          )}
         </Transition>
       </StyledAppContainer>
     )

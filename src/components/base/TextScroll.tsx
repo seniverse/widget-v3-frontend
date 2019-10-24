@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import ReactDOM from 'react-dom'
 
+import Typography from 'COMPONENTS/base/Typography'
+
 interface TextScrollProp {
   className?: string
   text: Array<string>
@@ -76,9 +78,8 @@ class Horizontal extends React.Component<TextScrollProp, TextScrollState> {
       }
     `
 
-    const Item = styled.span`
+    const Item = styled(Typography)`
       display: inline-block;
-      font-size: 12px;
       margin-right: ${this.state.containerWidth}px;
     `
 
@@ -86,7 +87,7 @@ class Horizontal extends React.Component<TextScrollProp, TextScrollState> {
       <HorizontalContainer className={this.props.className}>
         <Container ref={(div: any) => (this.container = div)}>
           {this.props.text.map((e: any, i: number) => (
-            <Item key={i} title={e}>
+            <Item key={i} title={e} variant="caption">
               {e}
             </Item>
           ))}

@@ -237,7 +237,7 @@ const Main: React.FC<MainUiProps> = props => {
         </TimeContainer>
       </StyledTileContainer>
       {alarms.map((alarm, index) => (
-        <Alarm alarm={alarm} key={index} />
+        <Alarm alarm={alarm} key={index} className="sw-ui-main-alarm" />
       ))}
     </MainUiContainer>
   )
