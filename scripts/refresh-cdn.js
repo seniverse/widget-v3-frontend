@@ -10,20 +10,15 @@ const cdn = new ALY.CDN({
   apiVersion: '2014-11-11'
 })
 
-const refreshObjectCaches = () =>
+const refreshObjectCaches = (options) =>
   new Promise((resolve, reject) => {
     if (!config.oss.refresh) {
       resolve()
     }
 
-    const objectPath = `https://${config.host}/ \nhttp://${config.host}/`
-    console.log(objectPath)
-
+    console.log(`[REFRESH] ${JSON.stringify(options)}`)
     cdn.refreshObjectCaches(
-      {
-        ObjectType: 'Directory',
-        ObjectPath: objectPath
-      },
+      options,
       (err, res) => {
         if (err) {
           reject(err)
@@ -33,4 +28,15 @@ const refreshObjectCaches = () =>
     )
   })
 
-module.exports = refreshObjectCaches
+module.exports = async () => {
+  await Promise.all([
+    refreshObjectCaches({
+      ObjectType: 'Directory',
+      ObjectPath: `https://${config.host}/ \nhttp://${config.host}/`
+    }),
+    refreshObjectCaches({
+      ObjectType: 'File',
+      ObjectPath: `https://cdn.sencdn.com/widget2/static/js/bundle.js \nhttp://cdn.sencdn.com/widget2/static/js/bundle.js`
+    })
+  ])
+}
