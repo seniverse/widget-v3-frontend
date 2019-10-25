@@ -10,22 +10,19 @@ const cdn = new ALY.CDN({
   apiVersion: '2014-11-11'
 })
 
-const refreshObjectCaches = (options) =>
+const refreshObjectCaches = options =>
   new Promise((resolve, reject) => {
     if (!config.oss.refresh) {
       resolve()
     }
 
     console.log(`[REFRESH] ${JSON.stringify(options)}`)
-    cdn.refreshObjectCaches(
-      options,
-      (err, res) => {
-        if (err) {
-          reject(err)
-        }
-        resolve(res)
+    cdn.refreshObjectCaches(options, (err, res) => {
+      if (err) {
+        reject(err)
       }
-    )
+      resolve(res)
+    })
   })
 
 module.exports = async () => {
