@@ -33,7 +33,7 @@ module.exports = async () => {
     }),
     refreshObjectCaches({
       ObjectType: 'File',
-      ObjectPath: `https://cdn.sencdn.com/widget2/static/js/bundle.js \nhttp://cdn.sencdn.com/widget2/static/js/bundle.js`
+      ObjectPath: `https://${config.host}/static/js/bundle.js \nhttp://${config.host}/static/js/bundle.js`
     })
   ])
 }
