@@ -208,7 +208,7 @@ const ChartUI: React.FC<ChartUiProps> = props => {
               itemOptions: { type: 'image' },
               dataOptions: { zlevel: 2 },
               itemStyle: api => {
-                if (api.value(2)) {
+                if (`${api.value(2)}` !== '') {
                   return {
                     image: `${getIconUrl(
                       assetsPath,
