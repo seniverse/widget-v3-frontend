@@ -4,7 +4,7 @@ import { Transition } from 'react-transition-group'
 
 import { MainUiLayout } from 'TYPES/Widget'
 import { BarProps } from 'TYPES/Bar'
-import { scrollbar, checkBy } from 'UTILS/theme'
+import { scrollbar, checkBy, check } from 'UTILS/theme'
 import { getCodeByTime } from 'UTILS/helper'
 
 import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
@@ -71,6 +71,9 @@ const SpaceContainer = styled.div`
   top: 100%;
   left: 0;
   z-index: 3000;
+  ${check('hidden')(`
+    display: none;
+  `)}
 
   @media screen and (max-width: 600px) {
     position: fixed;
@@ -119,14 +122,17 @@ const SlimBar: React.FC<BarProps> = props => {
             setOpen(false)
           }
         }}
-        onClick={() => {
-          if (hover !== 'disabled') {
-            setOpen(true)
-          }
-        }}
         className="sw-container"
       >
-        <SlimBarContainer className="sw-bar-slim" theme={theme}>
+        <SlimBarContainer
+          className="sw-bar-slim"
+          theme={theme}
+          onClick={() => {
+            if (hover !== 'disabled') {
+              setOpen(true)
+            }
+          }}
+        >
           <Typography
             variant="body2"
             component="span"
@@ -148,7 +154,7 @@ const SlimBar: React.FC<BarProps> = props => {
         </SlimBarContainer>
         <Transition in={open} timeout={200}>
           {state => (
-            <SpaceContainer>
+            <SpaceContainer hidden={!open}>
               <CardContainer
                 style={{
                   ...transitionStyles[state]

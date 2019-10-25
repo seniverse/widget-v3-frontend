@@ -5,7 +5,7 @@ import { Transition } from 'react-transition-group'
 
 import { BarProps } from 'TYPES/Bar'
 import { MainUiLayout } from 'TYPES/Widget'
-import { scrollbar } from 'UTILS/theme'
+import { scrollbar, check } from 'UTILS/theme'
 import { getCodeByTime } from 'UTILS/helper'
 
 import UiManager from 'CONTAINERS/UiManager'
@@ -91,6 +91,9 @@ const ExpandedCard = styled.div<{ h: string; v: string }>`
     height: 100% !important;
     border-radius: 0;
     overflow-y: auto;
+    ${check('hidden')(`
+      display: none;
+    `)}
     ${scrollbar}
   }
 `
@@ -224,17 +227,20 @@ const BubbleBar: React.FC<BarProps> = props => {
                 setOpen(false)
               }
             }}
-            onClick={() => {
-              if (hover !== 'disabled') {
-                setOpen(true)
-              }
-            }}
             className="sw-container"
             style={{
               ...appTransitionStyles[state]
             }}
           >
-            <Container className="sw-bar-bubble" ref={barRef}>
+            <Container
+              className="sw-bar-bubble"
+              ref={barRef}
+              onClick={() => {
+                if (hover !== 'disabled') {
+                  setOpen(true)
+                }
+              }}
+            >
               {icon}
               <div className="sw-bar-bubble-content">
                 <Typography
@@ -259,6 +265,7 @@ const BubbleBar: React.FC<BarProps> = props => {
                 <ExpandedCard
                   h={direction.h}
                   v={direction.v}
+                  hidden={!open}
                   className="sw-card-bubble-background"
                   style={{
                     ...transitionStyles[state]
