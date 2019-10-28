@@ -1,0 +1,69 @@
+@font-face {
+  font-family: 'mont';
+  src: url('../fonts/mont.ttf') format('truetype');
+}
+
+#tp-weather-widget * {
+  font-family: 'mont', 'Noto Serif SC', 'Georgia', 'Roboto', 'Helvetica',
+    'Arial', sans-serif;
+}
+
+.sw-container .sw-ui-main-temperature {
+  font-size: 5rem;
+}
+
+/* 黑色主题 */
+
+.sw-container .sw-card-slim-background,
+.sw-container .sw-card-bubble-container {
+  background: #000000;
+}
+
+.sw-container .sw-ui-main-arc {
+  border-color: #f9f9f9;
+}
+
+.sw-container .sw-ui-chart {
+  filter: grayscale(1);
+}
+
+#tp-weather-widget .sw-container {
+  border-radius: 0;
+}
+.sw-container .sc-htpNat,
+.sw-container .sw-ui-main-alarm {
+  border-bottom: 1px solid #fff;
+  padding-bottom: 6px;
+}
+
+.sw-container .sw-ui-tile-container {
+  color: #e8e8e8;
+}
+
+.sw-container .sw-ui-tile-text-icon {
+  filter: grayscale(0.9);
+}
+
+/* 红色主题 */
+/* .sw-container .sw-card-slim-background,
+.sw-container .sw-card-bubble-container {
+  background: #cf2a02;
+}
+
+.sw-container .sw-ui-main-arc {
+  border-color: #2d0901;
+}
+
+.sw-container .sc-htpNat {
+  border-bottom: 1px solid #2d0901;
+  padding-bottom: 6px;
+}
+
+#tp-weather-widget .sw-container {
+  border-radius: 0;
+  background: #cf2a02;
+}
+
+.sw-container .sw-ui-chart {
+  filter: invert(1) grayscale(1);
+} */

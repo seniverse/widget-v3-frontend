@@ -3,16 +3,9 @@
   src: url('../fonts/MountainsofChristmas.ttf') format('truetype');
 }
 
-#tp-weather-widget .sw-container,
-.sw-ui-tile-header,
-.sw-ui-tile-text,
-.sw-ui-main-rise,
-.sw-ui-main-set,
-.sw-ui-main-temperatureRange,
-.sw-ui-main-temperature,
-.sw-bar-bubble-location,
-.sw-bar-bubble-temperature {
-  font-family: 'Christmas', 'Noto Serif SC', 'Georgia', 'Roboto', 'Helvetica', 'Arial', sans-serif !important;
+#tp-weather-widget * {
+  font-family: 'Christmas', 'Noto Serif SC', 'Georgia', 'Roboto', 'Helvetica',
+    'Arial', sans-serif;
 }
 
 #tp-weather-widget .sw-ui-main-container {
@@ -31,11 +24,14 @@
   border-color: #ecf0f2;
 }
 
-
 #tp-weather-widget .sw-ui-tile {
   display: flex;
   justify-content: center;
   margin-bottom: 16px;
+}
+
+#tp-weather-widget .sw-ui-tile::before {
+  display: none;
 }
 
 #tp-weather-widget .sw-ui-tile-container {
@@ -43,7 +39,6 @@
   border-radius: 16px;
   box-shadow: 0 4px 6px 0 rgba(15, 37, 64, 0.1);
 }
-
 
 #tp-weather-widget .sw-ui-carousel-item {
   background: linear-gradient(
@@ -56,16 +51,20 @@
   box-shadow: 0 4px 6px 0 rgba(15, 37, 64, 0.1);
 }
 
+#tp-weather-widget .sw-ui-carousel-item .sw-ui-tile-text-suffix,
+#tp-weather-widget .sw-ui-carousel-item .sw-ui-tile-header {
+  font-size: 1rem;
+}
+
 #tp-weather-widget .sw-ui-chart {
   margin-bottom: 16px;
 }
 
 #tp-weather-widget .sw-container {
-  background: url('../images/bg1.jpg') no-repeat center;
-  background-size: cover;
-  filter: blur(3);
+  background: #bce2da;
+  background: url(../images/bg2.jpg) no-repeat center;
+  background-size: contain;
 }
-
 
 #tp-weather-widget .sw-ui-main-timeContainer span {
   background-color: #fff;
