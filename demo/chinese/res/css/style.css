@@ -4,7 +4,7 @@
   src: url('../fonts/BenchNine.ttf') format('truetype');
 }
 
-.sw-container * {
+.sw-container .sw-typography {
   font-family: 'BenchNine', PingFangSC-Light, PingFangSC, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei" !important;
 }
 

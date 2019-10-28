@@ -10,28 +10,30 @@ const cdn = new ALY.CDN({
   apiVersion: '2014-11-11'
 })
 
-const refreshObjectCaches = () =>
+const refreshObjectCaches = options =>
   new Promise((resolve, reject) => {
     if (!config.oss.refresh) {
       resolve()
     }
-    const uploadEnv = process.env.UPLOAD_ENV
 
-    const objectPath = `https://${config.host}/${uploadEnv}/ \nhttp://${config.host}/${uploadEnv}/`
-    console.log(objectPath)
-
-    cdn.refreshObjectCaches(
-      {
-        ObjectType: 'Directory',
-        ObjectPath: objectPath
-      },
-      (err, res) => {
-        if (err) {
-          reject(err)
-        }
-        resolve(res)
+    console.log(`[REFRESH] ${JSON.stringify(options)}`)
+    cdn.refreshObjectCaches(options, (err, res) => {
+      if (err) {
+        reject(err)
       }
-    )
+      resolve(res)
+    })
   })
 
-module.exports = refreshObjectCaches
+module.exports = async () => {
+  await Promise.all([
+    refreshObjectCaches({
+      ObjectType: 'Directory',
+      ObjectPath: `https://${config.host}/ \nhttp://${config.host}/`
+    }),
+    refreshObjectCaches({
+      ObjectType: 'File',
+      ObjectPath: `https://${config.host}/static/js/bundle.js \nhttp://${config.host}/static/js/bundle.js`
+    })
+  ])
+}

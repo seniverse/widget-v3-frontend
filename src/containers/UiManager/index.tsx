@@ -1,12 +1,16 @@
 import React, { memo } from 'react'
 import styled from 'styled-components'
-import Main from 'CONTAINERS/Main'
-import Carousel from 'CONTAINERS/Carousel'
-import Tile from 'CONTAINERS/Tile'
-import Chart from 'CONTAINERS/Chart'
-import { SwLayoutOptions } from 'TYPES/Widget'
+
 import { checkBy } from 'UTILS/theme'
+import { SwLayoutOptions } from 'TYPES/Widget'
+
+import Main from 'CONTAINERS/UiManager/Main'
+import Carousel from 'CONTAINERS/UiManager/Carousel'
+import Tile from 'CONTAINERS/UiManager/Tile'
+import Chart from 'CONTAINERS/UiManager/Chart'
+
 import SvgIcon from 'COMPONENTS/base/SvgIcon'
+import Typography from 'COMPONENTS/base/Typography'
 
 const getUI: (type: string) => React.ElementType = type => {
   switch (type) {
@@ -55,6 +59,7 @@ const Link = styled.a`
 const Icon = styled(SvgIcon)`
   width: 14px;
   height: 14px;
+  margin-right: 4px;
 `
 
 interface UiManagerProps {
@@ -79,7 +84,8 @@ const UiManager: React.FC<UiManagerProps> = props => {
           color="textPrimary"
           href="//seniverse.com?source=widget"
         >
-          <Icon name="logo" /> &nbsp; 数据服务来自心知天气
+          <Icon name="logo" />
+          <Typography variant="caption">数据服务来自心知天气</Typography>
         </Link>
       </LogoContainer>
     </>

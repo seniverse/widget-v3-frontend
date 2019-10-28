@@ -4,16 +4,17 @@ import { Transition } from 'react-transition-group'
 
 import { MainUiLayout } from 'TYPES/Widget'
 import { BarProps } from 'TYPES/Bar'
-import { scrollbar, checkBy } from 'UTILS/theme'
+import { scrollbar, checkBy, check } from 'UTILS/theme'
 import { getCodeByTime } from 'UTILS/helper'
+
 import AlarmIcon from 'COMPONENTS/base/AlarmIcon'
 import UiManager from 'CONTAINERS/UiManager'
 import SvgIcon from 'COMPONENTS/base/SvgIcon'
 import Typography from 'COMPONENTS/base/Typography'
+import Loading from 'COMPONENTS/base/Loading'
+import CloseButton from 'COMPONENTS/shared/CloseButton'
 
-import Loading from './Loading'
-import CloseButton from './CloseButton'
-import AppContainer from './AppContainer'
+import AppContainer from 'CONTAINERS/App/AppContainer'
 
 const SlimBarContainer = styled.div`
   display: inline-flex;
@@ -70,6 +71,9 @@ const SpaceContainer = styled.div`
   top: 100%;
   left: 0;
   z-index: 3000;
+  ${check('hidden')(`
+    display: none;
+  `)}
 
   @media screen and (max-width: 600px) {
     position: fixed;
@@ -118,14 +122,17 @@ const SlimBar: React.FC<BarProps> = props => {
             setOpen(false)
           }
         }}
-        onClick={() => {
-          if (hover !== 'disabled') {
-            setOpen(true)
-          }
-        }}
         className="sw-container"
       >
-        <SlimBarContainer className="sw-bar-slim" theme={theme}>
+        <SlimBarContainer
+          className="sw-bar-slim"
+          theme={theme}
+          onClick={() => {
+            if (hover !== 'disabled') {
+              setOpen(true)
+            }
+          }}
+        >
           <Typography
             variant="body2"
             component="span"
@@ -146,31 +153,29 @@ const SlimBar: React.FC<BarProps> = props => {
           </Typography>
         </SlimBarContainer>
         <Transition in={open} timeout={200}>
-          {state =>
-            open && (
-              <SpaceContainer>
-                <CardContainer
-                  style={{
-                    ...transitionStyles[state]
-                  }}
-                  className="sw-card-slim-container"
-                >
-                  <UiContainer className="sw-card-slim-background">
-                    {open && hover !== 'always' && (
-                      <CloseButton
-                        className="sw-card-slim-close"
-                        onClick={e => {
-                          e.stopPropagation()
-                          setOpen(false)
-                        }}
-                      />
-                    )}
-                    <UiManager config={config} />
-                  </UiContainer>
-                </CardContainer>
-              </SpaceContainer>
-            )
-          }
+          {state => (
+            <SpaceContainer hidden={!open}>
+              <CardContainer
+                style={{
+                  ...transitionStyles[state]
+                }}
+                className="sw-card-slim-container"
+              >
+                <UiContainer className="sw-card-slim-background">
+                  {hover !== 'always' && (
+                    <CloseButton
+                      className="sw-card-slim-close"
+                      onClick={e => {
+                        e.stopPropagation()
+                        setOpen(false)
+                      }}
+                    />
+                  )}
+                  <UiManager config={config} />
+                </UiContainer>
+              </CardContainer>
+            </SpaceContainer>
+          )}
         </Transition>
       </StyledAppContainer>
     )

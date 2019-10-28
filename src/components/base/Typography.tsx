@@ -54,7 +54,7 @@ const Typography: React.FC<TypographyProps> = props => {
   return (
     <BaseTypography
       as={component}
-      className={className}
+      className={`sw-typography ${className}`}
       noWrap={noWrap}
       variant={variant}
       lineHeight={lineHeight}

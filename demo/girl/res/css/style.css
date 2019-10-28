@@ -4,7 +4,7 @@
   src: url('../fonts/RibeyeMarrow.ttf') format('truetype');
 }
 
-.sw-container * {
+.sw-container .sw-typography {
   font-family: 'RibeyeMarrow', PingFangSC-Light, PingFangSC, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei" !important;
 }
 
