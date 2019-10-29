@@ -44,6 +44,10 @@
   filter: grayscale(0.9);
 }
 
+.sw-container .sw-ui-main-temperatureRange img {
+  filter: grayscale(0.9);
+}
+
 /* 红色主题 */
 /* .sw-container .sw-card-slim-background,
 .sw-container .sw-card-bubble-container {

@@ -19,6 +19,9 @@
   background-image: linear-gradient(to bottom, #bce2da, #fdfdfd);
   border-radius: 4px;
 }
+.sw-container .sw-bar-bubble-icon {
+  opacity: 0.9;
+}
 
 #tp-weather-widget .sw-ui-main-arc {
   border-color: #ecf0f2;
@@ -34,7 +37,8 @@
   display: none;
 }
 
-#tp-weather-widget .sw-ui-tile-container {
+#tp-weather-widget .sw-ui-tile-container,
+#tp-weather-widget .sw-ui-main-alarm {
   background-color: #f9f9f9ff;
   border-radius: 16px;
   box-shadow: 0 4px 6px 0 rgba(15, 37, 64, 0.1);
