@@ -16,19 +16,22 @@ export const getCodeByTime = (
   const [setHour, setMinute] = sun.set.split(':').map(t => parseInt(t))
 
   if (
-    (hour > riseHour || (hour === riseHour && minute >= riseMinute)) &&
-    (hour < setHour || (hour === setHour && minute <= setMinute))
+    hour * 60 + minute >= riseHour * 60 + riseMinute &&
+    hour * 60 + minute < riseHour * 60 + riseMinute + 15
+  ) {
+    return code.day
+  }
+
+  if (
+    hour * 60 + minute > riseHour * 60 + riseMinute &&
+    hour * 60 + minute < setHour * 60 + setMinute
   ) {
     return code.now
   }
 
-  if (hour * 60 + minute - (setHour * 60 + setMinute) < 15) {
-    return code.night
-  }
-
   if (
-    riseHour * 60 + riseMinute - (hour * 60 + minute) < 15 &&
-    riseHour * 60 + riseMinute > hour * 60 + minute
+    hour * 60 + minute >= setHour * 60 + setMinute &&
+    hour * 60 + minute < setHour * 60 + setMinute + 15
   ) {
     return code.night
   }
@@ -50,8 +53,8 @@ export const getSunTime = (sun: {
   const [setHour, setMinute] = sun.set.split(':').map(t => parseInt(t))
 
   if (
-    (hour > riseHour || (hour === riseHour && minute >= riseMinute)) &&
-    (hour < setHour || (hour === setHour && minute <= setMinute))
+    hour * 60 + minute >= riseHour * 60 + riseMinute &&
+    hour * 60 + minute <= setHour * 60 + setMinute
   ) {
     return sun
   }
