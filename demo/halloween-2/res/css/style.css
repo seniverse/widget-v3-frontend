@@ -1,0 +1,14 @@
+.sw-container .sw-typography {
+  font-family: PingFangSC-Light, PingFangSC, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei" !important;
+}
+
+.sw-container.sw-container * {
+  color: #F7E6CC;
+}
+
+.sw-container .sw-card-slim-background,
+.sw-container .sw-card-bubble-container {
+  background-image: url(../images/bg.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
