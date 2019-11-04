@@ -1,8 +1,6 @@
-.sw-container .sw-typography {
-  font-family: PingFangSC-Light, PingFangSC, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei" !important;
-}
 
-.sw-container.sw-container * {
+.sw-card-slim-container.sw-card-slim-container *,
+.sw-card-bubble-container.sw-card-bubble-container * {
   color: #F7E6CC;
 }
 

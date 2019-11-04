@@ -78,7 +78,7 @@ const UiManager: React.FC<UiManagerProps> = props => {
 
         return <Component key={index} options={item} />
       })}
-      <LogoContainer>
+      <LogoContainer className="sw-ui-brand">
         <Link
           target="_blank"
           color="textPrimary"
